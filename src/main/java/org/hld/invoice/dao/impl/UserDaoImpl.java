@@ -15,8 +15,22 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
 
+    @Override
+    public long getTotalCount() {
+        Session session = getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        Number count = 0;
+        try {
+            count = (Number)session.createQuery(" select count(u) from User u ").uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return count.longValue();
+    }
+
     @SuppressWarnings("unchecked")
-    public List<User> findAll() {
+    public List<User> findAllUser() {
         Session session = getCurrentSession();
         Transaction transaction = session.beginTransaction();
         List<User> users = new ArrayList<User>();
@@ -37,22 +51,10 @@ public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
         try {
             user = (User)session.createQuery(" from User u where u.email = :email")
                     .setParameter("email", email).uniqueResult();
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
         }
         return user;
-    }
-
-    @Override
-    public long getTotalCount() {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        Number count = 0;
-        try {
-            count = (Number)session.createQuery(" select count(u) from User u ").uniqueResult();
-        } catch (Exception e) {
-            transaction.rollback();
-        }
-        return count.longValue();
     }
 }

@@ -18,7 +18,7 @@ import java.lang.reflect.Type;
 public abstract class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 
     private Class<T> entityClass;
-    
+
     private SessionFactory sessionFactory;
 
     @Autowired
