@@ -16,6 +16,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
     <!-- ***************************************配置hibernate*************************************** -->
     <!-- 扫描配置文件（这里指向的是config.properties）-->
     <context:property-placeholder location="classpath:/config.properties" />
@@ -35,7 +37,12 @@
     <!-- 配置session工厂 -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="org.hld.invoice.entity" />
+        <property name="annotatedPackages" value="org.hld.invoice.entity"/>
+        <property name="packagesToScan">
+            <list>
+                <value>org.hld.invoice.entity</value>
+            </list>
+        </property>
         <property name="hibernateProperties">
             <props>
                 <!-- hibernate根据实体自动生成数据库表 -->
@@ -46,6 +53,7 @@
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <!-- 在控制台显示执行的数据库操作语句（格式） -->
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="current_session_context_class">thread</prop>
             </props>
         </property>
     </bean>

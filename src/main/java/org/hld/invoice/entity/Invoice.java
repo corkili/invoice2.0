@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by 李浩然 On 2017/8/8.
  */
-@Entity
+@Entity(name = "Invoice")
 @Table(name = "invoice", uniqueConstraints = {@UniqueConstraint(columnNames = {"invoice_code","invoice_id"})})
 public class Invoice {
     @Id

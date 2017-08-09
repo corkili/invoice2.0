@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * Created by 李浩然 On 2017/8/8.
  */
-@Entity
+@Entity(name = "InvoiceDetail")
 @Table(name = "detail")
 public class InvoiceDetail {
     @Id

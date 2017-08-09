@@ -1,16 +1,13 @@
 package org.hld.invoice.entity;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
  * Created by 李浩然 On 2017/8/8.
  */
-/*
-@NamedQueries(value = {
-        @NamedQuery(name = "all user", query = " select u from User u ")
-})*/
-@Entity
+@Entity(name = "User")
 @Table(name = "users")
 public class User {
     @Id
@@ -50,10 +47,13 @@ public class User {
     @Column(name = "verify_time")
     private Date verifyTime;
 
+    @Column(name = "image")
+    private Blob image;
+
     @Version
     private int version;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "authority_id", unique = true)
     private Authority authority;
 
@@ -159,6 +159,14 @@ public class User {
 
     public void setAuthority(Authority authority) {
         this.authority = authority;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 }
 
