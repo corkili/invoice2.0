@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by 李浩然 on 2017/5/17.
+ * 自定义Session拦截器
+ * @author 李浩然 2017年7月20日
+ * @version 1.0
  */
 @Component("SpringMVCInterceptor")
 public class SessionInterceptor implements HandlerInterceptor {
 
-    Logger logger = Logger.getLogger(SessionInterceptor.class);
+    private Logger logger = Logger.getLogger(SessionInterceptor.class);
 
+    /**
+     * @see HandlerInterceptor#preHandle(HttpServletRequest, HttpServletResponse, Object)
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
@@ -26,7 +31,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
 
         // 过滤登录、退出访问
-        String[] noFilters = new String[] { "login", "register", "captcha" };
+        String[] noFilters = new String[] { "login", "register", "captcha", "sendEmail", "resetPWD" };
 
         String uri = request.getRequestURI();
 
@@ -34,26 +39,32 @@ public class SessionInterceptor implements HandlerInterceptor {
 
         for (String s : noFilters) {
             if(uri.contains(s)){
-                logger.info("true");
+//                logger.info("true");
                 return true;
             }
         }
 
         if(userId == null) {
-            logger.info("false");
+//            logger.info("false");
             response.sendRedirect("/no_login");
             return false;
         }
 
-        logger.info("true");
+//        logger.info("true");
         return true;
     }
 
+    /**
+     * @see HandlerInterceptor#postHandle(HttpServletRequest, HttpServletResponse, Object, ModelAndView)
+     */
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
     }
 
+    /**
+     * @see HandlerInterceptor#afterCompletion(HttpServletRequest, HttpServletResponse, Object, Exception)
+     */
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 

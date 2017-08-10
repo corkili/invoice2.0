@@ -10,9 +10,9 @@ import java.util.Random;
  */
 public class HashUtil {
     /**
-     * 生成含有随机盐的密码
+     * 生成含有随机盐的哈希字符串
      */
-    public static String generate(String password) {
+    public static String generate(String content) {
         Random r = new Random();
         StringBuilder sb = new StringBuilder(16);
         sb.append(r.nextInt(99999999)).append(r.nextInt(99999999));
@@ -23,13 +23,13 @@ public class HashUtil {
             }
         }
         String salt = sb.toString();
-        password = md5Hex(password + salt);
+        content = md5Hex(content + salt);
         char[] cs = new char[48];
         for (int i = 0; i < 48; i += 3) {
-            cs[i] = password.charAt(i / 3 * 2);
+            cs[i] = content.charAt(i / 3 * 2);
             char c = salt.charAt(i / 3);
             cs[i + 1] = c;
-            cs[i + 2] = password.charAt(i / 3 * 2 + 1);
+            cs[i + 2] = content.charAt(i / 3 * 2 + 1);
         }
         return new String(cs);
     }
