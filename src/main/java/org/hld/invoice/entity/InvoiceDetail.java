@@ -1,10 +1,13 @@
 package org.hld.invoice.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
  * Created by 李浩然 On 2017/8/8.
  */
+@Data
 @Entity(name = "InvoiceDetail")
 @Table(name = "detail")
 public class InvoiceDetail {
@@ -37,86 +40,4 @@ public class InvoiceDetail {
     @Column(name = "tax_sum")
     private Double taxSum;                  // 税额
 
-    @Version
-    private int version;
-
-    public Long getDetailId() {
-        return detailId;
-    }
-
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
-    }
-
-    public String getDetailName() {
-        return detailName;
-    }
-
-    public void setDetailName(String detailName) {
-        this.detailName = detailName;
-    }
-
-    public String getSpecification() {
-        return specification;
-    }
-
-    public void setSpecification(String specification) {
-        this.specification = specification;
-    }
-
-    public String getUnitName() {
-        return unitName;
-    }
-
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public Double getTaxRate() {
-        return taxRate;
-    }
-
-    public void setTaxRate(Double taxRate) {
-        this.taxRate = taxRate;
-    }
-
-    public Double getTaxSum() {
-        return taxSum;
-    }
-
-    public void setTaxSum(Double taxSum) {
-        this.taxSum = taxSum;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }
 }

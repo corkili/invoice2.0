@@ -1,5 +1,7 @@
 package org.hld.invoice.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.List;
 /**
  * Created by 李浩然 On 2017/8/8.
  */
+@Data
 @Entity(name = "Invoice")
 @Table(name = "invoice", uniqueConstraints = {@UniqueConstraint(columnNames = {"invoice_code","invoice_id"})})
 public class Invoice {
@@ -49,9 +52,6 @@ public class Invoice {
     @Column(name = "remark", columnDefinition = "text")
     private String remark;
 
-    @Version
-    private int version;
-
     @OneToMany(fetch = FetchType.EAGER, targetEntity = InvoiceDetail.class, cascade = CascadeType.ALL)
     @JoinColumns(value = {@JoinColumn(name = "invoice_id", referencedColumnName = "id")})
     @OrderBy(value = "detail_id desc")
@@ -59,118 +59,6 @@ public class Invoice {
 
     public Invoice() {
         details = new ArrayList<InvoiceDetail>();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(String invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public String getInvoiceCode() {
-        return invoiceCode;
-    }
-
-    public void setInvoiceCode(String invoiceCode) {
-        this.invoiceCode = invoiceCode;
-    }
-
-    public Date getInvoiceDate() {
-        return invoiceDate;
-    }
-
-    public void setInvoiceDate(Date invoiceDate) {
-        this.invoiceDate = invoiceDate;
-    }
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
-
-    public String getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(String buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public String getSellerName() {
-        return sellerName;
-    }
-
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
-    }
-
-    public String getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
-    }
-
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public Double getTotalTax() {
-        return totalTax;
-    }
-
-    public void setTotalTax(Double totalTax) {
-        this.totalTax = totalTax;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }
-
-    public List<InvoiceDetail> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<InvoiceDetail> details) {
-        this.details = details;
     }
 
 }

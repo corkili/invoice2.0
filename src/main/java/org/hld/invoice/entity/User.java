@@ -1,5 +1,7 @@
 package org.hld.invoice.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
@@ -7,6 +9,7 @@ import java.util.Date;
 /**
  * Created by 李浩然 On 2017/8/8.
  */
+@Data
 @Entity(name = "User")
 @Table(name = "users")
 public class User {
@@ -50,123 +53,8 @@ public class User {
     @Column(name = "image")
     private Blob image;
 
-    @Version
-    private int version;
-
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "authority_id", unique = true)
     private Authority authority;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Boolean getManager() {
-        return isManager;
-    }
-
-    public void setManager(Boolean manager) {
-        isManager = manager;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getVerifyTime() {
-        return verifyTime;
-    }
-
-    public void setVerifyTime(Date verifyTime) {
-        this.verifyTime = verifyTime;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }
-
-    public Authority getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
-    }
-
-    public Blob getImage() {
-        return image;
-    }
-
-    public void setImage(Blob image) {
-        this.image = image;
-    }
 }
 

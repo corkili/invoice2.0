@@ -2,10 +2,10 @@ package org.hld.invoice.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hld.invoice.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
  * Created by 李浩然 On 2017/8/9.
  */
 @Repository
+@Transactional
 public abstract class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 
     private Class<T> entityClass;
@@ -38,102 +39,76 @@ public abstract class BaseDaoImpl<T, PK extends Serializable> implements BaseDao
     }
 
     public void persist(T entity) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         try {
-            session.persist(entity);
-            transaction.commit();
+            getCurrentSession().persist(entity);
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unchecked")
     public PK save(T entity) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        PK id = null;
         try {
-            id = (PK)session.save(entity);
-            transaction.commit();
+            return (PK)getCurrentSession().save(entity);
         } catch (Exception e) {
-            transaction.rollback();
+            return null;
         }
-        return id;
     }
 
     @SuppressWarnings("unchecked")
     public T get(PK id) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        T entity = null;
         try {
-            entity = (T)session.get(entityClass, id);
-            transaction.commit();
+            return (T)getCurrentSession().get(entityClass, id);
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
+            return null;
         }
-        return entity;
     }
 
     public abstract long getTotalCount();
 
     public void saveOrUpdate(T entity) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         try {
-            session.saveOrUpdate(entity);
-            transaction.commit();
+            getCurrentSession().saveOrUpdate(entity);
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
         }
     }
 
     public void update(T entity) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         try {
-            session.update(entity);
-            transaction.commit();
+            getCurrentSession().update(entity);
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
         }
+
     }
 
     @SuppressWarnings("unchecked")
     public T merge(T entity) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        T result = null;
         try {
-            result = (T)session.merge(entity);
-            transaction.commit();
+            return (T)getCurrentSession().merge(entity);
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
+            return null;
         }
-        return result;
     }
 
     public void delete(T entity) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         try {
-            session.delete(entity);
-            transaction.commit();
+            getCurrentSession().delete(entity);
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unchecked")
     public void delete(PK id) {
-        Session session = getCurrentSession();
-        Transaction transaction = session.beginTransaction();
         try {
+            Session session = getCurrentSession();
             session.delete(session.load(entityClass, id));
-            transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
+            e.printStackTrace();
         }
     }
 }
