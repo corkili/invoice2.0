@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 李浩然 On 2017/8/8.
@@ -56,5 +58,14 @@ public class User {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "authority_id", unique = true)
     private Authority authority;
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Record.class, cascade = CascadeType.ALL)
+    @JoinColumns(value = {@JoinColumn(name = "record_id", referencedColumnName = "id")})
+    @OrderBy(value = "time desc")
+    private List<Record> records;
+
+    public User() {
+        records = new ArrayList<Record>();
+    }
 }
 
