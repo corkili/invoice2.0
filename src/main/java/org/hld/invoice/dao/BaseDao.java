@@ -1,11 +1,11 @@
 package org.hld.invoice.dao;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by 李浩然 On 2017/8/9.
  */
+@SuppressWarnings("unused")
 public interface BaseDao<T, PK extends Serializable> {
     void persist(T entity);
 
@@ -19,6 +19,7 @@ public interface BaseDao<T, PK extends Serializable> {
 
     void update(T entity);
 
+    @SuppressWarnings("all")
     T merge(T entity);
 
     void delete(T entity);

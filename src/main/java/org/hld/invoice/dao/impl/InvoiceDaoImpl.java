@@ -35,23 +35,23 @@ public class InvoiceDaoImpl extends BaseDaoImpl<Invoice, Long> implements Invoic
             throw new IllegalArgumentException("The number of params should be even");
         }
         String hql = " select i from Invoice i ";
-        String where = "";
+        StringBuilder where = new StringBuilder();
         for (int j = 0; j < params.length; j += 2) {
             if (where.length() != 0) {
-                where += " and ";
+                where.append(" and ");
             }
-            where += " i." + params[j];
+            where.append(" i.").append(params[j]);
             if (fuzzy) {
-                where += " like :" + params[j];
+                where.append(" like :").append(params[j]);
             } else {
-                where += " = :" + params[j];
+                where.append(" = :").append(params[j]);
             }
         }
         if (start != null && end != null) {
             if (where.length() != 0) {
-                where += " and ";
+                where.append(" and ");
             }
-            where += " (i.invoiceDate between :startDate and :endDate) ";
+            where.append(" (i.invoiceDate between :startDate and :endDate) ");
         }
         if (where.length() != 0) {
             hql += " where " + where;

@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * Created by 李浩然 on 2017/8/9.
+ * Created by 李浩然 On 2017/8/9.
  */
 public interface InvoiceDao  extends BaseDao<Invoice, Long> {
     List<Invoice> findInvoices(boolean fuzzy, Date start, Date end, String... params) throws IllegalArgumentException;
