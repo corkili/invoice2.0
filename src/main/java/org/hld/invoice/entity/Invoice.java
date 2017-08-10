@@ -53,7 +53,7 @@ public class Invoice {
     private String remark;
 
     @OneToMany(fetch = FetchType.EAGER, targetEntity = InvoiceDetail.class, cascade = CascadeType.ALL)
-    @JoinColumns(value = {@JoinColumn(name = "invoice_id", referencedColumnName = "id")})
+    @JoinColumns(value = {@JoinColumn(name = "invoice_unique_id", referencedColumnName = "id")})
     @OrderBy(value = "detail_id desc")
     private List<InvoiceDetail> details;
 

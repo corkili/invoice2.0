@@ -1,4 +1,4 @@
-package org.hld.invoice.common;
+package org.hld.invoice.common.model;
 
 import java.util.HashMap;
 import java.util.Map;

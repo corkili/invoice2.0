@@ -16,6 +16,12 @@ public class InvoiceDetail {
     @Column(name = "detail_id")
     private Long detailId;                  // 明细编号
 
+    @Column(name = "invoice_id", length = 8, nullable = false)
+    private String invoiceId;
+
+    @Column(name = "invoice_code", length = 12, nullable = false)
+    private String invoiceCode;
+
     @Column(name = "detail_name")
     private String detailName;              // 明细名称
 
