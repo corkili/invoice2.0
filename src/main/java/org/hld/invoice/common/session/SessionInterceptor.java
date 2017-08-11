@@ -31,7 +31,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
 
         // 过滤登录、退出访问
-        String[] noFilters = new String[] { "login", "register", "captcha", "sendEmail", "resetPWD" };
+        String[] noFilters = new String[] { "login", "register", "captcha", "sendEmail", "resetPWD", "test" };
 
         String uri = request.getRequestURI();
 

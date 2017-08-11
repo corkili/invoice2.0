@@ -27,7 +27,7 @@ public abstract class BaseDaoImpl<T, PK extends Serializable> implements BaseDao
         this.sessionFactory = sessionFactory;
     }
 
-    Session getCurrentSession() {
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 

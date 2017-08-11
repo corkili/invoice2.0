@@ -23,7 +23,7 @@ public class EmailUtil {
 	 * @param code 验证码
 	 * @return 邮件发送结果
 	 */
-	public static boolean sendMail(String email, String code) {
+	public static boolean sendMail(String email, String address, String code, String action) {
 		Properties prop = new Properties();
 		prop.setProperty("mail.host", "smtp.163.com");
 		prop.setProperty("mail.transport.protocol", "smtp");
@@ -39,7 +39,7 @@ public class EmailUtil {
 			// 3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
 			ts.connect("smtp.163.com", "15528235793@163.com", "lhr6412145");
 			// 4、创建邮件
-			Message message = createSimpleMail(email, code, session);
+			Message message = createSimpleMail(email, address, code, action, session);
 			// 5、发送邮件
 			ts.sendMessage(message, message.getAllRecipients());
 			ts.close();
@@ -58,7 +58,7 @@ public class EmailUtil {
 	 * @return 创建好的邮件
 	 * @throws MessagingException 可能抛出该异常
 	 */
-	private static MimeMessage createSimpleMail(String email, String code, Session session) 
+	private static MimeMessage createSimpleMail(String email, String address, String code, String action, Session session)
 			throws MessagingException {
 		// 创建邮件对象
 		MimeMessage message = new MimeMessage(session);
@@ -69,11 +69,13 @@ public class EmailUtil {
 		// 邮件的标题
 		message.setSubject("企业增值税发票数据分析系统");
 		// 邮件的文本内容
-		StringBuilder sb = new StringBuilder();
-		sb.append("<p>欢迎使用企业增值税发票数据分析系统！<br></p>");
-		sb.append("<p>您的验证码为：" + code + "<br></p>");
-		sb.append("<p>为了您的账号安全，请勿将验证码泄露给他人，谢谢！<br></p>");
-		message.setContent(sb.toString(), "text/html;charset=UTF-8");
+		String link = address + "?action=" + action + "&code=" + code;
+        String sb = "<p>欢迎使用企业增值税发票数据分析系统！<br></p>" +
+                "<p><a href=\"" + link + "\">" + "<font color=\"#FF0000\">请点击此处验证邮件</font>" + "</a><br></p>" +
+                "<p>若无法点击上述验证按钮，请复制以下链接至浏览器地址栏：<br></p>" +
+                "<p>" + link + "<br></p>" +
+                "<p><font color=\"#FF0000\">请在一天内验证，且链接只能使用一次</font></p>";
+        message.setContent(sb, "text/html;charset=UTF-8");
 		// 返回创建好的邮件对象
 		return message;
 	}

@@ -31,7 +31,7 @@
     <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
     <mvc:resources mapping="/error/**" location="/WEB-INF/error/"/>-->
 
-<!--    <mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/**/*.css"/>
@@ -42,9 +42,9 @@
             <mvc:exclude-mapping path="/**/*.gif"/>
             <mvc:exclude-mapping path="/**/*.png"/>
             <mvc:exclude-mapping path="/**/vendors/**"/>
-            <bean id="SessionInterceptor" class="org.invoice.session.SessionInterceptor"/>
+            <bean id="SessionInterceptor" class="org.hld.invoice.common.session.SessionInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 
    <!-- <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">

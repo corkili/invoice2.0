@@ -37,6 +37,10 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <listener>
+        <listener-class>org.hld.invoice.common.session.SessionListener</listener-class>
+    </listener>
+
     <!-- 字符集过滤 -->
     <filter>
         <filter-name>encodingFilter</filter-name>

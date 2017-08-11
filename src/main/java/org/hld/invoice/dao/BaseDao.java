@@ -1,5 +1,7 @@
 package org.hld.invoice.dao;
 
+import org.hibernate.Session;
+
 import java.io.Serializable;
 
 /**
@@ -25,4 +27,6 @@ public interface BaseDao<T, PK extends Serializable> {
     void delete(T entity);
 
     void delete(PK id);
+
+    Session getCurrentSession();
 }
