@@ -120,14 +120,7 @@ public class UserServiceImpl implements UserService {
             user.setEnabled(false);
             user.setCreateTime(new Date());
             user.setPassword(HashUtil.generate(user.getPassword()));
-            Authority authority = new Authority();
-            authority.setAddInvoice(false);
-            authority.setManageUser(false);
-            authority.setModifyInvoice(false);
-            authority.setQueryInvoice(false);
-            authority.setQueryReport(false);
-            authority.setRemoveInvoice(false);
-            user.setAuthority(authority);
+            user.setAuthority(new Authority());
             if (userDao.save(user) == null) {
                 message = "数据库错误！";
             } else {

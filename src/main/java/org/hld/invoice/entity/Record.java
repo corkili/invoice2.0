@@ -19,9 +19,15 @@ public class Record {
     @Column(name = "ip", length = 50)
     private String ip;
 
+    @Column(name = "address")
+    private String address;
+
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "time")
     private Date time;
+
+    @Column(name = "user_id")
+    private Integer userId;
 
     @Column(name = "email")
     private String email;

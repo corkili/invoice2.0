@@ -67,7 +67,7 @@ public class InvoiceDaoImpl extends BaseDaoImpl<Invoice, Long> implements Invoic
             return query.list();
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<Invoice>();
+            return new ArrayList<>();
         }
     }
 }

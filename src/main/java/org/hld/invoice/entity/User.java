@@ -59,13 +59,5 @@ public class User {
     @JoinColumn(name = "authority_id", unique = true)
     private Authority authority;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = Record.class, cascade = CascadeType.ALL)
-    @JoinColumns(value = {@JoinColumn(name = "record_id", referencedColumnName = "id")})
-    @OrderBy(value = "time desc")
-    private List<Record> records;
-
-    public User() {
-        records = new ArrayList<Record>();
-    }
 }
 
