@@ -32,9 +32,9 @@ public interface InvoiceService {
 
     Result searchInvoice(int userId, Date start, Date end, String self, String it);
 
-    Result analyzeForChart(List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices);
+    Result analyzeForChart(String pattern, List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices);
 
-    Result analyzeForReport(List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices);
+    Result analyzeForReport(String pattern, List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices, Date startDate, Date endDate);
 
     public Result checkInvoice(Invoice invoice, boolean checkExist);
 

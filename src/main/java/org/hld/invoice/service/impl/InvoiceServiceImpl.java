@@ -1,6 +1,9 @@
 package org.hld.invoice.service.impl;
 
 import lombok.extern.log4j.Log4j;
+import org.hld.invoice.common.analysis.AnalysisHelper;
+import org.hld.invoice.common.analysis.Analyzer;
+import org.hld.invoice.common.analysis.IncomeAndOutcomeAnalysisModel;
 import org.hld.invoice.common.model.Result;
 import org.hld.invoice.common.ocr.Recognition;
 import org.hld.invoice.common.utils.ExcelUtil;
@@ -325,16 +328,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public Result analyzeForChart(List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices) {
-        boolean successful = false;
-        String message = "";
-
-        return null;
+    public Result analyzeForChart(String pattern, List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices) {
+        return Analyzer.analyzeForChart(pattern, incomeInvoices, outcomeInvoices);
     }
 
     @Override
-    public Result analyzeForReport(List<Invoice> incomeInvoices, List<Invoice> outcomeInvoices) {
-        return null;
+    public Result analyzeForReport(String pattern, List<Invoice> incomeInvoices,
+                                   List<Invoice> outcomeInvoices, Date startDate, Date endDate) {
+        return Analyzer.analyzeForReport(pattern, incomeInvoices, outcomeInvoices, startDate, endDate);
     }
 
     @Override
