@@ -20,6 +20,8 @@ public interface UserService {
 
     Result getUser(int userId);
 
+    Result getUsers(boolean isSuperManager, boolean isManager);
+
     void modifyUserInformation(User user);
 
     Result sendEmail(String address, String email, String action, HttpSession session);

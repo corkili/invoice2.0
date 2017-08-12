@@ -35,6 +35,9 @@ public class User {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Column(name = "isSuperManager", nullable = false)
+    private Boolean isSuperManager;
+
     @Column(name = "isManager", nullable = false)
     private Boolean isManager;
 

@@ -42,12 +42,6 @@ public class UserDaoTest extends TestCase {
         user.setImage(null);
 
         Authority authority = new Authority();
-        authority.setAddInvoice(false);
-        authority.setManageUser(false);
-        authority.setModifyInvoice(false);
-        authority.setQueryInvoice(false);
-        authority.setQueryReport(false);
-        authority.setRemoveInvoice(false);
         user.setAuthority(authority);
         log.info("init user:" + user);
 
@@ -65,7 +59,7 @@ public class UserDaoTest extends TestCase {
         User testUserId = userDao.get(id);
         log.info("get user by id: "+ testUserId);
         testUserId.setIsManager(true);
-        testUserId.getAuthority().setManageUser(true);
+        testUserId.getAuthority().setQueryReport(true);
         log.info("modify manager and auth: " + testUserId);
         userDao.update(testUserId);
         log.info("modify manager and auth done: " + testUserId);

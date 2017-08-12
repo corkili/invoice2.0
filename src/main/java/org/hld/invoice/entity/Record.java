@@ -16,22 +16,25 @@ public class Record {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "ip", length = 50)
+    @Column(name = "ip", length = 50, nullable = false)
     private String ip;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Temporal(value = TemporalType.TIMESTAMP)
-    @Column(name = "time")
+    @Column(name = "time", nullable = false)
     private Date time;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private Integer userId;
 
-    @Column(name = "email")
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "content", columnDefinition = "text")
+    @Column(name = "content", columnDefinition = "text", nullable = false)
     private String content;
 }

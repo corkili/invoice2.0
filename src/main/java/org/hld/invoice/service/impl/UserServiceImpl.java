@@ -116,6 +116,7 @@ public class UserServiceImpl implements UserService {
                 || !Pattern.compile(CHECK_PHONE).matcher(user.getPhone()).matches()) {
             message = "手机号格式不正确";
         } else {
+            user.setIsSuperManager(false);
             user.setIsManager(false);
             user.setEnabled(false);
             user.setCreateTime(new Date());
@@ -155,9 +156,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Result getUsers(boolean isSuperManager, boolean isManager) {
+        Result result = new Result(true);
+        result.setMessage("获取用户成功！");
+        result.add("users", userDao.findUsersByManager(isSuperManager, isManager));
+        return result;
+    }
+
+    @Override
     public void modifyUserInformation(User user) {
         userDao.saveOrUpdate(user);
-        userContext.update(user.getId());
+        userContext.update(user);
     }
 
     @Override
@@ -305,7 +314,7 @@ public class UserServiceImpl implements UserService {
         private Map<Integer, User> loginUsers;
 
         private UserContext() {
-            loginUsers = new HashMap<Integer, User>();
+            loginUsers = new HashMap<>();
         }
 
         public User get(int userId) {
@@ -320,18 +329,18 @@ public class UserServiceImpl implements UserService {
             loginUsers.remove(userId);
         }
 
-        public void update(Integer... id) {
-            for (Integer i : id) {
-                if (i != null && loginUsers.containsKey(i)) {
-                    loginUsers.put(i, userDao.get(i));
+        public void update(User... users) {
+            for (User user : users) {
+                if (user != null && loginUsers.containsKey(user.getId())) {
+                    loginUsers.put(user.getId(), user);
                 }
             }
         }
 
-        public void update(List<Integer> id) {
-            for (Integer i : id) {
-                if (i != null && loginUsers.containsKey(i)) {
-                    loginUsers.put(i, userDao.get(i));
+        public void update(List<User> users) {
+            for (User user : users) {
+                if (user != null && loginUsers.containsKey(user.getId())) {
+                    loginUsers.put(user.getId(), user);
                 }
             }
         }

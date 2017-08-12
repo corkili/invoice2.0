@@ -33,9 +33,6 @@ public class Authority {
     @Column(name = "query_report", nullable = false)
     private Boolean queryReport;
 
-    @Column(name = "manager_user", nullable = false)
-    private Boolean manageUser;
-
     @Column(name = "query_record", nullable = false)
     private Boolean queryRecord;
 
@@ -45,7 +42,6 @@ public class Authority {
         addInvoice = false;
         removeInvoice = false;
         queryReport = false;
-        manageUser = false;
         queryRecord = false;
     }
 

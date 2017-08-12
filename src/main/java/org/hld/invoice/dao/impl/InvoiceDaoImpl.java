@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by 李浩然 On 2017/8/9.
@@ -70,4 +72,23 @@ public class InvoiceDaoImpl extends BaseDaoImpl<Invoice, Long> implements Invoic
             return new ArrayList<>();
         }
     }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> findNames() {
+        try {
+            Set<String> names = new HashSet<>();
+            names.addAll(getCurrentSession().createQuery(" select distinct i.buyerName" +
+                    " from Invoice i ").list());
+            names.addAll(getCurrentSession().createQuery(" select distinct i.sellerName" +
+                    " from Invoice i ").list());
+            List<String> result = new ArrayList<>();
+            result.addAll(names);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 }

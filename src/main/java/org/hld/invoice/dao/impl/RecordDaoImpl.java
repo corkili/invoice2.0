@@ -28,7 +28,7 @@ public class RecordDaoImpl extends BaseDaoImpl<Record, Long> implements RecordDa
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Record> findRecordsByTime(boolean fuzzy, java.sql.Date start, java.sql.Date end, String... params) {
+    public List<Record> findRecords(boolean fuzzy, Date start, Date end, String... params) {
         Session session = getCurrentSession();
         if (params.length % 2 == 1) {
             throw new IllegalArgumentException("The number of params should be even");

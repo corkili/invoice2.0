@@ -31,7 +31,22 @@ public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements UserDao {
             return getCurrentSession().createQuery(" from User ").list();
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<User>();
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> findUsersByManager(Boolean isSuperManager, Boolean isManager) {
+        try {
+            return getCurrentSession().createQuery(" select u from User u where " +
+                    " u.isSuperManager = :isSuperManager and u.isManager = :isManager ")
+                    .setParameter("isSuperManager", isSuperManager)
+                    .setParameter("isManager", isManager)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 

@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface InvoiceDao  extends BaseDao<Invoice, Long> {
     List<Invoice> findInvoices(boolean fuzzy, Date start, Date end, String... params) throws IllegalArgumentException;
+
+    List<String> findNames();
 }

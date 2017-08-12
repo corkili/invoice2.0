@@ -10,5 +10,7 @@ import java.util.List;
 public interface UserDao extends BaseDao<User, Integer> {
     List<User> findAllUser();
 
+    List<User> findUsersByManager(Boolean isSuperManager, Boolean isManager);
+
     User findUserByEmail(String email);
 }

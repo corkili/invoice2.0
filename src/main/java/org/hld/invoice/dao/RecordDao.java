@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface RecordDao extends BaseDao<Record, Long> {
 
-    List<Record> findRecordsByTime(boolean fuzzy, java.sql.Date start, java.sql.Date end, String... params);
+    List<Record> findRecords(boolean fuzzy, Date start, Date end, String... params);
 }
