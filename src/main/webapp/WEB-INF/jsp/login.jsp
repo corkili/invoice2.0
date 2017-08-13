@@ -70,6 +70,10 @@
                             img.src = "captcha?timestamp=" + (new Date()).valueOf();
                         }
                     </script>
+                    <div class="separator">
+                        <div class="clearfix"></div>
+                        <br />
+                    </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <input id="submit" type="submit" class="btn btn-default submit"
                                value="登录" tabindex="3">

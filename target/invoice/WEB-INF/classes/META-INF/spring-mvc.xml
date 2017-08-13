@@ -23,13 +23,13 @@
     </bean>
 
     <!-- 这里是对静态资源的映射 -->
-    <!--<mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>-->
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
     <mvc:resources mapping="/*.html" location="/WEB-INF/"/>
-    <!--<mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>-->
-<!--    <mvc:resources mapping="/vendors/**" location="/WEB-INF/vendors/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+    <mvc:resources mapping="/vendors/**" location="/WEB-INF/vendors/"/>
     <mvc:resources mapping="/build/**" location="/WEB-INF/build/"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
-    <mvc:resources mapping="/error/**" location="/WEB-INF/error/"/>-->
+    <!--<mvc:resources mapping="/error/**" location="/WEB-INF/error/"/>-->
 
     <mvc:interceptors>
         <mvc:interceptor>

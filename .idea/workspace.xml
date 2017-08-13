@@ -7,38 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0961e5f-e726-4583-9b89-32f329d25aaa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-codec-1.9.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-dbcp2-2.1.1.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/commons-pool2-2.4.2.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_dbcp2_2_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_4_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/no_login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/register.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__c3p0_c3p0_0_9_1_2.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/entity/User.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/entity/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/entity/Authority.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/entity/Authority.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/entity/User.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/entity/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/invoice_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/invoice_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/invoice.iml" afterPath="$PROJECT_DIR$/invoice.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/InvoiceServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/InvoiceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/RecordServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/RecordServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/target/classes/META-INF/applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/META-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/META-INF/applicationContext.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/META-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/META-INF/spring-mvc.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/image/defaultHeadImage.png" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/images/defaultHeadImage.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/index.jsp" afterPath="$PROJECT_DIR$/target/invoice/index.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,25 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Analyzer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#analyzeForChart#0;class#Analyzer#0" expanded="false" />
-                <element signature="method#analyzeForReport#0;class#Analyzer#0" expanded="false" />
-                <element signature="method#compareIncomeOrOutcome#0;class#Analyzer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="-644">
               <caret line="66" column="38" lean-forward="false" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
               <folding>
                 <element signature="method#initAdmin#0;class#UserController#0" expanded="false" />
@@ -101,13 +61,13 @@
       <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+            <state relative-caret-position="257">
+              <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
               <folding>
-                <element signature="e#4748#4764#0" expanded="true" />
-                <element signature="e#4803#4816#0" expanded="true" />
-                <element signature="e#4860#4878#0" expanded="true" />
-                <element signature="e#4922#4940#0" expanded="true" />
+                <element signature="e#4734#4750#0" expanded="true" />
+                <element signature="e#4789#4802#0" expanded="true" />
+                <element signature="e#4846#4864#0" expanded="true" />
+                <element signature="e#4908#4926#0" expanded="true" />
                 <element signature="n#prop#0;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
                 <element signature="n#prop#1;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
                 <element signature="n#prop#2;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
@@ -140,9 +100,21 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="253">
+              <caret line="82" column="26" lean-forward="true" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,8 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/test/org/hld/invoice/test/InvoiceDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/test/org/hld/invoice/test/InvoiceDaoTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/Result.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/model/Result.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/InvoiceDetail.java" />
@@ -256,11 +226,13 @@
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       </list>
     </option>
   </component>
@@ -488,41 +460,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
@@ -1194,7 +1131,7 @@
       <workItem from="1502464733821" duration="965000" />
       <workItem from="1502504860915" duration="19985000" />
       <workItem from="1502542750573" duration="4323000" />
-      <workItem from="1502627340423" duration="4731000" />
+      <workItem from="1502627340423" duration="5756000" />
     </task>
     <task id="LOCAL-00001" summary="Complete BaseDao and UserDao, version 2.0.2">
       <created>1502285584344</created>
@@ -1266,7 +1203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1502527140803</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix bugs and add pages, version 2.0.12">
+      <created>1502633588841</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1502633588842</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1302,7 +1246,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114112000" />
+    <option name="totallyTimeSpent" value="115137000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
@@ -1396,7 +1340,8 @@
     <MESSAGE value="Complete userServiceImpl, version 2.0.9" />
     <MESSAGE value="Modify Record, version 2.0.10" />
     <MESSAGE value="finish 80% service layer, version 2.0.11" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish 80% service layer, version 2.0.11" />
+    <MESSAGE value="fix bugs and add pages, version 2.0.12" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs and add pages, version 2.0.12" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1409,13 +1354,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/ExcelUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8327">
-          <caret line="373" column="13" lean-forward="false" selection-start-line="373" selection-start-column="13" selection-end-line="373" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/CaptchaUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1735,14 +1673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
@@ -1784,23 +1714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
-          <folding>
-            <element signature="e#4748#4764#0" expanded="true" />
-            <element signature="e#4803#4816#0" expanded="true" />
-            <element signature="e#4860#4878#0" expanded="true" />
-            <element signature="e#4922#4940#0" expanded="true" />
-            <element signature="n#prop#0;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
-            <element signature="n#prop#1;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
-            <element signature="n#prop#2;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
-            <element signature="n#prop#3;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -1827,10 +1740,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="-644">
           <caret line="66" column="38" lean-forward="false" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
           <folding>
             <element signature="method#initAdmin#0;class#UserController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
+          <folding>
+            <element signature="e#4734#4750#0" expanded="true" />
+            <element signature="e#4789#4802#0" expanded="true" />
+            <element signature="e#4846#4864#0" expanded="true" />
+            <element signature="e#4908#4926#0" expanded="true" />
+            <element signature="n#prop#0;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
+            <element signature="n#prop#1;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
+            <element signature="n#prop#2;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
+            <element signature="n#prop#3;n#props#0;n#property#3;n#bean#4;n#beans#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="82" column="26" lean-forward="true" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
