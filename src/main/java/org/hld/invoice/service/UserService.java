@@ -2,9 +2,11 @@ package org.hld.invoice.service;
 
 
 import org.hld.invoice.common.model.Result;
+import org.hld.invoice.dao.UserDao;
 import org.hld.invoice.entity.User;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -34,5 +36,7 @@ public interface UserService {
 
     void outputHeadImage(int id, HttpServletResponse response);
 
-    Result file2Blob(MultipartFile file);
+    Result file2Blob(HttpServletRequest request, MultipartFile file);
+
+    UserDao getUserDao();
 }

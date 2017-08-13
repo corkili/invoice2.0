@@ -7,6 +7,7 @@ import org.hld.invoice.entity.Record;
 import org.hld.invoice.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Service
 @Log4j
+@Transactional
 public class RecordServiceImpl implements RecordService {
 
     private RecordDao recordDao;

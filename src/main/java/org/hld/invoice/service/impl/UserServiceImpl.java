@@ -15,6 +15,7 @@ import org.hld.invoice.entity.User;
 import org.hld.invoice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Blob;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -34,6 +35,7 @@ import java.util.regex.Pattern;
  */
 @Service
 @Log4j
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
@@ -80,6 +82,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 userContext.login(user);
                 session.setAttribute(SessionContext.ATTR_USER_ID, String.valueOf(user.getId()));
+                session.setAttribute(SessionContext.ATTR_USER_NAME, user.getName());
                 sessionContext.sessionHandlerByCacheMap(session);
                 successful = true;
                 message = "登录成功！";
@@ -281,7 +284,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result file2Blob(MultipartFile file) {
+    public Result file2Blob(HttpServletRequest request, MultipartFile file) {
         boolean successful = false;
         String message = "";
         Blob blob = null;
@@ -302,11 +305,31 @@ public class UserServiceImpl implements UserService {
                 successful = false;
                 message = "转换失败！";
             }
+        } else {
+            String path = request.getSession().getServletContext().getRealPath("WEB-INF/images");
+            String fileName = "defaultHeadImage.png";
+            File defaultImage = new File(path, fileName);
+            try {
+                InputStream inputStream = new FileInputStream(defaultImage);
+                blob = Hibernate.getLobCreator(userDao.getCurrentSession()).createBlob(
+                        IOUtils.toByteArray(inputStream));
+                successful = true;
+                message = "获取默认头像成功！";
+            } catch (IOException e) {
+                blob = null;
+                successful = false;
+                message = "获取默认头像失败！";
+            }
         }
         Result result = new Result(successful);
         result.setMessage(message);
         result.add("blob", blob);
         return result;
+    }
+
+    @Override
+    public UserDao getUserDao() {
+        return userDao;
     }
 
     private class UserContext {

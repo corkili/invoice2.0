@@ -55,7 +55,9 @@ public class User {
     @Column(name = "verify_time")
     private Date verifyTime;
 
-    @Column(name = "image")
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "image", columnDefinition = "BLOB")
     private Blob image;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

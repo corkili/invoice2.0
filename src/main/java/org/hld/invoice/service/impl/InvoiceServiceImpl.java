@@ -13,6 +13,7 @@ import org.hld.invoice.entity.InvoiceDetail;
 import org.hld.invoice.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import java.sql.Date;
 
 @Service
 @Log4j
+@Transactional
 public class InvoiceServiceImpl implements InvoiceService {
 
     private InvoiceDao invoiceDao;
