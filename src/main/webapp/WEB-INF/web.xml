@@ -11,7 +11,7 @@
     <!-- 加载spring的配置文件到上下文中去 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:META-INF/applicationContext.xml</param-value>
+        <param-value>classpath:META-INF/spring-mvc.xml</param-value>
     </context-param>
 
     <!-- spring MVC config start -->

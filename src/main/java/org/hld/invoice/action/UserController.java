@@ -12,6 +12,7 @@ import org.hld.invoice.service.RecordService;
 import org.hld.invoice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,6 +60,7 @@ public class UserController {
             authority.setModifyInvoice(true);
             authority.setAddInvoice(true);
             authority.setQueryRecord(true);
+            user.setAuthority(authority);
             userService.getUserDao().save(user);
         }
         return "redirect:/login";
@@ -74,6 +76,13 @@ public class UserController {
     public void captcha(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CaptchaUtil.outputCaptcha(request, response);
+    }
+
+    @RequestMapping(value = "/headImage", method = RequestMethod.GET)
+    @ResponseBody
+    public void displayHeadImage(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        userService.outputHeadImage(Integer.valueOf(request.getSession().getAttribute(SessionContext.ATTR_USER_ID).toString()), response);
     }
 
     @RequestMapping(value = "/main", name = "主页", method = RequestMethod.GET)

@@ -1,0 +1,37 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+        <h3>General</h3>
+        <ul class="nav side-menu">
+            <li><a><i class="fa fa-home"></i> 首页 <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="main">首页</a></li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="#">手动导入</a></li>
+                    <li><a href="#">图像导入</a></li>
+                    <li><a href="#">批量导入</a></li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-table"></i> 数据查询 <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="#">列表查询</a></li>
+                    <li><a href="#">图表查询</a></li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-bar-chart-o"></i> 分析报表 <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="#">生成报表</a></li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-clone"></i> 系统管理 <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="#">用户管理</a></li>
+                    <li><a href="#">查看日志</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

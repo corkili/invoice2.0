@@ -19,7 +19,7 @@ import java.util.List;
  * Created by 李浩然 On 2017/8/10.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/META-INF/applicationContext.xml", "classpath:/META-INF/spring-mvc.xml"})
+@ContextConfiguration(locations = {"classpath:/META-INF/spring-mvc.xml"})
 @Log4j
 public class UserDaoTest extends TestCase {
 
