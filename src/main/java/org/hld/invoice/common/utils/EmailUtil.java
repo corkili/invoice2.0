@@ -45,6 +45,7 @@ public class EmailUtil {
 			ts.close();
 			return true;
 		} catch (MessagingException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -67,9 +68,9 @@ public class EmailUtil {
 		// 指明邮件的收件人
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 		// 邮件的标题
-		message.setSubject("企业增值税发票数据分析系统");
+		message.setSubject(("active".equalsIgnoreCase(action) ? "账户激活" : "密码重置") + "【企业增值税发票数据分析系统】");
 		// 邮件的文本内容
-		String link = address + "?action=" + action + "&code=" + code;
+		String link = address + "?action=" + action + "&email=" + email + "&code=" + code;
         String sb = "<p>欢迎使用企业增值税发票数据分析系统！<br></p>" +
                 "<p><a href=\"" + link + "\">" + "<font color=\"#FF0000\">请点击此处验证邮件</font>" + "</a><br></p>" +
                 "<p>若无法点击上述验证按钮，请复制以下链接至浏览器地址栏：<br></p>" +

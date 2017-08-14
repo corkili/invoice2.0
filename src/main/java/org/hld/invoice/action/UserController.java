@@ -1,6 +1,7 @@
 package org.hld.invoice.action;
 
 import lombok.extern.log4j.Log4j;
+import org.hibernate.Session;
 import org.hld.invoice.common.model.Result;
 import org.hld.invoice.common.session.SessionContext;
 import org.hld.invoice.common.utils.CaptchaUtil;
@@ -38,31 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/init")
     public String initAdmin(HttpServletRequest request) {
-        User user = userService.getUserDao().findUserByEmail("admin@admin.com");
-        if (user == null) {
-            user = new User();
-            user.setEmail("admin@admin.com");
-            user.setPassword(HashUtil.generate("admin"));
-            user.setName("管理员");
-            user.setJobId("无");
-            user.setPhone("无");
-            user.setIsSuperManager(true);
-            user.setIsManager(true);
-            user.setEnabled(true);
-            user.setVerificationCode(null);
-            user.setCreateTime(new Date());
-            user.setVerifyTime(null);
-            user.setImage((Blob)userService.file2Blob(request, null).get("blob"));
-            Authority authority = new Authority();
-            authority.setQueryReport(true);
-            authority.setRemoveInvoice(true);
-            authority.setQueryInvoice(true);
-            authority.setModifyInvoice(true);
-            authority.setAddInvoice(true);
-            authority.setQueryRecord(true);
-            user.setAuthority(authority);
-            userService.getUserDao().save(user);
-        }
+        userService.initAdmin(request);
         return "redirect:/login";
     }
 
@@ -107,6 +84,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
+        if (session.getAttribute("validate") != null) {
+            session.removeAttribute("validate");
+        }
         if (session.getAttribute(SessionContext.ATTR_USER_ID) != null) {
             int userId = Integer.parseInt(session.getAttribute(SessionContext.ATTR_USER_ID).toString());
             userService.logout(userId, session);
@@ -125,12 +105,10 @@ public class UserController {
                               @RequestParam("password") String password,
                               @RequestParam("captcha") String captcha) {
         ModelAndView modelAndView = new ModelAndView();
-        boolean hasError;
         String errorMessage;
         if (session.getAttribute("randomString") == null ||
                 !session.getAttribute("randomString").toString().toLowerCase().equals(captcha.toLowerCase())) {
             modelAndView.setViewName("login");
-            hasError = true;
             errorMessage = "验证码错误！";
         } else {
             Result result = userService.login(email, password, session);
@@ -138,13 +116,12 @@ public class UserController {
                 modelAndView.setViewName("redirect:/main");
                 return modelAndView;
             } else {
-                hasError = true;
                 errorMessage = result.getMessage();
                 password = "";
                 modelAndView.setViewName("login");
             }
         }
-        modelAndView.addObject("has_error", hasError)
+        modelAndView.addObject("has_error", true)
                 .addObject("error_message", errorMessage)
                 .addObject("email", email)
                 .addObject("password", password);
@@ -159,7 +136,147 @@ public class UserController {
         } else {
             modelAndView.addObject("user", user);
         }
+        return modelAndView.addObject("has_error", false)
+                .addObject("error_message", "");
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView register(@ModelAttribute("user") User user,
+                                 @RequestParam("action") String action,
+                                 @RequestParam("captcha") String captcha,
+                                 @SessionAttribute("randomString") String random,
+                                 HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        String errorMessage;
+        if (!"register".equals(action)) {
+            errorMessage = "不正确的请求！";
+        } else if (random == null || !random.toLowerCase().equals(captcha.toLowerCase())) {
+            errorMessage = "验证码错误！";
+            modelAndView.setViewName("register");
+        } else {
+            Result registerResult = userService.register(user, request);
+            if (!registerResult.isSuccessful()) {
+                errorMessage = registerResult.getMessage();
+                modelAndView.setViewName("register");
+            } else {
+                modelAndView.setViewName("tip");
+                modelAndView.addObject("message", "注册成功，请登录邮箱激活账户！")
+                        .addObject("url", "login");
+                return modelAndView;
+            }
+        }
+        return modelAndView.addObject("has_error", true)
+                .addObject("error_message", errorMessage)
+                .addObject("user", user);
+    }
+
+    @RequestMapping(value = "/verify", method = RequestMethod.GET)
+    public ModelAndView verify(@RequestParam("action") String action,
+                               @RequestParam("email") String email,
+                               @RequestParam("code") String code,
+                               HttpSession session) {
+        Result verifyResult = userService.verifyEmailCode(email, code);
+        ModelAndView modelAndView = new ModelAndView();
+        if ("active".equals(action) && verifyResult.isSuccessful()) {
+            Result activeResult = userService.activeUser(email);
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("message", "邮箱：" + email +
+                    "---" + (activeResult.isSuccessful() ? "激活成功！" : "激活失败！"))
+                    .addObject("url", "login");
+        } else if ("pwd".equals(action) && verifyResult.isSuccessful()) {
+            modelAndView.setViewName("pwd");
+            modelAndView.addObject("email", email)
+                    .addObject("has_error", false)
+                    .addObject("error_message", "");
+            session.setAttribute("validate", HashUtil.generate(email));
+
+        } else {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("message", verifyResult.getMessage())
+                    .addObject("url", "login");
+        }
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/mail", method = RequestMethod.GET)
+    public ModelAndView mailPage(@RequestParam("action") String action) {
+        ModelAndView modelAndView = new ModelAndView("mail");
+        if ("active".equals(action)) {
+            modelAndView.addObject("title", "激活账户");
+        } else {
+            modelAndView.addObject("title", "重置密码");
+        }
+        modelAndView.addObject("action", action)
+                .addObject("has_error", false)
+                .addObject("error_message", "");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/mail", method = RequestMethod.POST)
+    public ModelAndView sendEmail(@RequestParam("email") String email,
+                                  @RequestParam("action") String action,
+                                  @RequestParam("captcha") String captcha,
+                                  @SessionAttribute("randomString") String random,
+                                  HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        String errorMessage;
+        if (!captcha.toLowerCase().equals(random.toLowerCase())) {
+            errorMessage = "验证码错误";
+            modelAndView.setViewName("mail");
+        } else {
+            String address = request.getScheme() + "://"
+                    + request.getServerName() + ":"
+                    + request.getServerPort() + request.getContextPath()
+                    + "/verify";
+            Result emailResult = userService.sendEmail(address, email, action, request.getSession());
+            if (emailResult.isSuccessful()) {
+                modelAndView.setViewName("tip");
+                modelAndView.addObject("message", "邮件已成功发送，请登录邮箱查看！")
+                        .addObject("url", "login");
+                return modelAndView;
+            } else {
+                modelAndView.setViewName("mail");
+                errorMessage = emailResult.getMessage();
+            }
+        }
+        return modelAndView.addObject("has_error", true)
+                .addObject("error_message", errorMessage);
+    }
+
+
+    @RequestMapping(value = "/pwd", method = RequestMethod.POST)
+    public ModelAndView modifyPassword(@RequestParam("email") String email,
+                                       @RequestParam("password") String password,
+                                       @RequestParam("captcha") String captcha,
+                                       @SessionAttribute("randomString") String random,
+                                       HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        String errorMessage;
+        if (session.getAttribute("validate") == null
+                || HashUtil.verify(email, session.getAttribute("validate").toString())) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("message", "非法操作，未经授权！")
+                    .addObject("url", "login");
+            return modelAndView;
+        } else if (!captcha.toLowerCase().equals(random.toLowerCase())) {
+            errorMessage = "验证码错误";
+            modelAndView.setViewName("pwd");
+        } else {
+            Result result = userService.modifyPassword(email, password);
+            if (result.isSuccessful()) {
+                modelAndView.setViewName("tip");
+                modelAndView.addObject("message", "修改密码成功，请重新登录！")
+                        .addObject("url", "login");
+                session.removeAttribute("validate");
+                return modelAndView;
+            } else {
+                modelAndView.setViewName("pwd");
+                errorMessage = result.getMessage();
+            }
+        }
+        return modelAndView.addObject("has_error", true)
+                .addObject("error_message", errorMessage);
+
     }
 
     @Autowired

@@ -6,18 +6,37 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0961e5f-e726-4583-9b89-32f329d25aaa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/left_top.jspf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/right_top.jspf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sidebar_menu.jspf" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" afterPath="" />
+    <list default="true" id="d0961e5f-e726-4583-9b89-32f329d25aaa" name="Default" comment="complete login pages, version 2.0.13">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mail-1.4.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/update.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/validate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mail.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pwd.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/tip.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/action/UserController.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/action/UserController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/common/session/SessionInterceptor.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/common/session/SessionInterceptor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/common/utils/EmailUtil.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/common/utils/EmailUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/service/UserService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/service/impl/UserServiceImpl$UserContext.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/service/impl/UserServiceImpl$UserContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/service/impl/UserServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/action/UserController.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/action/UserController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/common/session/SessionInterceptor.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/common/session/SessionInterceptor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/common/utils/EmailUtil.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/common/utils/EmailUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/service/UserService.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/service/UserService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/service/impl/UserServiceImpl$UserContext.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/service/impl/UserServiceImpl$UserContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/service/impl/UserServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/invoice.iml" afterPath="$PROJECT_DIR$/invoice.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/ssm.log" afterPath="$PROJECT_DIR$/logs/ssm.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/org/hld/invoice/test/UserDaoTest.java" afterPath="$PROJECT_DIR$/src/main/test/org/hld/invoice/test/UserDaoTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/EmailUtil.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/EmailUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/register.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/register.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/jsp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/jsp/main.jsp" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/jsp/main.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/jsp/register.jsp" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/jsp/register.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,25 +52,53 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+            <state relative-caret-position="391">
+              <caret line="230" column="49" lean-forward="true" selection-start-line="230" selection-start-column="49" selection-end-line="230" selection-end-column="49" />
               <folding>
-                <marker date="1502679316625" expanded="false" signature="6774:6785" ph=" { " />
-                <marker date="1502679316625" expanded="false" signature="6816:6822" ph=" }" />
-                <marker date="1502679316625" expanded="false" signature="6900:6911" ph=" { " />
-                <marker date="1502679316625" expanded="false" signature="6946:6952" ph=" }" />
-                <marker date="1502679316625" expanded="false" signature="7033:7044" ph=" { " />
-                <marker date="1502679316625" expanded="false" signature="7081:7087" ph=" }" />
+                <element signature="method#modifyPassword#0;class#UserController#0" expanded="false" />
+                <marker date="1502701405381" expanded="false" signature="12467:12478" ph=" { " />
+                <marker date="1502701405381" expanded="false" signature="12509:12515" ph=" }" />
+                <marker date="1502701405381" expanded="false" signature="12593:12604" ph=" { " />
+                <marker date="1502701405381" expanded="false" signature="12639:12645" ph=" }" />
+                <marker date="1502701405381" expanded="false" signature="12726:12737" ph=" { " />
+                <marker date="1502701405381" expanded="false" signature="12774:12780" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar_menu.jspf" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sidebar_menu.jspf">
+      <file leaf-file-name="pwd.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pwd.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="1587">
+              <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mail.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mail.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="91" column="43" lean-forward="true" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="44" selection-end-line="91" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -60,132 +107,31 @@
       <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+            <state relative-caret-position="152">
+              <caret line="223" column="13" lean-forward="true" selection-start-line="223" selection-start-column="13" selection-end-line="223" selection-end-column="13" />
               <folding>
-                <marker date="1502679034353" expanded="false" signature="1836:1847" ph=" { " />
-                <marker date="1502679034353" expanded="false" signature="1870:1876" ph=" }" />
-                <marker date="1502679034353" expanded="true" signature="1907:2010" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="2102:3176" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="3248:3321" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="3396:4933" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="4987:5554" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="5640:5834" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="5899:5976" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="6086:6824" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="6901:7911" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="7991:8715" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="8774:9223" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="9309:9768" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="9860:11573" ph="{...}" />
-                <marker date="1502679034353" expanded="false" signature="11620:11631" ph=" { " />
-                <marker date="1502679034353" expanded="false" signature="11646:11652" ph=" }" />
-                <marker date="1502679034353" expanded="true" signature="11684:12622" ph="{...}" />
-                <marker date="1502679034353" expanded="false" signature="11764:11779" ph=" { " />
-                <marker date="1502679034353" expanded="false" signature="11808:11818" ph=" }" />
-                <marker date="1502679034353" expanded="false" signature="11855:11870" ph=" { " />
-                <marker date="1502679034353" expanded="false" signature="11900:11910" ph=" }" />
-                <marker date="1502679034353" expanded="false" signature="11948:11963" ph=" { " />
-                <marker date="1502679034353" expanded="false" signature="11998:12008" ph=" }" />
-                <marker date="1502679034353" expanded="false" signature="12048:12063" ph=" { " />
-                <marker date="1502679034353" expanded="false" signature="12089:12099" ph=" }" />
-                <marker date="1502679034353" expanded="true" signature="12143:12356" ph="{...}" />
-                <marker date="1502679034353" expanded="true" signature="12403:12616" ph="{...}" />
+                <element signature="e#7481#7482#0" expanded="true" />
+                <element signature="e#7534#7535#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InvoiceDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/InvoiceDaoImpl.java">
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-              <folding>
-                <marker date="1502679034347" expanded="true" signature="609:852" ph="{...}" />
-                <marker date="1502679034347" expanded="false" signature="858:888" ph="/unchecked/" />
-                <marker date="1502679034347" expanded="true" signature="1014:2457" ph="{...}" />
-                <marker date="1502679034347" expanded="true" signature="2463:2507" ph="@{...}" />
-                <marker date="1502679034347" expanded="false" signature="2477:2507" ph="/unchecked/" />
-                <marker date="1502679034347" expanded="true" signature="2544:3120" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/BaseDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+            <state relative-caret-position="175">
+              <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/BaseDaoImpl.java">
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="46" column="5" lean-forward="false" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-              <folding>
-                <marker date="1502679034346" expanded="true" signature="1489:1530" ph="{...}" />
-                <marker date="1502679034346" expanded="false" signature="1536:1566" ph="/unchecked/" />
-                <marker date="1502679034346" expanded="true" signature="1591:1776" ph="{...}" />
-                <marker date="1502679034346" expanded="true" signature="1860:2010" ph="{...}" />
-                <marker date="1502679034346" expanded="true" signature="2045:2190" ph="{...}" />
-                <marker date="1502679034346" expanded="false" signature="2196:2226" ph="/unchecked/" />
-                <marker date="1502679034346" expanded="true" signature="2256:2434" ph="{...}" />
-                <marker date="1502679034346" expanded="true" signature="2469:2613" ph="{...}" />
-                <marker date="1502679034346" expanded="false" signature="2619:2649" ph="/unchecked/" />
-                <marker date="1502679034346" expanded="true" signature="2680:2886" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/UserDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1242">
-              <caret line="60" column="9" lean-forward="false" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
-              <folding>
-                <element signature="e#715#745#0" expanded="true" />
-                <element signature="e#1010#1040#0" expanded="true" />
-                <element signature="e#1593#1623#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecordServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/RecordServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-              <folding>
-                <marker date="1502679034352" expanded="true" signature="810:1381" ph="{...}" />
-                <marker date="1502679034352" expanded="true" signature="1490:1562" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="63" column="53" lean-forward="false" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1083">
-              <caret line="67" column="25" lean-forward="false" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+            <state relative-caret-position="249">
+              <caret line="56" column="73" lean-forward="true" selection-start-line="56" selection-start-column="73" selection-end-line="56" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -225,21 +171,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/CaptchaUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/CreateDirectory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/OCR.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/Recognition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/Binary.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/HashUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/EmailUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/ImageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/BaseDao.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/test.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/Authority.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/InvoiceDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/IPUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/Record.java" />
@@ -256,31 +194,46 @@
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/applicationContext.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/footer.jspf.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/left_top.jspf" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/right_top.jspf" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/test/org/hld/invoice/test/UserDaoTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/InvoiceServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/RecordServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/InvoiceDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/RecordDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/BaseDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/dao/impl/UserDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sidebar_menu.jspf" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/validate.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/register.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/update.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pwd.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/tip.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/EmailUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
@@ -300,10 +253,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="521" />
-    <option name="y" value="111" />
-    <option name="width" value="976" />
-    <option name="height" value="1048" />
+    <option name="x" value="-9" />
+    <option name="y" value="31" />
+    <option name="width" value="1938" />
+    <option name="height" value="1058" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -383,6 +336,25 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="invoice" type="462c0819:PsiDirectoryNode" />
               <item name="action" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
@@ -482,6 +454,25 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="func" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -500,18 +491,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ssh" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../emailRemind" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\jsp" />
       <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\lib" />
+      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\jsp" />
+      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\js\func" />
       <recent name="F:\Coding\invoice2.0\invoice\src\main\java\org\hld\invoice\common\analysis" />
       <recent name="F:\Coding\invoice2.0\invoice\src\main\webapp\WEB-INF\image" />
-      <recent name="F:\Coding\invoice2.0\invoice\src\main\java\org\hld\invoice\common\session" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Coding\invoice2.0\invoice\src\main\webapp\WEB-INF" />
@@ -1155,7 +1146,7 @@
       <workItem from="1502504860915" duration="19985000" />
       <workItem from="1502542750573" duration="4323000" />
       <workItem from="1502627340423" duration="5826000" />
-      <workItem from="1502675682642" duration="4042000" />
+      <workItem from="1502675682642" duration="20911000" />
     </task>
     <task id="LOCAL-00001" summary="Complete BaseDao and UserDao, version 2.0.2">
       <created>1502285584344</created>
@@ -1277,11 +1268,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119249000" />
+    <option name="totallyTimeSpent" value="136118000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1301,10 +1291,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4009009" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3457207" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31008583" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2832618" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1344,11 +1334,11 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30865604" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4009009" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49002218" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6407982" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1387,62 +1377,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/Binary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="31" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/AbstractBufferedImageOp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/Recognition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1629">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/HashUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-548">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/ImageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
           <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/EmailUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="76" column="74" lean-forward="false" selection-start-line="76" selection-start-column="74" selection-end-line="76" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -1553,7 +1491,7 @@
         <state relative-caret-position="322">
           <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#analyzeForChart#0;class#Analyzer#0" expanded="false" />
             <element signature="method#analyzeForReport#0;class#Analyzer#0" expanded="false" />
             <element signature="method#compareIncomeOrOutcome#0;class#Analyzer#0" expanded="false" />
@@ -1561,34 +1499,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="38" column="11" lean-forward="false" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6900">
           <caret line="300" column="34" lean-forward="false" selection-start-line="300" selection-start-column="34" selection-end-line="300" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="46" column="44" lean-forward="false" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1886">
-          <caret line="82" column="26" lean-forward="false" selection-start-line="82" selection-start-column="26" selection-end-line="82" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1614,16 +1528,6 @@
         <state relative-caret-position="253">
           <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="109" column="52" lean-forward="false" selection-start-line="109" selection-start-column="52" selection-end-line="109" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#h3#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1683,14 +1587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="63" column="53" lean-forward="false" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1083">
@@ -1704,54 +1600,6 @@
         <state relative-caret-position="565">
           <caret line="30" column="32" lean-forward="false" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/RecordServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding>
-            <marker date="1502679034352" expanded="true" signature="810:1381" ph="{...}" />
-            <marker date="1502679034352" expanded="true" signature="1490:1562" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-          <folding>
-            <marker date="1502679034353" expanded="false" signature="1836:1847" ph=" { " />
-            <marker date="1502679034353" expanded="false" signature="1870:1876" ph=" }" />
-            <marker date="1502679034353" expanded="true" signature="1907:2010" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="2102:3176" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="3248:3321" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="3396:4933" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="4987:5554" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="5640:5834" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="5899:5976" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="6086:6824" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="6901:7911" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="7991:8715" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="8774:9223" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="9309:9768" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="9860:11573" ph="{...}" />
-            <marker date="1502679034353" expanded="false" signature="11620:11631" ph=" { " />
-            <marker date="1502679034353" expanded="false" signature="11646:11652" ph=" }" />
-            <marker date="1502679034353" expanded="true" signature="11684:12622" ph="{...}" />
-            <marker date="1502679034353" expanded="false" signature="11764:11779" ph=" { " />
-            <marker date="1502679034353" expanded="false" signature="11808:11818" ph=" }" />
-            <marker date="1502679034353" expanded="false" signature="11855:11870" ph=" { " />
-            <marker date="1502679034353" expanded="false" signature="11900:11910" ph=" }" />
-            <marker date="1502679034353" expanded="false" signature="11948:11963" ph=" { " />
-            <marker date="1502679034353" expanded="false" signature="11998:12008" ph=" }" />
-            <marker date="1502679034353" expanded="false" signature="12048:12063" ph=" { " />
-            <marker date="1502679034353" expanded="false" signature="12089:12099" ph=" }" />
-            <marker date="1502679034353" expanded="true" signature="12143:12356" ph="{...}" />
-            <marker date="1502679034353" expanded="true" signature="12403:12616" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1842,25 +1690,148 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding>
-            <marker date="1502679316625" expanded="false" signature="6774:6785" ph=" { " />
-            <marker date="1502679316625" expanded="false" signature="6816:6822" ph=" }" />
-            <marker date="1502679316625" expanded="false" signature="6900:6911" ph=" { " />
-            <marker date="1502679316625" expanded="false" signature="6946:6952" ph=" }" />
-            <marker date="1502679316625" expanded="false" signature="7033:7044" ph=" { " />
-            <marker date="1502679316625" expanded="false" signature="7081:7087" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sidebar_menu.jspf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/RecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="63" column="53" lean-forward="false" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="58" column="1" lean-forward="true" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="53" column="30" lean-forward="true" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/tip.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="55" column="26" lean-forward="true" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pwd.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1587">
+          <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#section#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/utils/EmailUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="80" column="23" lean-forward="true" selection-start-line="80" selection-start-column="23" selection-end-line="80" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="91" column="43" lean-forward="true" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="44" selection-end-line="91" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/session/SessionInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="230" column="49" lean-forward="true" selection-start-line="230" selection-start-column="49" selection-end-line="230" selection-end-column="49" />
+          <folding>
+            <element signature="method#modifyPassword#0;class#UserController#0" expanded="false" />
+            <marker date="1502701405381" expanded="false" signature="12467:12478" ph=" { " />
+            <marker date="1502701405381" expanded="false" signature="12509:12515" ph=" }" />
+            <marker date="1502701405381" expanded="false" signature="12593:12604" ph=" { " />
+            <marker date="1502701405381" expanded="false" signature="12639:12645" ph=" }" />
+            <marker date="1502701405381" expanded="false" signature="12726:12737" ph=" { " />
+            <marker date="1502701405381" expanded="false" signature="12774:12780" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="223" column="13" lean-forward="true" selection-start-line="223" selection-start-column="13" selection-end-line="223" selection-end-column="13" />
+          <folding>
+            <element signature="e#7481#7482#0" expanded="true" />
+            <element signature="e#7534#7535#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="56" column="73" lean-forward="true" selection-start-line="56" selection-start-column="73" selection-end-line="56" selection-end-column="73" />
           <folding />
         </state>
       </provider>
@@ -1931,7 +1902,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <last-edited>Maven: javax.mail:mail:1.4</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

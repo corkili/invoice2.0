@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result register(User user, HttpSession session) {
+    public Result register(User user, HttpServletRequest request) {
         boolean successful = false;
         String message;
         if (StringUtils.isEmpty(user.getEmail())
@@ -123,19 +123,63 @@ public class UserServiceImpl implements UserService {
             user.setIsManager(false);
             user.setEnabled(false);
             user.setCreateTime(new Date());
-            user.setPassword(HashUtil.generate(user.getPassword()));
+            String password = user.getPassword();
+            user.setPassword(HashUtil.generate(password));
+            if (user.getImage() == null) {
+                user.setImage((Blob)file2Blob(request, null).get("blob"));
+            }
             user.setAuthority(new Authority());
             if (userDao.save(user) == null) {
                 message = "数据库错误！";
             } else {
-                successful = true;
-                message = "注册成功！";
+                String address = request.getScheme() + "://"
+                        + request.getServerName() + ":"
+                        + request.getServerPort() + request.getContextPath()
+                        + "/verify";
+                if (sendEmail(address, user.getEmail(), "active", request.getSession()).isSuccessful()) {
+                    successful = true;
+                    message = "注册成功！";
+                } else {
+                    message = "无法向指定邮箱发送邮件，请检查邮箱是否正确或检查邮箱设置！";
+                    user.setPassword(password);
+                    userDao.delete(user);
+                    user.setId(null);
+                }
             }
         }
         Result result = new Result(successful);
         result.setMessage(message);
         result.add("user", user);
         return result;
+    }
+
+    @Override
+    public void initAdmin(HttpServletRequest request) {
+        User user = userDao.findUserByEmail("admin@admin.com");
+        if (user == null) {
+            user = new User();
+            user.setEmail("admin@admin.com");
+            user.setPassword(HashUtil.generate("admin"));
+            user.setName("管理员");
+            user.setJobId("无");
+            user.setPhone("无");
+            user.setIsSuperManager(true);
+            user.setIsManager(true);
+            user.setEnabled(true);
+            user.setVerificationCode(null);
+            user.setCreateTime(new Date());
+            user.setVerifyTime(null);
+            user.setImage((Blob)file2Blob(request, null).get("blob"));
+            Authority authority = new Authority();
+            authority.setQueryReport(true);
+            authority.setRemoveInvoice(true);
+            authority.setQueryInvoice(true);
+            authority.setModifyInvoice(true);
+            authority.setAddInvoice(true);
+            authority.setQueryRecord(true);
+            user.setAuthority(authority);
+            userDao.save(user);
+        }
     }
 
     @Override
@@ -159,6 +203,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUser(String email) {
+        return userDao.findUserByEmail(email);
+    }
+
+    @Override
     public Result getUsers(boolean isSuperManager, boolean isManager) {
         Result result = new Result(true);
         result.setMessage("获取用户成功！");
@@ -179,12 +228,14 @@ public class UserServiceImpl implements UserService {
         User user = userDao.findUserByEmail(email);
         if (user == null) {
             message = "邮箱不存在！";
+        } else if ("active".equals(action) && user.getEnabled()) {
+            message = "账户已激活，请直接登录！";
         } else {
             String code = HashUtil.generate(email) + session.getId();
             user.setVerificationCode(code);
             user.setVerifyTime(new Date());
             userDao.saveOrUpdate(user);
-            if (!EmailUtil.sendMail(address, email, code, action)) {
+            if (!EmailUtil.sendMail(email, address, code, action)) {
                 message = "邮件发送失败！";
             } else {
                 successful = true;
@@ -202,11 +253,12 @@ public class UserServiceImpl implements UserService {
         String message;
         User user = userDao.findUserByEmail(email);
         if (user == null) {
-            message = "验证失败，邮箱不存在！";
+            message = "链接验证失败，邮箱不存在！";
         } else {
             Date now = new Date();
-            if (user.getVerifyTime() == null ||
-                    now.getTime() - user.getVerifyTime().getTime() > TIME_DIFF) {
+            if (user.getVerifyTime() == null) {
+                message = "链接已无效，请重新发送邮件！";
+            } else if (now.getTime() - user.getVerifyTime().getTime() > TIME_DIFF) {
                 message = "链接已超时，请重新发送邮件！";
             }
             else if (StringUtils.isEmpty(code) || StringUtils.isEmpty(user.getVerificationCode())
@@ -325,11 +377,6 @@ public class UserServiceImpl implements UserService {
         result.setMessage(message);
         result.add("blob", blob);
         return result;
-    }
-
-    @Override
-    public UserDao getUserDao() {
-        return userDao;
     }
 
     private class UserContext {

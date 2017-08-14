@@ -89,7 +89,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <div class="col-md-4 col-sm-4 profile_details">
+                                <div class="col-md-8 col-sm-8 profile_details">
                                     <div class="well profile_view">
                                         <div class="col-sm-12">
                                             <h4 class="brief"><i>个人信息</i></h4>

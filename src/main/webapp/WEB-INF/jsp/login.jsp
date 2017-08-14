@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-8">
                         <input id="captcha" name="captcha" class="form-control"
-                               maxlength="6" placeholder="Verification code" required/>
+                               maxlength="6" placeholder="验证码" required/>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <img id="captchaImage" src="captcha" onclick="reImg()"/>
@@ -83,6 +83,10 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
+                        <p class="change_link">
+                            忘记密码？<a href="mail?action=pwd" class="to_pwd">点此重置</a>
+                            账户未激活？<a href="mail?action=active" class="to_active">点此激活</a>
+                        </p>
                         <div class="clearfix"></div>
                         <br />
                         <div>

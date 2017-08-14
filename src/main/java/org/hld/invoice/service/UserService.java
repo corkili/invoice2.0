@@ -18,9 +18,13 @@ public interface UserService {
 
     void logout(int userId, HttpSession session);
 
-    Result register(User user, HttpSession session);
+    Result register(User user, HttpServletRequest request);
+
+    void initAdmin(HttpServletRequest request);
 
     Result getUser(int userId);
+
+    User getUser(String email);
 
     Result getUsers(boolean isSuperManager, boolean isManager);
 
@@ -38,5 +42,4 @@ public interface UserService {
 
     Result file2Blob(HttpServletRequest request, MultipartFile file);
 
-    UserDao getUserDao();
 }
