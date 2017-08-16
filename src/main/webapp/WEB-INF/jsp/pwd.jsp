@@ -40,7 +40,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="pwd" method="post" id="pwd_form" name="pwd_form">
+                <form action="pwd" method="post" id="pwd_form" name="pwd_form" onsubmit="return checkResetPasswordForm();">
                     <h1>
                         重置密码<br/><br/>
                         <strong>企业增值税发票数据分析系统</strong>

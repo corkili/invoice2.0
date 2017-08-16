@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by 李浩然 On 2017/8/10.
@@ -29,6 +30,8 @@ public interface UserService {
     Result getUsers(boolean isSuperManager, boolean isManager);
 
     void modifyUserInformation(User user);
+
+    void modifyUsersInformation(List<User> users);
 
     Result sendEmail(String address, String email, String action, HttpSession session);
 

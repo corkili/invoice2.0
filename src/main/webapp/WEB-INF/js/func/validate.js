@@ -14,8 +14,17 @@ function checkRegisterForm() {
     }
 }
 
+function checkSendEmailForm() {
+    if (checkEmail() && checkVerificationCode()) {
+        return true;
+    } else {
+        alert("某些信息输入不正确，请检查红字部分！");
+        return false;
+    }
+}
+
 function checkResetPasswordForm() {
-    if (checkEmail() && checkCode() && checkPassword() && checkConfirmPassword() && checkVerificationCode()) {
+    if (checkEmail()  && checkPassword() && checkConfirmPassword() && checkVerificationCode()) {
         return true;
     } else {
         alert("某些信息输入不正确，请检查红字部分！");
@@ -29,6 +38,22 @@ function checkModifyInformationForm() {
     } else {
         alert("某些信息输入不正确，请检查红字部分！");
         return false;
+    }
+}
+
+function checkAuthForm() {
+    var users = document.getElementsByName("table_records");
+    var checkNum = 0;
+    for (var i = 0; i < users.length; i++) {
+        if (users[i].checked) {
+            checkNum++;
+        }
+    }
+    if (checkNum == 0) {
+        alert("请至少选择一个用户！");
+        return false;
+    } else {
+        return confirm("共选择" + checkNum + "名用户，是否确定修改他们的权限？");
     }
 }
 

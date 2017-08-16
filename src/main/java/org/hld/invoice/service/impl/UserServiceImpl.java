@@ -222,6 +222,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void modifyUsersInformation(List<User> users) {
+        for (User user : users) {
+            userDao.saveOrUpdate(user);
+        }
+        userContext.update(users);
+    }
+
+    @Override
     public Result sendEmail(String address, String email, String action, HttpSession session) {
         boolean successful = false;
         String message;

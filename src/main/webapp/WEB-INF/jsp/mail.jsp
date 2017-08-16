@@ -40,7 +40,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="mail" method="post" id="mail_form" name="mail_form">
+                <form action="mail" method="post" id="mail_form" name="mail_form" onsubmit="return checkSendEmailForm();">
                     <h1>
                         ${title}<br/><br/>
                         <strong>企业增值税发票数据分析系统</strong>

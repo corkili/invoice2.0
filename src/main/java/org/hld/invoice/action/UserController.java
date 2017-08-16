@@ -25,8 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Blob;
-import java.util.Base64;
-import java.util.Date;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @Controller
@@ -372,6 +371,98 @@ public class UserController {
         return modelAndView;
     }
 
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "/manage", method = RequestMethod.GET)
+    public ModelAndView manageUser(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                   @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("manage");
+        if (!user.getIsSuperManager() && !user.getIsManager()) {
+            modelAndView.addObject("has_authority", false)
+                    .addObject("display_name", displayName);
+
+            return modelAndView;
+        }
+        List<User> users = (List<User>)userService.getUsers(false, false).get("users");
+        if (user.getIsSuperManager()) {
+            users.addAll((List<User>)userService.getUsers(false, true).get("users"));
+        } else {
+            users.add(user);
+        }
+        modelAndView.addObject("has_authority", true)
+                .addObject("user", user)
+                .addObject("user_list", users)
+                .addObject("display_name", displayName);
+        return modelAndView;
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "/manage", method = RequestMethod.POST)
+    public ModelAndView modifyAuth(HttpServletRequest request,
+                                   @SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                   @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("manage");
+        if (!user.getIsSuperManager() && !user.getIsManager()) {
+            modelAndView.addObject("has_authority", false)
+                    .addObject("display_name", displayName);
+            return modelAndView;
+        }
+        List<User> userList = new ArrayList<>();
+        String[] userIds = request.getParameterValues("table_records");
+        List<String> authorities = Arrays.asList(request.getParameterValues("authority"));
+        for (String id : userIds) {
+            userList.add((User)userService.getUser(Integer.parseInt(id)).get("user"));
+        }
+        boolean addInvoice = authorities.contains("addInvoice");
+        boolean queryInvoice = authorities.contains("queryInvoice");
+        boolean modifyInvoice = authorities.contains("modifyInvoice");
+        boolean removeInvoice = authorities.contains("removeInvoice");
+        boolean queryReport = authorities.contains("queryReport");
+        boolean queryRecord = authorities.contains("queryRecord");
+        boolean isManager = authorities.contains("manager");
+
+        for (User u : userList) {
+            u.getAuthority().setAddInvoice(addInvoice);
+            u.getAuthority().setQueryInvoice(queryInvoice);
+            u.getAuthority().setModifyInvoice(modifyInvoice);
+            u.getAuthority().setRemoveInvoice(removeInvoice);
+            u.getAuthority().setQueryReport(queryReport);
+            u.getAuthority().setQueryRecord(queryRecord);
+            if (user.getIsSuperManager()) {
+                u.setIsManager(isManager);
+            }
+        }
+        userService.modifyUsersInformation(userList);
+        List<User> users = (List<User>)userService.getUsers(false, false).get("users");
+        if (user.getIsSuperManager()) {
+            users.addAll((List<User>)userService.getUsers(false, true).get("users"));
+        } else {
+            users.add(user);
+        }
+        modelAndView.addObject("has_authority", true)
+                .addObject("user", user)
+                .addObject("user_list", users)
+                .addObject("display_name", displayName);
+        return modelAndView;
+    }
 
     @Autowired
     public void setUserService(UserService userService) {
