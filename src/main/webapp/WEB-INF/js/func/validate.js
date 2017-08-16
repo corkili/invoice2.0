@@ -24,7 +24,7 @@ function checkResetPasswordForm() {
 }
 
 function checkModifyInformationForm() {
-    if (checkName() && checkPhone() && checkProvince() && checkCity() && checkArea()) {
+    if (checkName() && checkPhone() && checkVerificationCode()) {
         return true;
     } else {
         alert("某些信息输入不正确，请检查红字部分！");

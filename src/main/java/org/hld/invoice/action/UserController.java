@@ -14,6 +14,7 @@ import org.hld.invoice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.util.Base64;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 @Controller
 @Log4j
@@ -278,6 +280,98 @@ public class UserController {
                 .addObject("error_message", errorMessage);
 
     }
+
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public ModelAndView modifyInformation(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                          @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("user_info");
+        modelAndView.addObject("has_error", false)
+                .addObject("image_error", false)
+                .addObject("error_message", "")
+                .addObject("display_name", displayName)
+                .addObject("user", user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/modifyInformation", method = RequestMethod.POST)
+    public ModelAndView modifyInformation(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                          @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                          @RequestParam("name") String name,
+                                          @RequestParam("jobId") String jobId,
+                                          @RequestParam("phone") String phone) {
+        ModelAndView modelAndView = new ModelAndView();
+        Result result = userService.getUser(userId);
+        String errorMessage;
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        if (StringUtils.isEmpty(name)) {
+            errorMessage = "姓名不能为空";
+        } else if (StringUtils.isEmpty(jobId)) {
+            errorMessage = "职工号不能为空";
+        } else if (StringUtils.isEmpty(phone)
+                || !Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-9])|(147))\\d{8}$")
+                .matcher(phone).matches()) {
+            errorMessage = "手机号格式不正确";
+        } else {
+            user.setName(name);
+            user.setJobId(jobId);
+            user.setPhone(phone);
+            userService.modifyUserInformation(user);
+            modelAndView.setViewName("redirect:/main");
+            return modelAndView;
+        }
+        modelAndView.setViewName("user_info");
+        modelAndView.addObject("has_error", true)
+                .addObject("image_error", false)
+                .addObject("error_message", errorMessage)
+                .addObject("display_name", displayName)
+                .addObject("user", user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/modifyHeadImage", method = RequestMethod.POST)
+    public ModelAndView modifyHeadImage(@RequestParam("image") MultipartFile file, HttpServletRequest request,
+                                        @SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                        @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        Result blobResult = userService.file2Blob(request, file);
+        if (blobResult.isSuccessful()) {
+            user.setImage((Blob)blobResult.get("blob"));
+            userService.modifyUserInformation(user);
+            modelAndView.setViewName("redirect:/main");
+            return modelAndView;
+        }
+        modelAndView.setViewName("user_info");
+        modelAndView.addObject("has_error", false)
+                .addObject("image_error", true)
+                .addObject("error_message", blobResult.getMessage())
+                .addObject("display_name", displayName)
+                .addObject("user", user);
+        return modelAndView;
+    }
+
 
     @Autowired
     public void setUserService(UserService userService) {

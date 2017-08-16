@@ -6,6 +6,7 @@
             <li><a><i class="fa fa-home"></i> 首页 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="main">首页</a></li>
+                    <li><a href="info">个人信息</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
