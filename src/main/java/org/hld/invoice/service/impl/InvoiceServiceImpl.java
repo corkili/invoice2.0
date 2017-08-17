@@ -72,6 +72,15 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    public Result getInvoice(long id) {
+        Invoice invoice = invoiceDao.get(id);
+        Result result = new Result(invoice != null);
+        result.setMessage(result.isSuccessful() ? "获取发票成功！" : "获取发票失败！");
+        result.add("invoice", invoice);
+        return result;
+    }
+
+    @Override
     public Result saveInvoice(Invoice invoice) {
         boolean successful = false;
         String message;
@@ -348,6 +357,13 @@ public class InvoiceServiceImpl implements InvoiceService {
         List<String> errorMessages = new ArrayList<>();
         String checkNum = "[0-9]*";
         int count = 1;
+        if (invoice == null) {
+            errorMessages.add("*" + count + ": 发票数据不存在");
+            Result result = new Result(false);
+            result.setMessage("发票校验未通过！");
+            result.add("errorMessages", errorMessages);
+            return result;
+        }
         if (checkExist && invoiceDao.findInvoices(false, null, null,
                 "invoiceCode", invoice.getInvoiceCode(), "invoiceId", invoice.getInvoiceId()).size() != 0) {
             errorMessages.add("*" + count + ": 发票已经存在");

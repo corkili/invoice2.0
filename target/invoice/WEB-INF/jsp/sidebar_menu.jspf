@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>General</h3>
+        <h3></h3>
         <ul class="nav side-menu">
-            <li><a><i class="fa fa-home"></i> 首页 <span class="fa fa-chevron-down"></span></a>
+            <li id="mainMenu"><a><i class="fa fa-home"></i> 首页 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="main">首页</a></li>
                     <li><a href="info">个人信息</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
+            <li id="addMenu"><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#">手动导入</a></li>
+                    <li><a href="addInvoice?action=hand">手动导入</a></li>
                     <li><a href="#">图像导入</a></li>
                     <li><a href="#">批量导入</a></li>
                 </ul>

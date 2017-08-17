@@ -18,6 +18,8 @@ public interface InvoiceService {
 
     Result getInvoice(int userId, long id);
 
+    Result getInvoice(long id);
+
     Result saveInvoice(Invoice invoice);
 
     Result getInvoiceByParseImage(HttpServletRequest request, MultipartFile image);
