@@ -77,7 +77,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <form action="addInvoice" method="post" class="form-horizontal form-label-left">
+                                        <form action="addInvoiceByHand" method="post" class="form-horizontal form-label-left">
                                             <div class="form-group">
                                                 <label class="control-label col-md-2" for="detail_num">
                                                     待添加的发票的明细数目
@@ -130,7 +130,7 @@
                                         <br />
                                         <c:choose>
                                             <c:when test="${detail_num > 0}">
-                                                <form:form commandName="invoice" action="addInvoice" method="post"
+                                                <form:form commandName="invoice" action="addInvoiceByHand" method="post"
                                                            cssClass="form-horizontal form-label-left" modelAttribute="invoice"
                                                            onsubmit="return checkSubmitInvoice(${detail_num});">
                                                     <div class="row">

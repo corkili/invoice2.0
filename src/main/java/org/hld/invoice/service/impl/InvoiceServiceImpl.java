@@ -245,11 +245,13 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Result batchSaveInvoices(int userId, HttpServletRequest request, MultipartFile excel) {
         boolean successful = false;
         String message = "";
+        List<Invoice> errorInvoices = new ArrayList<>();
+        invoiceContext.clear(userId);
         if (excel != null) {
             try {
                 String base64 = Base64.getEncoder().encodeToString(excel.getBytes());
-                if (base64 == null || !base64.startsWith("0M8R4KGxG")
-                        || !base64.startsWith("UEsDBBQAB")) {
+                if (base64 == null || (!base64.startsWith("0M8R4KGxG")
+                        && !base64.startsWith("UEsDBBQAB"))) {
                     message = "文件类型不正确";
                 } else {
                     String path = request.getSession().getServletContext().getRealPath("WEB-INF/InvoiceExcel");
@@ -259,21 +261,23 @@ public class InvoiceServiceImpl implements InvoiceService {
                         file.mkdirs();
                     }
                     excel.transferTo(file);
-                    invoiceContext.clear(userId);
                     ExcelUtil excelUtil = new ExcelUtil(path + "/" + fileName);
                     List<Invoice> invoices = excelUtil.getInvoicesFromExcel();
-                    List<Invoice> errorInvoice = new ArrayList<>();
                     int detailSum = 0;
                     if (invoices != null) {
                         for (Invoice invoice : invoices) {
                             if (!checkInvoice(invoice, true).isSuccessful()) {
-                                errorInvoice.add(invoice);
+                                errorInvoices.add(invoice);
                             } else {
-                                detailSum += invoice.getDetails().size();
-                                invoiceDao.save(invoice);
+                                Long id = invoiceDao.save(invoice);
+                                if (id == null) {
+                                    errorInvoices.add(invoice);
+                                } else {
+                                    detailSum += invoice.getDetails().size();
+                                }
                             }
                         }
-                        invoices.removeAll(errorInvoice);
+                        invoices.removeAll(errorInvoices);
                         invoiceContext.addAll(userId, invoices);
                     }
                     int size = invoiceContext.getInvoiceList(userId).size();
@@ -281,21 +285,21 @@ public class InvoiceServiceImpl implements InvoiceService {
                         message = "未导入任何发票，文件内容错误或所有发票已存在！";
                     } else {
                         message = "成功共导入了" + size + "张发票，共包含" + detailSum + "条明细！";
-                        if (errorInvoice.size() != 0) {
-                            message += "有" + errorInvoice.size() +"张发票导入失败，可能原因是相应发票已存在或发票数据错误！";
+                        if (errorInvoices.size() != 0) {
+                            message += "有" + errorInvoices.size() +"张发票导入失败，可能原因是相应发票已存在或发票数据错误！";
                         }
                     }
                     successful = true;
-                    message = "导入成功！";
                 }
             } catch (IOException e) {
                 successful = false;
-                message = "导入失败！";
+                message = "未导入任何发票，文件内容错误或所有发票已存在！";
             }
         }
         Result result = new Result(successful);
         result.setMessage(message);
         result.add("invoiceList", invoiceContext.getInvoiceList(userId));
+        result.add("errorInvoiceList", errorInvoices);
         return result;
     }
 

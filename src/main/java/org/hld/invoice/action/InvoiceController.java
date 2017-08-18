@@ -14,11 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Log
@@ -45,11 +50,9 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-
-    @RequestMapping(value = "/addInvoice", method = RequestMethod.GET)
-    public ModelAndView addInvoicePage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
-                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
-                                       @RequestParam("action") String action, HttpServletRequest request) {
+    @RequestMapping(value = "/addInvoiceByHand", method = RequestMethod.GET)
+    public ModelAndView addInvoiceByHandPage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                             @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("display_name", displayName);
         Result result = userService.getUser(userId);
@@ -60,44 +63,19 @@ public class InvoiceController {
             return modelAndView;
         }
         User user = (User)result.get("user");
-        switch (action) {
-            case "hand":
-                modelAndView.setViewName("invoice_input_hand");
-                modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
-                        .addObject("detail_num", 0);
-                break;
-            case "image":
-                modelAndView.setViewName("invoice_input_image");
-                break;
-            case "excel":
-                modelAndView.setViewName("invoice_input_excel");
-                break;
-            case "result":
-                modelAndView.setViewName("invoice_save_result");
-                String id = request.getParameter("id");
-                if (id != null) {
-                    Invoice invoice = (Invoice)invoiceService.getInvoice(Integer.parseInt(id)).get("invoice");
-                    modelAndView.addObject("has_result", invoice != null);
-                    modelAndView.addObject("invoice", invoice);
-                    modelAndView.addObject("nextAction", request.getParameter("preAction"));
-                } else {
-                    modelAndView.addObject("has_result", false);
-                }
-                break;
-            default:
-                modelAndView = new ModelAndView("redirect:/main");
-        }
+        modelAndView.setViewName("invoice_input_hand");
+        modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
+                .addObject("detail_num", 0);
         return modelAndView;
     }
 
-
-    @RequestMapping(value = "/addInvoice", method = RequestMethod.POST)
-    public ModelAndView inputDetailNum(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+    @RequestMapping(value = "/addInvoiceByHand", method = RequestMethod.POST)
+    public ModelAndView addInvoiceByHand(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
                                        @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
-                                       @RequestParam("action") String action, HttpServletRequest request,
-                                       @RequestParam("preAction") String preAction,
-                                       @ModelAttribute Invoice invoice) {
-        ModelAndView modelAndView = new ModelAndView("invoice_input_hand");
+                                       @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                       @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                       @ModelAttribute Invoice invoice, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
         Result result = userService.getUser(userId);
         if (!result.isSuccessful()) {
             modelAndView.setViewName("tip");
@@ -123,11 +101,16 @@ public class InvoiceController {
                     detail.setInvoiceId(invoice.getInvoiceId());
                 }
                 Result saveResult = invoiceService.saveInvoice(invoice);
+                modelAndView.setViewName("invoice_save_result");
                 if (saveResult.isSuccessful()) {
                     invoice = (Invoice)saveResult.get("invoice");
-                    modelAndView.setViewName("redirect:/addInvoice?preAction=hand&action=result&id=" + invoice.getId());
+                    modelAndView.addObject("has_result", true);
+                    modelAndView.addObject("invoice", invoice);
+                    modelAndView.addObject("nextAction", preAction);
+                    modelAndView.addObject("display_name", displayName);
                 } else {
-                    modelAndView.setViewName("redirect:/addInvoice?action=result");
+                    modelAndView.addObject("has_result", false)
+                            .addObject("display_name", displayName);
                 }
             } else {
                 modelAndView.setViewName("invoice_input_hand");
@@ -138,8 +121,104 @@ public class InvoiceController {
                         .addObject("error_messages", checkResult.get("errorMessages"))
                         .addObject("display_name", displayName);
             }
+        } else {
+            return new ModelAndView("redirect:/main");
         }
         return modelAndView;
     }
+
+    @RequestMapping(value = "/addInvoiceByExcel", method = RequestMethod.GET)
+    public ModelAndView addInvoiceByExcelPage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                             @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_input_excel");
+        modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
+                .addObject("has_file", false)
+                .addObject("result_message", "")
+                .addObject("invoice_list", new ArrayList<Invoice>());
+        return modelAndView;
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "/addInvoiceByExcel", method = RequestMethod.POST)
+    public ModelAndView addInvoiceByExcel(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                          @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                          @RequestParam(value = "invoice_excel", required = false) MultipartFile file,
+                                          HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("invoice_input_excel");
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        Result saveResult = invoiceService.batchSaveInvoices(userId, request, file);
+        modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
+                .addObject("has_file", true)
+                .addObject("result_message", saveResult.getMessage())
+                .addObject("invoice_list", saveResult.get("invoiceList"))
+                .addObject("error_invoice_list", saveResult.get("errorInvoiceList"));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "invoiceDataTemplate.zip", method = {RequestMethod.GET, RequestMethod.POST})
+    public void download(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("charset=UTF-8");
+        String path = request.getSession().getServletContext().getRealPath("WEB-INF") + "\\files\\";
+        File file = new File(path + "发票数据导入模板.zip");
+        try {
+            response.setHeader("Content-Disposition", "attachment; filename=" +
+                    new String("发票数据导入模板.zip".getBytes("utf-8"), "ISO_8859_1"));
+        } catch (UnsupportedEncodingException e) {
+            response.setHeader("Content-Disposition", "attachment; filename=template.zip");
+
+        }
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+        OutputStream fos = null;
+        InputStream fis = null;
+        try {
+            fis = new FileInputStream(file.getAbsolutePath());
+            bis = new BufferedInputStream(fis);
+            fos = response.getOutputStream();
+            bos = new BufferedOutputStream(fos);
+            int bytesRead = 0;
+            byte[] buffer = new byte[5 * 1024];
+            while ((bytesRead = bis.read(buffer)) != -1) {
+                bos.write(buffer, 0, bytesRead);
+            }
+            bos.flush();
+        } catch(Exception e){
+        } finally {
+            try {
+                if (bis != null) {
+                    bis.close();
+                }
+                if (bos != null) {
+                    bos.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+            }
+        }
+    }
+
 
 }

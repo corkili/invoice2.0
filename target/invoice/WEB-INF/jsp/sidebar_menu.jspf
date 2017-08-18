@@ -9,11 +9,11 @@
                     <li><a href="info">个人信息</a></li>
                 </ul>
             </li>
-            <li id="addMenu"><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="addInvoice?action=hand">手动导入</a></li>
-                    <li><a href="#">图像导入</a></li>
-                    <li><a href="#">批量导入</a></li>
+                    <li><a href="addInvoiceByHand">手动导入</a></li>
+                    <li><a >图像导入</a></li>
+                    <li><a href="addInvoiceByExcel">批量导入</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-table"></i> 数据查询 <span class="fa fa-chevron-down"></span></a>
@@ -35,4 +35,20 @@
             </li>
         </ul>
     </div>
+    <%--<script>
+        function doPost(to, p) {  // to:提交动作（action）,p:参数
+            var myForm = document.createElement("form");
+            myForm.method = "post";
+            myForm.action = to;
+            for (var i in p){
+                var myInput = document.createElement("input");
+                myInput.setAttribute("name", i);  // 为input对象设置name
+                myInput.setAttribute("value", p[i]);  // 为input对象设置value
+                myForm.appendChild(myInput);
+            }
+            document.body.appendChild(myForm);
+            myForm.submit();
+            document.body.removeChild(myForm);  // 提交后移除创建的form
+        }
+    </script>--%>
 </div>
