@@ -9,16 +9,16 @@
                     <li><a href="info">个人信息</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-edit"></i> 数据导入 <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-edit"></i> 发票导入 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="addInvoiceByHand">手动导入</a></li>
-                    <li><a >图像导入</a></li>
+                    <li><a href="#">图像导入</a></li>
                     <li><a href="addInvoiceByExcel">批量导入</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-table"></i> 数据查询 <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-table"></i> 发票查询 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#">列表查询</a></li>
+                    <li><a href="queryForList">列表查询</a></li>
                     <li><a href="#">图表查询</a></li>
                 </ul>
             </li>

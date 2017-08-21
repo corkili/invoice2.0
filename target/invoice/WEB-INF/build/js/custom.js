@@ -1575,49 +1575,46 @@ if (typeof NProgress != 'undefined') {
 		
 			var cb = function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
-			  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			  $('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
 			};
 
-			var optionSet1 = {
-			  startDate: moment().subtract(29, 'days'),
-			  endDate: moment(),
-			  minDate: '01/01/2012',
-			  maxDate: '12/31/2015',
-			  dateLimit: {
-				days: 60
-			  },
-			  showDropdowns: true,
-			  showWeekNumbers: true,
-			  timePicker: false,
-			  timePickerIncrement: 1,
-			  timePicker12Hour: true,
-			  ranges: {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-			  },
-			  opens: 'left',
-			  buttonClasses: ['btn btn-default'],
-			  applyClass: 'btn-small btn-primary',
-			  cancelClass: 'btn-small',
-			  format: 'MM/DD/YYYY',
-			  separator: ' to ',
-			  locale: {
-				applyLabel: 'Submit',
-				cancelLabel: 'Clear',
-				fromLabel: 'From',
-				toLabel: 'To',
-				customRangeLabel: 'Custom',
-				daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-				monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-				firstDay: 1
-			  }
-			};
+            var optionSet1 = {
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                minDate: '1970-01-01',
+                maxDate: '2099-12-31',
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    '今天': [moment(), moment()],
+                    '昨天': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    '过去7天': [moment().subtract(6, 'days'), moment()],
+                    '过去30天': [moment().subtract(29, 'days'), moment()],
+                    '本月': [moment().startOf('month'), moment().endOf('month')],
+                    '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'right',
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                cancelClass: 'btn-small',
+                format: 'YYYY-MM-DD',
+                separator: ' to ',
+                locale: {
+                    applyLabel: '确定',
+                    cancelLabel: '取消',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: '自定义',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                    firstDay: 1
+                }
+            };
 			
-			$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+			$('#reportrange span').html(moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - ' + moment().format('YYYY-MM-DD'));
 			$('#reportrange').daterangepicker(optionSet1, cb);
 			$('#reportrange').on('show.daterangepicker', function() {
 			  console.log("show event fired");
@@ -1626,7 +1623,7 @@ if (typeof NProgress != 'undefined') {
 			  console.log("hide event fired");
 			});
 			$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-			  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+			  console.log("apply event fired, start/end dates are " + picker.startDate.format('YYYY-MM-DD') + " to " + picker.endDate.format('YYYY-MM-DD'));
 			});
 			$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
 			  console.log("cancel event fired");
@@ -1650,49 +1647,47 @@ if (typeof NProgress != 'undefined') {
 		  
 				var cb = function(start, end, label) {
 				  console.log(start.toISOString(), end.toISOString(), label);
-				  $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+				  $('#reportrange_right span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+				  document.getElementById('startDate').value = start.format('YYYY-MM-DD');
+				  document.getElementById('endDate').value = end.format('YYYY-MM-DD');
 				};
 
 				var optionSet1 = {
 				  startDate: moment().subtract(29, 'days'),
 				  endDate: moment(),
-				  minDate: '01/01/2012',
-				  maxDate: '12/31/2020',
-				  dateLimit: {
-					days: 60
-				  },
+				  minDate: '01/01/1970',
+				  maxDate: moment(),
 				  showDropdowns: true,
 				  showWeekNumbers: true,
-				  timePicker: false,
-				  timePickerIncrement: 1,
-				  timePicker12Hour: true,
 				  ranges: {
-					'Today': [moment(), moment()],
-					'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-					'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-					'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-					'This Month': [moment().startOf('month'), moment().endOf('month')],
-					'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+					'今天': [moment(), moment()],
+					'昨天': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+					'过去7天': [moment().subtract(6, 'days'), moment()],
+					'过去30天': [moment().subtract(29, 'days'), moment()],
+					'本月': [moment().startOf('month'), moment().endOf('month')],
+					'上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
 				  },
 				  opens: 'right',
 				  buttonClasses: ['btn btn-default'],
 				  applyClass: 'btn-small btn-primary',
 				  cancelClass: 'btn-small',
-				  format: 'MM/DD/YYYY',
+				  format: 'YYYY-MM-DD',
 				  separator: ' to ',
 				  locale: {
-					applyLabel: 'Submit',
-					cancelLabel: 'Clear',
-					fromLabel: 'From',
-					toLabel: 'To',
-					customRangeLabel: 'Custom',
+					applyLabel: '确定',
+					cancelLabel: '取消',
+					fromLabel: '起始时间',
+					toLabel: '终止时间',
+					customRangeLabel: '自定义',
 					daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-					monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+					monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 					firstDay: 1
 				  }
 				};
 
-				$('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+				$('#reportrange_right span').html(moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - ' + moment().format('YYYY-MM-DD'));
+				document.getElementById('startDate').value = moment().subtract(29, 'days').format('YYYY-MM-DD');
+				document.getElementById('endDate').value = moment().format('YYYY-MM-DD');
 
 				$('#reportrange_right').daterangepicker(optionSet1, cb);
 
@@ -1703,7 +1698,7 @@ if (typeof NProgress != 'undefined') {
 				  console.log("hide event fired");
 				});
 				$('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-				  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+				  console.log("apply event fired, start/end dates are " + picker.startDate.format('YYYY-MM-DD') + " to " + picker.endDate.format('YYYY-MM-DD'));
 				});
 				$('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
 				  console.log("cancel event fired");

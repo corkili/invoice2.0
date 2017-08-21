@@ -3,7 +3,6 @@ package org.hld.invoice.action;
 import lombok.extern.java.Log;
 import org.hld.invoice.common.model.Result;
 import org.hld.invoice.common.session.SessionContext;
-import org.hld.invoice.entity.Authority;
 import org.hld.invoice.entity.Invoice;
 import org.hld.invoice.entity.InvoiceDetail;
 import org.hld.invoice.entity.User;
@@ -12,16 +11,16 @@ import org.hld.invoice.service.RecordService;
 import org.hld.invoice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +33,8 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     private RecordService recordService;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -220,5 +221,157 @@ public class InvoiceController {
         }
     }
 
+    @RequestMapping(value = "/queryForList", method = RequestMethod.GET)
+    public ModelAndView queryForListPage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                         @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_query_list");
+        modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                .addObject("view_invoice", false)
+                .addObject("invoice", null)
+                .addObject("invoice_list", new ArrayList<Invoice>())
+                .addObject("has_result", false)
+                .addObject("edit_invoice", false)
+                .addObject("auth_message", null);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/queryForList", method = RequestMethod.POST)
+    public ModelAndView queryForList(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                     @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                     @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                     @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                     @RequestParam(name = "startDate", required = false, defaultValue = "") String startDate,
+                                     @RequestParam(name = "endDate", required = false, defaultValue = "") String endDate,
+                                     @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
+                                     @RequestParam(name = "itName", required = false, defaultValue = "") String it,
+                                     @RequestParam(name = "id", required = false) Long id,
+                                     @ModelAttribute Invoice editedInvoice) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_query_list");
+        if ("queryForList".equals(preAction) && "query".equals(action)) {
+            Result queryResult;
+            List<Invoice> invoices;
+            try {
+                queryResult = invoiceService.searchInvoice(userId,
+                        new Date(dateFormat.parse(startDate).getTime()),
+                        new Date(dateFormat.parse(endDate).getTime()), self, it);
+                if (queryResult.isSuccessful()) {
+                    invoices = invoiceService.getInvoiceList(userId);
+                } else {
+                    invoices = new ArrayList<>();
+                }
+
+            } catch (ParseException e) {
+                invoices = new ArrayList<>();
+            }
+            modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                    .addObject("view_invoice", false)
+                    .addObject("invoice", null)
+                    .addObject("invoice_list", invoices)
+                    .addObject("has_result", invoices.size() != 0)
+                    .addObject("edit_invoice", false)
+                    .addObject("auth_message", null);
+        } else if ("queryForList".equals(preAction) && "view".equals(action)) {
+            Invoice invoice = (Invoice)invoiceService.getInvoice(userId, id).get("invoice");
+            List<Invoice> invoices = invoiceService.getInvoiceList(userId);
+            modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                    .addObject("view_invoice", invoice != null)
+                    .addObject("invoice", invoice)
+                    .addObject("invoice_list", invoices)
+                    .addObject("has_result", invoices.size() != 0)
+                    .addObject("edit_invoice", false)
+                    .addObject("auth_message", null);
+        } else if ("queryForList".equals(preAction) && "delete".equals(action)) {
+            if (user.getAuthority().getRemoveInvoice()) {
+                invoiceService.deleteInvoice(id);
+            }
+            List<Invoice> invoices = invoiceService.getInvoiceList(userId);
+            modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                    .addObject("view_invoice", false)
+                    .addObject("invoice", null)
+                    .addObject("invoice_list", invoices)
+                    .addObject("has_result", invoices.size() != 0)
+                    .addObject("edit_invoice", false)
+                    .addObject("auth_message", user.getAuthority().getRemoveInvoice() ? null : "您无权限删除发票，请联系管理员！");
+        } else if ("queryForList".equals(preAction) && "edit".equals(action)){
+            Invoice invoice;
+            if (user.getAuthority().getModifyInvoice()) {
+                invoice = (Invoice)invoiceService.getInvoice(userId, id).get("invoice");
+            } else {
+                invoice = null;
+            }
+            List<Invoice> invoices = invoiceService.getInvoiceList(userId);
+            modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                    .addObject("view_invoice", false)
+                    .addObject("invoice", invoice)
+                    .addObject("invoice_list", invoices)
+                    .addObject("has_result", invoices.size() != 0)
+                    .addObject("edit_invoice", invoice != null)
+                    .addObject("has_errors", false)
+                    .addObject("error_messages", null)
+                    .addObject("detail_num", invoice != null ? invoice.getDetails().size() : 0)
+                    .addObject("auth_message", user.getAuthority().getModifyInvoice() ? null : "您无权限编辑发票，请联系管理员！");
+        } else if ("queryForList".equals(preAction) && "save".equals(action)) {
+            List<Invoice> invoices = invoiceService.getInvoiceList(userId);
+            if (user.getAuthority().getModifyInvoice()) {
+                Result checkResult = invoiceService.checkInvoice(editedInvoice, false);
+                if (checkResult.isSuccessful()) {
+                    log.info(editedInvoice.toString());
+                    invoiceService.modifyInvoice(editedInvoice);
+                    modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                            .addObject("view_invoice", false)
+                            .addObject("invoice", null)
+                            .addObject("invoice_list", invoices)
+                            .addObject("has_result", invoices.size() != 0)
+                            .addObject("edit_invoice", false)
+                            .addObject("has_errors", false)
+                            .addObject("error_messages", null)
+                            .addObject("auth_message", null);
+                } else {
+                    modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                            .addObject("view_invoice", false)
+                            .addObject("invoice", editedInvoice)
+                            .addObject("invoice_list", invoices)
+                            .addObject("has_result", invoices.size() != 0)
+                            .addObject("edit_invoice", true)
+                            .addObject("has_errors", true)
+                            .addObject("error_messages", checkResult.get("errorMessages"))
+                            .addObject("auth_message", null);
+                }
+            } else {
+                modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
+                        .addObject("view_invoice", false)
+                        .addObject("invoice", null)
+                        .addObject("invoice_list", invoices)
+                        .addObject("has_result", invoices.size() != 0)
+                        .addObject("edit_invoice", false)
+                        .addObject("has_errors", false)
+                        .addObject("error_messages", null)
+                        .addObject("auth_message", "您无权限编辑发票，请联系管理员！");
+            }
+        } else {
+            return new ModelAndView("redirect:/main");
+        }
+        return modelAndView;
+    }
 
 }

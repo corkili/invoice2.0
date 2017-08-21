@@ -177,7 +177,7 @@
                                                                     <div class="control-group">
                                                                         <div class="controls">
                                                                             <div class="xdisplay_inputx form-group has-feedback">
-                                                                                <input type="text" class="form-control has-feedback-left" onchange="setDate(this.value);"
+                                                                                <input type="text" class="form-control has-feedback-left" onchange="formatDate(this.value);"
                                                                                             id="single_cal4" aria-describedby="inputSuccess2Status4" />
                                                                                 <span class="fa fa-calendar-o form-control-feedback left"></span>
                                                                                 <span id="inputSuccess2Status4" class="sr-only">(success)</span>
@@ -186,11 +186,15 @@
                                                                     </div>
                                                                 </fieldset>
                                                                 <script>
-                                                                    function setDate(value) {
-                                                                        var tmp = [];
-                                                                        tmp = value.split("/");
-                                                                        var date = tmp[2] + "-" + tmp[0] + "-" + tmp[1];
-                                                                        document.getElementById('invoiceDate').value = date;
+                                                                    function formatDate(value) {
+                                                                        if (value.indexOf("-") < 0) {
+                                                                            var tmp = value.split("/");
+                                                                            var date = tmp[2] + "-" + tmp[0] + "-" + tmp[1];
+                                                                            document.getElementById('invoiceDate').value = date;
+                                                                            document.getElementById('single_cal4').value = date;
+                                                                        } else {
+                                                                            document.getElementById('invoiceDate').value = value;
+                                                                        }
                                                                     }
                                                                 </script>
                                                             </div>
