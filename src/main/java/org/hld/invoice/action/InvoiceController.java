@@ -195,13 +195,13 @@ public class InvoiceController {
             bis = new BufferedInputStream(fis);
             fos = response.getOutputStream();
             bos = new BufferedOutputStream(fos);
-            int bytesRead = 0;
+            int bytesRead;
             byte[] buffer = new byte[5 * 1024];
             while ((bytesRead = bis.read(buffer)) != -1) {
                 bos.write(buffer, 0, bytesRead);
             }
             bos.flush();
-        } catch(Exception e){
+        } catch(Exception ignored){
         } finally {
             try {
                 if (bis != null) {
@@ -216,7 +216,7 @@ public class InvoiceController {
                 if (fis != null) {
                     fis.close();
                 }
-            } catch (IOException e) {
+            } catch (IOException ignored) {
             }
         }
     }
@@ -374,4 +374,87 @@ public class InvoiceController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "report", method = RequestMethod.GET)
+    public ModelAndView queryReportPage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                        @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_report");
+        modelAndView.addObject("has_result", false)
+                .addObject("has_authority", user.getAuthority().getQueryReport());
+        return modelAndView;
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "report", method = RequestMethod.POST)
+    public ModelAndView queryReport(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                    @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                    @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                    @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                    @RequestParam(name = "startDate", required = false, defaultValue = "") String startDate,
+                                    @RequestParam(name = "endDate", required = false, defaultValue = "") String endDate,
+                                    @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
+                                    @RequestParam(name = "itName", required = false, defaultValue = "") String it,
+                                    @RequestParam(name = "pattern", required = false, defaultValue = "") String pattern) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_report");
+        if (!user.getAuthority().getQueryReport()) {
+            modelAndView.addObject("has_authority", false);
+        } else if ("report".equals(preAction) && "query".equals(action)){
+            Result queryResult, analysisResult;
+            modelAndView.addObject("has_authority", true);
+            try {
+                Date start = new Date(dateFormat.parse(startDate).getTime());
+                Date end = new Date(dateFormat.parse(endDate).getTime());
+                queryResult = invoiceService.searchInvoice(userId, start, end, self, it);
+                if (queryResult.isSuccessful() && invoiceService.getInvoiceList(userId).size() != 0) {
+                    analysisResult = invoiceService.analyzeForReport(pattern,
+                            (List<Invoice>)queryResult.get("incomeInvoices"),
+                            (List<Invoice>)queryResult.get("outcomeInvoices"), start, end);
+                    if (analysisResult.isSuccessful()) {    // 分析成功
+                        modelAndView.addObject("balances", analysisResult.get("balances"))
+                                .addObject("income_product_totals", analysisResult.get("income_product_totals"))
+                                .addObject("outcome_product_totals", analysisResult.get("outcome_product_totals"))
+                                .addObject("income_names", analysisResult.get("income_names"))
+                                .addObject("outcome_names", analysisResult.get("outcome_names"))
+                                .addObject("income_amounts", analysisResult.get("income_amounts"))
+                                .addObject("outcome_amounts", analysisResult.get("outcome_amounts"))
+                                .addObject("dates", analysisResult.get("dates"))
+                                .addObject("incomes", analysisResult.get("incomes"))
+                                .addObject("outcomes", analysisResult.get("outcomes"))
+                                .addObject("income_comments", analysisResult.get("income_comments"))
+                                .addObject("outcome_comments", analysisResult.get("outcome_comments"))
+                                .addObject("compare_comments", analysisResult.get("compare_comments"))
+                                .addObject("has_result", true);
+                    } else {
+                        modelAndView.addObject("has_result", false);
+                    }
+                } else {
+                    modelAndView.addObject("has_result", false);
+                }
+            } catch (ParseException e) {
+                modelAndView.addObject("has_result", false);
+            }
+        } else {
+            return new ModelAndView("redirect:/main");
+        }
+        return modelAndView;
+    }
 }

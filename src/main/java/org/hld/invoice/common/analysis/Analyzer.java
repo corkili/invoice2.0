@@ -28,7 +28,7 @@ public class Analyzer {
             for (IncomeAndOutcomeAnalysisModel m : incomeAndOutcomeAnalysisResult) {
                 dates.add(m.getDate());
                 incomes.add(new BigDecimal(m.getIncomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-                outcomes.add(new BigDecimal(m.getIncomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+                outcomes.add(new BigDecimal(m.getOutcomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
             }
             successful = true;
             message = "分析成功！";
@@ -67,7 +67,7 @@ public class Analyzer {
             for (IncomeAndOutcomeAnalysisModel m : incomeAndOutcomeAnalysisResult) {
                 dates.add(m.getDate());
                 incomes.add(new BigDecimal(m.getIncomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-                outcomes.add(new BigDecimal(m.getIncomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+                outcomes.add(new BigDecimal(m.getOutcomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
                 balances.add(new BigDecimal(m.getOutcomes() - m.getIncomes()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
             }
 

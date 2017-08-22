@@ -24,7 +24,7 @@
             </li>
             <li><a><i class="fa fa-bar-chart-o"></i> 分析报表 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#">生成报表</a></li>
+                    <li><a href="report">生成报表</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-clone"></i> 系统管理 <span class="fa fa-chevron-down"></span></a>
