@@ -1,4 +1,4 @@
-var secs = 3; //倒计时的秒数
+var secs = 5; //倒计时的秒数
 var URL;
 function Load(url, msg) {
     URL = url;

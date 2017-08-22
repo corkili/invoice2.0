@@ -97,10 +97,11 @@ public class InvoiceServiceImpl implements InvoiceService {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Result getInvoiceByParseImage(HttpServletRequest request, MultipartFile image) {
         boolean successful = false;
-        String message = "";
+        String message = "图像识别失败！";
         Invoice invoice = null;
         int detailNum = Integer.parseInt(request.getParameter("detail_num"));
         if (image != null) {
@@ -234,6 +235,9 @@ public class InvoiceServiceImpl implements InvoiceService {
                     }
                 }
             }
+        } else {
+            successful = false;
+            message = "请上传一个文件！";
         }
         Result result = new Result(successful);
         result.setMessage(message);

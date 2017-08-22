@@ -44,9 +44,10 @@
                     提示<br/><br/>
                     <strong>企业增值税发票数据分析系统</strong>
                 </h1>
-                <div class="col-md-12 col-sm-12 col-xs-12 has-error">
+                <div class="col-md-12 col-sm-12 col-xs-12 has-error" style="font-size: 20px;">
+                    <br/>
                     <p>${message}</p>
-                    <p id="show"></p><a href="${url}" style="color: #0e90d2"><u>点此立即跳转</u></a>
+                    <span id="show"></span><a href="${url}" style="color: #0e90d2"><u>点此立即跳转</u></a>
                     <script>
                         Load('${url}', "秒后自动跳转...");
                     </script>

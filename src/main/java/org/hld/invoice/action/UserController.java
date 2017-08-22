@@ -45,8 +45,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/no_login")
-    public String noLogin() {
-        return "no_login";
+    public ModelAndView noLogin() {
+        ModelAndView modelAndView = new ModelAndView("tip");
+        modelAndView.addObject("url", "login")
+                .addObject("message", "请登录后使用！");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/captcha", method = RequestMethod.GET)

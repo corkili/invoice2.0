@@ -128,6 +128,94 @@ public class InvoiceController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/addInvoiceByImage", method = RequestMethod.GET)
+    public ModelAndView addInvoiceByImagePage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                              @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_input_image");
+        modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
+                .addObject("has_file", false)
+                .addObject("message", null);
+        return modelAndView;
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "/addInvoiceByImage", method = RequestMethod.POST)
+    public ModelAndView addInvoiceByImage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                          @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                          @RequestParam(value = "invoice_image", required = false) MultipartFile file,
+                                          @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                          @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                          HttpServletRequest request, @ModelAttribute Invoice invoice) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_input_image");
+        if (!user.getAuthority().getAddInvoice()) {
+            modelAndView.addObject("has_authority", false);
+        } else if ("addInvoiceByImage".equals(preAction) && "upload".equals(action)) {
+            int detailNum = Integer.parseInt(request.getParameter("detail_num"));
+            Result ocrResult = invoiceService.getInvoiceByParseImage(request, file);
+            modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
+                    .addObject("invoice", (Invoice)ocrResult.get("invoice"))
+                    .addObject("detail_num", detailNum)
+                    .addObject("has_file", ocrResult.isSuccessful())
+                    .addObject("has_errors", false)
+                    .addObject("error_messages", "")
+                    .addObject("display_name", displayName)
+                    .addObject("message", ocrResult.isSuccessful() ? null : ocrResult.getMessage());
+        } else if ("addInvoiceByImage".equals(preAction) && "save".equals(action)) {
+            Result checkResult = invoiceService.checkInvoice(invoice, true);
+            if (checkResult.isSuccessful()) {
+                for (InvoiceDetail detail : invoice.getDetails()) {
+                    detail.setInvoiceCode(invoice.getInvoiceCode());
+                    detail.setInvoiceId(invoice.getInvoiceId());
+                }
+                Result saveResult = invoiceService.saveInvoice(invoice);
+                modelAndView.setViewName("invoice_save_result");
+                if (saveResult.isSuccessful()) {
+                    invoice = (Invoice)saveResult.get("invoice");
+                    modelAndView.addObject("has_result", true)
+                            .addObject("invoice", invoice)
+                            .addObject("nextAction", preAction)
+                            .addObject("display_name", displayName);
+                } else {
+                    modelAndView.addObject("has_result", false)
+                            .addObject("display_name", displayName);
+                }
+            } else {
+                modelAndView.setViewName("invoice_input_image");
+                modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
+                        .addObject("invoice", invoice)
+                        .addObject("detail_num", invoice.getDetails().size())
+                        .addObject("has_errors", true)
+                        .addObject("error_messages", checkResult.get("errorMessages"))
+                        .addObject("display_name", displayName)
+                        .addObject("has_file", true)
+                        .addObject("message", null);
+            }
+        } else {
+            return new ModelAndView("redirect:/main");
+        }
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/addInvoiceByExcel", method = RequestMethod.GET)
     public ModelAndView addInvoiceByExcelPage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
                                              @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
@@ -367,6 +455,80 @@ public class InvoiceController {
                         .addObject("has_errors", false)
                         .addObject("error_messages", null)
                         .addObject("auth_message", "您无权限编辑发票，请联系管理员！");
+            }
+        } else {
+            return new ModelAndView("redirect:/main");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "queryForChart", method = RequestMethod.GET)
+    public ModelAndView queryForChartPage(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                        @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_query_chart");
+        modelAndView.addObject("has_result", false)
+                .addObject("has_authority", user.getAuthority().getQueryInvoice());
+        return modelAndView;
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "queryForChart", method = RequestMethod.POST)
+    public ModelAndView queryForChart(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
+                                    @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                    @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                    @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                    @RequestParam(name = "startDate", required = false, defaultValue = "") String startDate,
+                                    @RequestParam(name = "endDate", required = false, defaultValue = "") String endDate,
+                                    @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
+                                    @RequestParam(name = "itName", required = false, defaultValue = "") String it,
+                                    @RequestParam(name = "pattern", required = false, defaultValue = "") String pattern) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("display_name", displayName);
+        Result result = userService.getUser(userId);
+        if (!result.isSuccessful()) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("url", "login")
+                    .addObject("message", "发生未知错误，请重新登录！");
+            return modelAndView;
+        }
+        User user = (User)result.get("user");
+        modelAndView.setViewName("invoice_query_chart");
+        if (!user.getAuthority().getQueryInvoice()) {
+            modelAndView.addObject("has_authority", false);
+        } else if ("queryForChart".equals(preAction) && "query".equals(action)){
+            Result queryResult, analysisResult;
+            modelAndView.addObject("has_authority", true);
+            try {
+                Date start = new Date(dateFormat.parse(startDate).getTime());
+                Date end = new Date(dateFormat.parse(endDate).getTime());
+                queryResult = invoiceService.searchInvoice(userId, start, end, self, it);
+                if (queryResult.isSuccessful() && invoiceService.getInvoiceList(userId).size() != 0) {
+                    analysisResult = invoiceService.analyzeForChart(pattern,
+                            (List<Invoice>)queryResult.get("incomeInvoices"),
+                            (List<Invoice>)queryResult.get("outcomeInvoices"));
+                    if (analysisResult.isSuccessful()) {    // 分析成功
+                        modelAndView.addObject("dates", analysisResult.get("dates"))
+                                .addObject("incomes", analysisResult.get("incomes"))
+                                .addObject("outcomes", analysisResult.get("outcomes"))
+                                .addObject("has_result", true);
+                    } else {
+                        modelAndView.addObject("has_result", false);
+                    }
+                } else {
+                    modelAndView.addObject("has_result", false);
+                }
+            } catch (ParseException e) {
+                modelAndView.addObject("has_result", false);
             }
         } else {
             return new ModelAndView("redirect:/main");

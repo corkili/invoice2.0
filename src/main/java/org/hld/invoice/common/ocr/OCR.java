@@ -32,7 +32,7 @@ public class OCR {
 			URI uri = builder.build();
 			HttpPost request = new HttpPost(uri);
 			request.setHeader("Content-Type", "application/octet-stream");
-			request.setHeader("Ocp-Apim-Subscription-Key", "00a3dd5e0829430d8fb83aaba213c490");
+			request.setHeader("Ocp-Apim-Subscription-Key", "6d96abb061414858a9c46bb117d8c8c7");
 
 			FileEntity reqEntity = new FileEntity(new File(imgPath));
 			request.setEntity(reqEntity);
@@ -96,7 +96,7 @@ public class OCR {
 			URI uri = builder.build();
 			HttpPost request = new HttpPost(uri);
 			request.setHeader("Content-Type", "application/octet-stream");
-			request.setHeader("Ocp-Apim-Subscription-Key", "ea4f8bf8526e4a74b74d4b5b3d87c065");
+			request.setHeader("Ocp-Apim-Subscription-Key", "68a744121b8c437c9d1f9f9717c235ad");
 
 			FileEntity reqEntity = new FileEntity(new File(imgPath));
 			request.setEntity(reqEntity);

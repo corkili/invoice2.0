@@ -82,7 +82,7 @@
                                             <!-- this row will not appear when printing -->
                                             <div class="row no-print">
                                                 <div class="col-xs-12">
-                                                    <a class="btn btn-success pull-right" href="addInvoice?action=${nextAction}"><i class="fa fa-credit-card"></i>继续添加</a>
+                                                    <a class="btn btn-success pull-right" href="${nextAction}"><i class="fa fa-credit-card"></i>继续添加</a>
                                                     <a class="btn btn-primary pull-right" href="main" style="margin-right: 5px;"><i class="fa fa-download"></i>返回首页</a>
                                                 </div>
                                             </div>

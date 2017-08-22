@@ -12,14 +12,14 @@
             <li><a><i class="fa fa-edit"></i> 发票导入 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="addInvoiceByHand">手动导入</a></li>
-                    <li><a href="#">图像导入</a></li>
+                    <li><a href="addInvoiceByImage">图像导入</a></li>
                     <li><a href="addInvoiceByExcel">批量导入</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-table"></i> 发票查询 <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="queryForList">列表查询</a></li>
-                    <li><a href="#">图表查询</a></li>
+                    <li><a href="queryForChart">图表查询</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-bar-chart-o"></i> 分析报表 <span class="fa fa-chevron-down"></span></a>
