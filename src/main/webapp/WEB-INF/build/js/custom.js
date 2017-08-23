@@ -1572,22 +1572,25 @@ if (typeof NProgress != 'undefined') {
 
 			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
 			console.log('init_daterangepicker');
+
+            document.getElementById('startDate').value = moment().subtract(29, 'days').format('YYYY-MM-DD HH:mm');
+            document.getElementById('endDate').value = moment().format('YYYY-MM-DD HH:mm');
 		
 			var cb = function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
-			  $('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+			  $('#reportrange span').html(start.format('YYYY-MM-DD HH:mm') + ' - ' + end.format('YYYY-MM-DD HH:mm'));
 			};
 
             var optionSet1 = {
                 startDate: moment().subtract(29, 'days'),
                 endDate: moment(),
-                minDate: '1970-01-01',
-                maxDate: '2099-12-31',
+                minDate: '01/01/1970',
+                maxDate: moment(),
                 showDropdowns: true,
                 showWeekNumbers: true,
-                timePicker: false,
+                timePicker: true,
                 timePickerIncrement: 1,
-                timePicker12Hour: true,
+                timePicker12Hour: false,
                 ranges: {
                     '今天': [moment(), moment()],
                     '昨天': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -1600,7 +1603,7 @@ if (typeof NProgress != 'undefined') {
                 buttonClasses: ['btn btn-default'],
                 applyClass: 'btn-small btn-primary',
                 cancelClass: 'btn-small',
-                format: 'YYYY-MM-DD',
+                format: 'YYYY-MM-DD HH:mm',
                 separator: ' to ',
                 locale: {
                     applyLabel: '确定',
@@ -1614,7 +1617,8 @@ if (typeof NProgress != 'undefined') {
                 }
             };
 			
-			$('#reportrange span').html(moment().subtract(29, 'days').format('YYYY-MM-DD') + ' - ' + moment().format('YYYY-MM-DD'));
+			$('#reportrange span').html(moment().subtract(29, 'days').format('YYYY-MM-DD HH:mm') + ' - ' + moment().format('YYYY-MM-DD HH:mm'));
+
 			$('#reportrange').daterangepicker(optionSet1, cb);
 			$('#reportrange').on('show.daterangepicker', function() {
 			  console.log("show event fired");
@@ -1623,7 +1627,9 @@ if (typeof NProgress != 'undefined') {
 			  console.log("hide event fired");
 			});
 			$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-			  console.log("apply event fired, start/end dates are " + picker.startDate.format('YYYY-MM-DD') + " to " + picker.endDate.format('YYYY-MM-DD'));
+			  console.log("apply event fired, start/end dates are " + picker.startDate.format('YYYY-MM-DD HH:mm') + " to " + picker.endDate.format('YYYY-MM-DD HH:mm'));
+			  document.getElementById('startDate').value = picker.startDate.format('YYYY-MM-DD HH:mm');
+			  document.getElementById('endDate').value = picker.endDate.format('YYYY-MM-DD HH:mm');
 			});
 			$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
 			  console.log("cancel event fired");

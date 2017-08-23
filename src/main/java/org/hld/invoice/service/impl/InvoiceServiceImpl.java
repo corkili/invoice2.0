@@ -297,7 +297,7 @@ public class InvoiceServiceImpl implements InvoiceService {
                 }
             } catch (IOException e) {
                 successful = false;
-                message = "未导入任何发票，文件内容错误或所有发票已存在！";
+                message = "未导入任何发票，服务端错误！";
             }
         }
         Result result = new Result(successful);

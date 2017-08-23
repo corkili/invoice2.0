@@ -1,6 +1,7 @@
 package org.hld.invoice.common.utils;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,6 +29,7 @@ public class ExcelUtil {
     private Row row;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private DecimalFormat decimalFormat = new DecimalFormat("#");
     public ExcelUtil(String filepath) {
         if(filepath==null){
             return;
@@ -89,14 +91,16 @@ public class ExcelUtil {
         // 解析发票数据
         sheet = wb.getSheetAt(0);
         if (sheet == null) {
-            return null;
+            return invoices;
         }
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
+        logger.info(rowNum);
         row = sheet.getRow(0);
         int colNum = row.getPhysicalNumberOfCells();
+        logger.info(colNum);
         if (colNum != 11) {
-            return null;
+            return invoices;
         }
         // 正文内容应该从第二行开始,第一行为表头的标题
         for (int i = 1; i <= rowNum; i++) {
@@ -108,13 +112,13 @@ public class ExcelUtil {
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 invoice.setInvoiceId((String)object);
             } else {
-                continue;
+                invoice.setInvoiceId(decimalFormat.format(object));
             }
             // 1:发票Code
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 invoice.setInvoiceCode((String)object);
             } else {
-                continue;
+                invoice.setInvoiceCode(decimalFormat.format(object));
             }
             // 2:发票日期
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof Date) {
@@ -132,25 +136,25 @@ public class ExcelUtil {
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 invoice.setBuyerName((String)object);
             } else {
-                continue;
+                invoice.setBuyerName(String.valueOf(object));
             }
             // 4:购贷方ID
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 invoice.setBuyerId((String)object);
             } else {
-                continue;
+                invoice.setBuyerId(String.valueOf(object));
             }
             // 5:销贷方名称
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 invoice.setSellerName((String)object);
             } else {
-                continue;
+                invoice.setSellerName(String.valueOf(object));
             }
             // 6:销贷方ID
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 invoice.setSellerId((String)object);
             } else {
-                continue;
+                invoice.setSellerId(String.valueOf(object));
             }
             // 7:总金额
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof Double) {
@@ -191,6 +195,8 @@ public class ExcelUtil {
             // 10:备注
             if ((object = getCellFormatValue(row.getCell(j))) instanceof String) {
                 invoice.setRemark((String)object);
+            } else {
+                invoice.setRemark(decimalFormat.format(object));
             }
             invoice.setDetails(new ArrayList<>());
             invoiceMap.put(invoice.getInvoiceId() + "_" + invoice.getInvoiceCode(), invoice);
@@ -218,31 +224,31 @@ public class ExcelUtil {
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 detail.setInvoiceId((String) object);
             } else {
-                continue;
+                detail.setInvoiceId(decimalFormat.format(object));
             }
             // 1:发票代码
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 detail.setInvoiceCode((String) object);
             } else {
-                continue;
+                detail.setInvoiceCode(decimalFormat.format(object));
             }
             // 2:产品名称
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 detail.setDetailName((String) object);
             } else {
-                continue;
+                detail.setDetailName(String.valueOf(object));
             }
             // 3:规格型号
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 detail.setSpecification((String) object);
             } else {
-                continue;
+                detail.setSpecification(decimalFormat.format(object));
             }
             // 4:单位
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof String) {
                 detail.setUnitName((String) object);
             } else {
-                continue;
+                detail.setSpecification(String.valueOf(object));
             }
             // 5:数量
             if ((object = getCellFormatValue(row.getCell(j++))) instanceof Double) {
@@ -307,7 +313,7 @@ public class ExcelUtil {
             try {
                 invoiceMap.get(detail.getInvoiceId() + "_" + detail.getInvoiceCode()).getDetails().add(detail);
             } catch (NullPointerException e) {
-                logger.info(detail.getInvoiceId() + "_" + detail.getInvoiceCode());
+                logger.info("error: " + detail.getInvoiceId() + "_" + detail.getInvoiceCode());
             }
         }
         invoices.addAll(invoiceMap.values());
@@ -326,9 +332,9 @@ public class ExcelUtil {
         Object cellvalue;
         if (cell != null) {
             // 判断当前Cell的Type
-            switch (cell.getCellType()) {
-                case Cell.CELL_TYPE_NUMERIC:// 如果当前Cell的Type为NUMERIC
-                case Cell.CELL_TYPE_FORMULA: {
+            switch (cell.getCellTypeEnum()) {
+                case NUMERIC:// 如果当前Cell的Type为NUMERIC
+                case FORMULA: {
                     // 判断当前的cell是否为Date
                     if (DateUtil.isCellDateFormatted(cell)) {
                         // 如果是Date类型则，转化为Date格式
@@ -342,7 +348,7 @@ public class ExcelUtil {
                     }
                     break;
                 }
-                case Cell.CELL_TYPE_STRING:// 如果当前Cell的Type为STRING
+                case STRING:// 如果当前Cell的Type为STRING
                     // 取得当前的Cell字符串
                     cellvalue = cell.getRichStringCellValue().getString();
                     break;

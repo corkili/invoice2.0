@@ -107,7 +107,8 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(HttpSession session, @RequestParam("email") String email,
                               @RequestParam("password") String password,
-                              @RequestParam("captcha") String captcha) {
+                              @RequestParam("captcha") String captcha,
+                              HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         String errorMessage;
         if (session.getAttribute("randomString") == null ||
@@ -117,7 +118,10 @@ public class UserController {
         } else {
             Result result = userService.login(email, password, session);
             if (result.isSuccessful()) {
+                User user = (User)result.get("user");
                 modelAndView.setViewName("redirect:/main");
+                recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                        "成功登录了系统！");
                 return modelAndView;
             } else {
                 errorMessage = result.getMessage();
@@ -166,6 +170,8 @@ public class UserController {
                 modelAndView.setViewName("tip");
                 modelAndView.addObject("message", "注册成功，请登录邮箱激活账户！")
                         .addObject("url", "login");
+                recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                        "注册了账户！");
                 return modelAndView;
             }
         }
@@ -234,9 +240,12 @@ public class UserController {
                     + "/verify";
             Result emailResult = userService.sendEmail(address, email, action, request.getSession());
             if (emailResult.isSuccessful()) {
+                User user = userService.getUser(email);
                 modelAndView.setViewName("tip");
                 modelAndView.addObject("message", "邮件已成功发送，请登录邮箱查看！")
                         .addObject("url", "login");
+                recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                        "向<" + email + ">发送了" + ("active".equals(action) ? "激活用户" : "修改密码") + "的验证邮件！");
                 return modelAndView;
             } else {
                 modelAndView.setViewName("mail");
@@ -253,7 +262,7 @@ public class UserController {
                                        @RequestParam("password") String password,
                                        @RequestParam("captcha") String captcha,
                                        @SessionAttribute("randomString") String random,
-                                       HttpSession session) {
+                                       HttpSession session, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         String errorMessage;
         if (session.getAttribute("validate") == null
@@ -268,10 +277,13 @@ public class UserController {
         } else {
             Result result = userService.modifyPassword(email, password);
             if (result.isSuccessful()) {
+                User user = userService.getUser(email);
                 modelAndView.setViewName("tip");
                 modelAndView.addObject("message", "修改密码成功，请重新登录！")
                         .addObject("url", "login");
                 session.removeAttribute("validate");
+                recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                        "修改了账户密码！");
                 return modelAndView;
             } else {
                 modelAndView.setViewName("pwd");
@@ -309,7 +321,8 @@ public class UserController {
                                           @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
                                           @RequestParam("name") String name,
                                           @RequestParam("jobId") String jobId,
-                                          @RequestParam("phone") String phone) {
+                                          @RequestParam("phone") String phone,
+                                          HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         Result result = userService.getUser(userId);
         String errorMessage;
@@ -334,6 +347,8 @@ public class UserController {
             user.setPhone(phone);
             userService.modifyUserInformation(user);
             modelAndView.setViewName("redirect:/main");
+            recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                    "修改了个人资料信息！");
             return modelAndView;
         }
         modelAndView.setViewName("user_info");
@@ -363,6 +378,8 @@ public class UserController {
             user.setImage((Blob)blobResult.get("blob"));
             userService.modifyUserInformation(user);
             modelAndView.setViewName("redirect:/main");
+            recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                    "修改了用户头像！");
             return modelAndView;
         }
         modelAndView.setViewName("user_info");
@@ -441,7 +458,8 @@ public class UserController {
         boolean queryReport = authorities.contains("queryReport");
         boolean queryRecord = authorities.contains("queryRecord");
         boolean isManager = authorities.contains("manager");
-
+        StringBuilder content = new StringBuilder();
+        content.append("将用户{");
         for (User u : userList) {
             u.getAuthority().setAddInvoice(addInvoice);
             u.getAuthority().setQueryInvoice(queryInvoice);
@@ -452,8 +470,15 @@ public class UserController {
             if (user.getIsSuperManager()) {
                 u.setIsManager(isManager);
             }
+            content.append("<").append(u.getId()).append("-").append(u.getName())
+                    .append("(").append(u.getEmail()).append(")>");
         }
+        content.append("}的权限修改为了[").append(addInvoice ? "（添加发票）" : "")
+                .append(queryInvoice ? "（查询发票）" : "").append(modifyInvoice ? "（修改发票）" : "")
+                .append(removeInvoice ? "（删除发票）" : "").append(queryReport ? "（查询报表）" : "")
+                .append(queryRecord ? "（查看日志）" : "").append("]");
         userService.modifyUsersInformation(userList);
+        recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(), content.toString());
         List<User> users = (List<User>)userService.getUsers(false, false).get("users");
         if (user.getIsSuperManager()) {
             users.addAll((List<User>)userService.getUsers(false, true).get("users"));

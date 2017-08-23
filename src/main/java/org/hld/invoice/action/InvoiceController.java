@@ -72,10 +72,10 @@ public class InvoiceController {
 
     @RequestMapping(value = "/addInvoiceByHand", method = RequestMethod.POST)
     public ModelAndView addInvoiceByHand(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
-                                       @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
-                                       @RequestParam(name = "action", required = false, defaultValue = "") String action,
-                                       @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
-                                       @ModelAttribute Invoice invoice, HttpServletRequest request) {
+                                         @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                         @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                         @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                         @ModelAttribute Invoice invoice, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         Result result = userService.getUser(userId);
         if (!result.isSuccessful()) {
@@ -109,6 +109,9 @@ public class InvoiceController {
                     modelAndView.addObject("invoice", invoice);
                     modelAndView.addObject("nextAction", preAction);
                     modelAndView.addObject("display_name", displayName);
+                    recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                            "通过【手动导入】方式成功添加了一张发票【代码：" + invoice.getInvoiceCode() + "，号码："
+                                    + invoice.getInvoiceId() + "】！");
                 } else {
                     modelAndView.addObject("has_result", false)
                             .addObject("display_name", displayName);
@@ -195,6 +198,9 @@ public class InvoiceController {
                             .addObject("invoice", invoice)
                             .addObject("nextAction", preAction)
                             .addObject("display_name", displayName);
+                    recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                            "通过【图像导入】方式成功添加了一张发票【代码：" + invoice.getInvoiceCode() + "，号码："
+                                    + invoice.getInvoiceId() + "】！");
                 } else {
                     modelAndView.addObject("has_result", false)
                             .addObject("display_name", displayName);
@@ -254,6 +260,8 @@ public class InvoiceController {
         }
         User user = (User)result.get("user");
         Result saveResult = invoiceService.batchSaveInvoices(userId, request, file);
+        recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                "使用了【批量导入】：" + saveResult.getMessage());
         modelAndView.addObject("has_authority", user.getAuthority().getAddInvoice())
                 .addObject("has_file", true)
                 .addObject("result_message", saveResult.getMessage())
@@ -343,7 +351,7 @@ public class InvoiceController {
                                      @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
                                      @RequestParam(name = "itName", required = false, defaultValue = "") String it,
                                      @RequestParam(name = "id", required = false) Long id,
-                                     @ModelAttribute Invoice editedInvoice) {
+                                     @ModelAttribute Invoice editedInvoice, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("display_name", displayName);
         Result result = userService.getUser(userId);
@@ -390,6 +398,10 @@ public class InvoiceController {
                     .addObject("auth_message", null);
         } else if ("queryForList".equals(preAction) && "delete".equals(action)) {
             if (user.getAuthority().getRemoveInvoice()) {
+                Invoice deleteInvoice = (Invoice)invoiceService.getInvoice(userId, id).get("invoice");
+                recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                        "删除了发票【代码：" + deleteInvoice.getInvoiceCode() + "，号码："
+                                + deleteInvoice.getInvoiceId() + "】！");
                 invoiceService.deleteInvoice(id);
             }
             List<Invoice> invoices = invoiceService.getInvoiceList(userId);
@@ -425,6 +437,9 @@ public class InvoiceController {
                 if (checkResult.isSuccessful()) {
                     log.info(editedInvoice.toString());
                     invoiceService.modifyInvoice(editedInvoice);
+                    recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                            "修改了发票【代码：" + editedInvoice.getInvoiceCode() + "，号码："
+                                    + editedInvoice.getInvoiceId() + "】！");
                     modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
                             .addObject("view_invoice", false)
                             .addObject("invoice", null)
@@ -484,14 +499,15 @@ public class InvoiceController {
     @SuppressWarnings("unchecked")
     @RequestMapping(value = "queryForChart", method = RequestMethod.POST)
     public ModelAndView queryForChart(@SessionAttribute(SessionContext.ATTR_USER_ID) int userId,
-                                    @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
-                                    @RequestParam(name = "action", required = false, defaultValue = "") String action,
-                                    @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
-                                    @RequestParam(name = "startDate", required = false, defaultValue = "") String startDate,
-                                    @RequestParam(name = "endDate", required = false, defaultValue = "") String endDate,
-                                    @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
-                                    @RequestParam(name = "itName", required = false, defaultValue = "") String it,
-                                    @RequestParam(name = "pattern", required = false, defaultValue = "") String pattern) {
+                                      @SessionAttribute(SessionContext.ATTR_USER_NAME) String displayName,
+                                      @RequestParam(name = "action", required = false, defaultValue = "") String action,
+                                      @RequestParam(name = "preAction", required = false, defaultValue = "") String preAction,
+                                      @RequestParam(name = "startDate", required = false, defaultValue = "") String startDate,
+                                      @RequestParam(name = "endDate", required = false, defaultValue = "") String endDate,
+                                      @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
+                                      @RequestParam(name = "itName", required = false, defaultValue = "") String it,
+                                      @RequestParam(name = "pattern", required = false, defaultValue = "") String pattern,
+                                      HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("display_name", displayName);
         Result result = userService.getUser(userId);
@@ -516,7 +532,10 @@ public class InvoiceController {
                     analysisResult = invoiceService.analyzeForChart(pattern,
                             (List<Invoice>)queryResult.get("incomeInvoices"),
                             (List<Invoice>)queryResult.get("outcomeInvoices"));
-                    if (analysisResult.isSuccessful()) {    // 分析成功
+                    if (analysisResult.isSuccessful()) {
+                        recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                                "查询了图表：【本方名称：" + self + "，他方名称：" + it + "，日期范围："
+                                        + startDate + " - " + endDate + "】！");
                         modelAndView.addObject("dates", analysisResult.get("dates"))
                                 .addObject("incomes", analysisResult.get("incomes"))
                                 .addObject("outcomes", analysisResult.get("outcomes"))
@@ -565,7 +584,8 @@ public class InvoiceController {
                                     @RequestParam(name = "endDate", required = false, defaultValue = "") String endDate,
                                     @RequestParam(name = "selfName", required = false, defaultValue = "") String self,
                                     @RequestParam(name = "itName", required = false, defaultValue = "") String it,
-                                    @RequestParam(name = "pattern", required = false, defaultValue = "") String pattern) {
+                                    @RequestParam(name = "pattern", required = false, defaultValue = "") String pattern,
+                                    HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("display_name", displayName);
         Result result = userService.getUser(userId);
@@ -591,6 +611,17 @@ public class InvoiceController {
                             (List<Invoice>)queryResult.get("incomeInvoices"),
                             (List<Invoice>)queryResult.get("outcomeInvoices"), start, end);
                     if (analysisResult.isSuccessful()) {    // 分析成功
+                        String method;
+                        if (pattern.contains("dd")) {
+                            method = "日度";
+                        } else if (pattern.contains("MM")) {
+                            method = "月度";
+                        } else {
+                            method = "年度";
+                        }
+                        recordService.createRecord(request, user.getId(), user.getName(), user.getEmail(),
+                                "查询了分析报表：【本方名称：" + self + "，他方名称：" + it + "，日期范围："
+                                        + startDate + " - " + endDate + "，" + method + "】！");
                         modelAndView.addObject("balances", analysisResult.get("balances"))
                                 .addObject("income_product_totals", analysisResult.get("income_product_totals"))
                                 .addObject("outcome_product_totals", analysisResult.get("outcome_product_totals"))

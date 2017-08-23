@@ -67,12 +67,13 @@ public class UserServiceImpl implements UserService {
     public Result login(String email, String password, HttpSession session) {
         boolean successful = false;
         String message;
+        User user = null;
         if (StringUtils.isEmpty(email)) {
             message = "邮箱地址不能为空！";
         } else if (StringUtils.isEmpty(password)){
             message = "密码不能为空！";
         } else {
-            User user = userDao.findUserByEmail(email);
+            user = userDao.findUserByEmail(email);
             if (user == null) {
                 message = "用户或密码错误！";
             } else if (!user.getEnabled()) {
@@ -90,6 +91,7 @@ public class UserServiceImpl implements UserService {
         }
         Result result = new Result(successful);
         result.setMessage(message);
+        result.add("user", user);
         return result;
     }
 

@@ -149,7 +149,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-2" for="itName">
+                                                    <label class="control-label col-md-2" for="reportrange_right">
                                                         日期范围
                                                         <span class="required">*</span>
                                                     </label>
