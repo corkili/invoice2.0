@@ -93,7 +93,8 @@ public class InvoiceController {
                     .addObject("detail_num", detailNum)
                     .addObject("has_errors", false)
                     .addObject("error_messages", "")
-                    .addObject("display_name", displayName);
+                    .addObject("display_name", displayName)
+                    .addObject("companys", invoiceService.getCompanys());
         } else if (preAction.equals("hand") && action.equals("saveInvoice")) {
             Result checkResult = invoiceService.checkInvoice(invoice, true);
             if (checkResult.isSuccessful()) {
@@ -123,7 +124,8 @@ public class InvoiceController {
                         .addObject("detail_num", invoice.getDetails().size())
                         .addObject("has_errors", true)
                         .addObject("error_messages", checkResult.get("errorMessages"))
-                        .addObject("display_name", displayName);
+                        .addObject("display_name", displayName)
+                        .addObject("companys", invoiceService.getCompanys());
             }
         } else {
             return new ModelAndView("redirect:/main");
@@ -182,7 +184,8 @@ public class InvoiceController {
                     .addObject("has_errors", false)
                     .addObject("error_messages", "")
                     .addObject("display_name", displayName)
-                    .addObject("message", ocrResult.isSuccessful() ? null : ocrResult.getMessage());
+                    .addObject("message", ocrResult.isSuccessful() ? null : ocrResult.getMessage())
+                    .addObject("companys", invoiceService.getCompanys());
         } else if ("addInvoiceByImage".equals(preAction) && "save".equals(action)) {
             Result checkResult = invoiceService.checkInvoice(invoice, true);
             if (checkResult.isSuccessful()) {
@@ -214,7 +217,8 @@ public class InvoiceController {
                         .addObject("error_messages", checkResult.get("errorMessages"))
                         .addObject("display_name", displayName)
                         .addObject("has_file", true)
-                        .addObject("message", null);
+                        .addObject("message", null)
+                        .addObject("companys", invoiceService.getCompanys());
             }
         } else {
             return new ModelAndView("redirect:/main");

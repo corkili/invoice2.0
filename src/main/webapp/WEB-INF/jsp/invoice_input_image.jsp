@@ -286,9 +286,14 @@
                                                             <span class="required">*</span>
                                                         </label>
                                                         <div class="col-md-6">
-                                                            <form:input path="buyerName" id="buyerName" name="buyerName"
-                                                                        cssClass="form-control col-md-6" required="required"
+                                                            <form:input path="buyerName" id="buyerName" name="buyerName" list="buyerCompanyNames"
+                                                                        cssClass="form-control col-md-6" required="required" onchange="fillBuyerId();"
                                                                         value="${invoice.buyerName}" placeholder="请输入购贷方名称"/>
+                                                            <datalist id="buyerCompanyNames">
+                                                                <c:forEach var="company" items="${companys}">
+                                                                    <option>${company.key}</option>
+                                                                </c:forEach>
+                                                            </datalist>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -386,9 +391,14 @@
                                                             <span class="required">*</span>
                                                         </label>
                                                         <div class="col-md-6">
-                                                            <form:input path="sellerName" id="sellerName" name="sellerName"
-                                                                        cssClass="form-control col-md-6" required="required"
+                                                            <form:input path="sellerName" id="sellerName" name="sellerName" list="sellerCompanyNames"
+                                                                        cssClass="form-control col-md-6" required="required" onchange="fillSellerId();"
                                                                         value="${invoice.sellerName}" placeholder="请输入销贷方名称"/>
+                                                            <datalist id="sellerCompanyNames">
+                                                                <c:forEach var="company" items="${companys}">
+                                                                    <option>${company.key}</option>
+                                                                </c:forEach>
+                                                            </datalist>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -480,6 +490,51 @@
         alert('${message}');
     </script>
 </c:if>
+<script type="text/javascript">
+    var companys = {};
+    <c:forEach var="company" items="${companys}">
+    companys['${company.key}'] = '${company.value}';
+    </c:forEach>
+    function fillBuyerId() {
+        var name = document.getElementById('buyerName').value;
+        var id = document.getElementById('buyerId').value;
+        var isNew = true;
+        var isContain = false;
+        for (var n in companys) {
+            if (n == name) {
+                document.getElementById('buyerId').value = companys[n];
+                isNew = false;
+                break;
+            }
+            if (companys[n] == id) {
+                isContain = true;
+            }
+        }
+        if (isNew && isContain) {
+            document.getElementById('buyerId').value = '';
+        }
+    }
+
+    function fillSellerId() {
+        var name = document.getElementById('sellerName').value;
+        var id = document.getElementById('sellerId').value;
+        var isNew = true;
+        var isContain = false;
+        for (var n in companys) {
+            if (companys[n] == id) {
+                isContain = true;
+            }
+            if (n == name) {
+                document.getElementById('sellerId').value = companys[n];
+                isNew = false;
+                break;
+            }
+        }
+        if (isNew && isContain) {
+            document.getElementById('sellerId').value = '';
+        }
+    }
+</script>
 
 </body>
 </html>

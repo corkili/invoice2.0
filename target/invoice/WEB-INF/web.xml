@@ -11,7 +11,7 @@
     <!-- 加载spring的配置文件到上下文中去 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:META-INF/applicationContext.xml</param-value>
+        <param-value>classpath:META-INF/spring-mvc.xml</param-value>
     </context-param>
 
     <!-- spring MVC config start -->
@@ -54,14 +54,61 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
-
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>XssSqlFilter</filter-name>
+        <filter-class>org.hld.invoice.common.xss.XssFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>XssSqlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/error/400.html</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/error/401.html</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/403.html</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/error/405.html</location>
+    </error-page>
+    <error-page>
+        <error-code>406</error-code>
+        <location>/error/406.html</location>
+    </error-page>
+    <error-page>
+        <error-code>407</error-code>
+        <location>/error/407.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.html</location>
+    </error-page>
+
+    <context-param>
+        <param-name>defaultHtmlEscape</param-name>
+        <param-value>true</param-value>
+    </context-param>
 
 </web-app>
