@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface InvoiceService {
 
@@ -14,7 +15,7 @@ public interface InvoiceService {
 
     void onLogout(int userId);
 
-    List<String> getNames();
+    Map<String, String> getCompanys();
 
     Result getInvoice(int userId, long id);
 

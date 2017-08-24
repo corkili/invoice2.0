@@ -4,6 +4,21 @@ function $$(id) {
 
 var defaultTextColor = "#888888";
 
+function checkQueryForm() {
+    var self = $$('selfName').value;
+    var it = $$('itName').value;
+    if (self == "0") {
+        alert("请选择一个本方单位！");
+        $$('selfName').focus();
+        return false;
+    } else if (it != "" && it == self) {
+        alert("他方单位不能与本方单位相同！");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function checkRegisterForm() {
     if (checkEmail() && checkPassword() && checkConfirmPassword()
             && checkName() && checkPhone() && checkVerificationCode()) {

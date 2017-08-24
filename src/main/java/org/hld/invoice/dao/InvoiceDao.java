@@ -4,6 +4,7 @@ import org.hld.invoice.entity.Invoice;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 李浩然 On 2017/8/9.
@@ -11,5 +12,5 @@ import java.util.List;
 public interface InvoiceDao  extends BaseDao<Invoice, Long> {
     List<Invoice> findInvoices(boolean fuzzy, Date start, Date end, String... params) throws IllegalArgumentException;
 
-    List<String> findNames();
+    Map<String, String> findNames();
 }

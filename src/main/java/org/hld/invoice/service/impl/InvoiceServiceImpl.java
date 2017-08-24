@@ -47,8 +47,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public List<String> getNames() {
-        return invoiceDao.findNames();
+    public Map<String, String> getCompanys() {
+        return invoiceContext.getCompanyNames();
     }
 
     @Override
@@ -94,6 +94,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         Result result = new Result(successful);
         result.setMessage(message);
         result.add("invoice", invoice);
+        invoiceContext.updateNames();
         return result;
     }
 
@@ -304,6 +305,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         result.setMessage(message);
         result.add("invoiceList", invoiceContext.getInvoiceList(userId));
         result.add("errorInvoiceList", errorInvoices);
+        invoiceContext.updateNames();
         return result;
     }
 
@@ -311,12 +313,14 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void deleteInvoice(Long id) {
         invoiceDao.delete(id);
         invoiceContext.removeInvoice(id);
+        invoiceContext.updateNames();
     }
 
     @Override
     public void modifyInvoice(Invoice invoice) {
         invoiceDao.saveOrUpdate(invoice);
         invoiceContext.update(invoice);
+        invoiceContext.updateNames();
     }
 
     @Override
@@ -458,6 +462,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     private class InvoiceContext {
         private Map<Integer, Map<Long, Invoice>> userInvoices;
 
+        private Map<String, String> companys;
+
         private InvoiceContext() {
             userInvoices = new HashMap<>();
         }
@@ -533,6 +539,17 @@ public class InvoiceServiceImpl implements InvoiceService {
                     }
                 }
             }
+        }
+
+        public Map<String, String> getCompanyNames() {
+            if (companys == null) {
+                companys = invoiceDao.findNames();
+            }
+            return companys;
+        }
+
+        public void updateNames() {
+            companys = invoiceDao.findNames();
         }
     }
 }

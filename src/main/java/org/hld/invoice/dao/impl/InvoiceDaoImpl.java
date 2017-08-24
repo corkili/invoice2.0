@@ -8,10 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by 李浩然 On 2017/8/9.
@@ -75,19 +72,27 @@ public class InvoiceDaoImpl extends BaseDaoImpl<Invoice, Long> implements Invoic
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<String> findNames() {
+    public Map<String, String> findNames() {
         try {
-            Set<String> names = new HashSet<>();
-            names.addAll(getCurrentSession().createQuery(" select distinct i.buyerName" +
-                    " from Invoice i ").list());
-            names.addAll(getCurrentSession().createQuery(" select distinct i.sellerName" +
-                    " from Invoice i ").list());
-            List<String> result = new ArrayList<>();
-            result.addAll(names);
+            List<Object[]> buyerNames = getCurrentSession().createQuery(" select distinct i.buyerName, i.buyerId" +
+                    " from Invoice i ").list();
+            List<Object[]> sellerNames = getCurrentSession().createQuery(" select distinct i.sellerName, i.sellerId" +
+                    " from Invoice i ").list();
+            Map<String, String> result = new HashMap<>();
+            for (Object[] buyer : buyerNames) {
+                if (buyer.length == 2) {
+                    result.put((String)buyer[0], (String)buyer[1]);
+                }
+            }
+            for (Object[] seller : buyerNames) {
+                if (seller.length == 2) {
+                    result.put((String)seller[0], (String)seller[1]);
+                }
+            }
             return result;
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<>();
+            return new HashMap<>();
         }
     }
 

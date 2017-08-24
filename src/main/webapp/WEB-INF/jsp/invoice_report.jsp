@@ -47,6 +47,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <script src="../js/func/validate.js"></script>
 </head>
 
 <body class="nav-md">
@@ -95,20 +96,32 @@
                                                         本方单位名称
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <div class="col-md-6">
-                                                        <input class="form-control has-feedback-left"
-                                                               id="selfName" name="selfName" placeholder="必填" required="required"/>
-                                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                                    <div class="col-md-4">
+                                                        <select class="form-control" name="selfName" id="selfName">
+                                                            <option value="0" selected="selected">---请选择---</option>
+                                                            <c:forEach var="company" items="${companys}">
+                                                                <option value="${company.key}">${company.key}(${company.value})</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                            <%--<input class="form-control has-feedback-left"
+                                                                   id="selfName" name="selfName" placeholder="必填" required="required"/>--%>
+                                                            <%--<span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>--%>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2" for="itName">
                                                         他方单位名称
                                                     </label>
-                                                    <div class="col-md-6">
-                                                        <input class="form-control has-feedback-left"
-                                                               id="itName" name="itName" placeholder="不填则表示全部"/>
-                                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                                    <div class="col-md-4">
+                                                            <%--<input class="form-control has-feedback-left"
+                                                                   id="itName" name="itName" placeholder="不填则表示全部"/>--%>
+                                                        <select class="form-control" name="itName" id="itName">
+                                                            <option value="" selected="selected">---全部---</option>
+                                                            <c:forEach var="company" items="${companys}">
+                                                                <option value="${company.key}">${company.key}(${company.value})</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                            <%--<span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>--%>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -574,7 +587,7 @@
 <!-- bootstrap-progressbar -->
 <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <!-- ECharts -->
-<script src="../vendors/echarts/dist/echarts.min.js"></script>
+<script src="../js/func/echarts.min.js"></script>
 <!-- bootstrap-daterangepicker -->
 <script src="../vendors/moment/min/moment.min.js"></script>
 <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -850,6 +863,9 @@
         var outcomeLine = [];
         var outcomeBar = [];
 
+        var incomeSelected = {};
+        var outcomeSelected = {};
+
         var tmp;
 
         // 填充数据--进销项对比
@@ -878,6 +894,7 @@
         // 填充数据--进项
         <c:forEach var="i" begin="0" end="${income_names.size() - 1}" step="1">
         incomeNames.push('${income_names.get(i)}');
+        incomeSelected['${income_names.get(i)}'] = false;
         tmp = [];
         <c:forEach var="j" begin="0" end="${income_amounts.size() - 1}" step="1">
         tmp.push(${income_amounts.get(j).get(i)});
@@ -905,6 +922,7 @@
         // 填充数据--销项
         <c:forEach var="i" begin="0" end="${outcome_names.size() - 1}" step="1">
         outcomeNames.push('${outcome_names.get(i)}');
+        outcomeSelected['${outcome_names.get(i)}'] = false;
         tmp = [];
         <c:forEach var="j" begin="0" end="${outcome_amounts.size() - 1}" step="1">
         tmp.push(${outcome_amounts.get(j).get(i)});
@@ -958,10 +976,12 @@
                 }
             },
             legend: {
+                type: 'scroll',
                 x: 'center',
                 y: 'bottom',
                 padding: 0,
-                data: incomeNames
+                data: incomeNames,
+                selected: incomeSelected
             },
             calculable: true,
             xAxis: [{
@@ -1005,10 +1025,12 @@
                 }
             },
             legend: {
+                type: 'scroll',
                 x: 'center',
                 y: 'bottom',
                 padding: 0,
-                data:incomeNames
+                data:incomeNames,
+                selected: incomeSelected
             },
             xAxis: [
                 {
@@ -1057,10 +1079,12 @@
                 }
             },
             legend: {
+                type: 'scroll',
                 x: 'center',
                 y: 'bottom',
                 padding: 0,
-                data: outcomeNames
+                data: outcomeNames,
+                selected: outcomeSelected
             },
             calculable: true,
             xAxis: [{
@@ -1104,10 +1128,12 @@
                 }
             },
             legend: {
+                type: 'scroll',
                 x: 'center',
                 y: 'bottom',
                 padding: 0,
-                data:outcomeNames
+                data:outcomeNames,
+                selected: outcomeSelected
             },
             xAxis: [
                 {

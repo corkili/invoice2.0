@@ -337,7 +337,8 @@ public class InvoiceController {
                 .addObject("invoice_list", new ArrayList<Invoice>())
                 .addObject("has_result", false)
                 .addObject("edit_invoice", false)
-                .addObject("auth_message", null);
+                .addObject("auth_message", null)
+                .addObject("companys", invoiceService.getCompanys());
         return modelAndView;
     }
 
@@ -385,7 +386,8 @@ public class InvoiceController {
                     .addObject("invoice_list", invoices)
                     .addObject("has_result", invoices.size() != 0)
                     .addObject("edit_invoice", false)
-                    .addObject("auth_message", null);
+                    .addObject("auth_message", null)
+                    .addObject("companys", invoiceService.getCompanys());
         } else if ("queryForList".equals(preAction) && "view".equals(action)) {
             Invoice invoice = (Invoice)invoiceService.getInvoice(userId, id).get("invoice");
             List<Invoice> invoices = invoiceService.getInvoiceList(userId);
@@ -395,7 +397,8 @@ public class InvoiceController {
                     .addObject("invoice_list", invoices)
                     .addObject("has_result", invoices.size() != 0)
                     .addObject("edit_invoice", false)
-                    .addObject("auth_message", null);
+                    .addObject("auth_message", null)
+                    .addObject("companys", invoiceService.getCompanys());
         } else if ("queryForList".equals(preAction) && "delete".equals(action)) {
             if (user.getAuthority().getRemoveInvoice()) {
                 Invoice deleteInvoice = (Invoice)invoiceService.getInvoice(userId, id).get("invoice");
@@ -411,7 +414,8 @@ public class InvoiceController {
                     .addObject("invoice_list", invoices)
                     .addObject("has_result", invoices.size() != 0)
                     .addObject("edit_invoice", false)
-                    .addObject("auth_message", user.getAuthority().getRemoveInvoice() ? null : "您无权限删除发票，请联系管理员！");
+                    .addObject("auth_message", user.getAuthority().getRemoveInvoice() ? null : "您无权限删除发票，请联系管理员！")
+                    .addObject("companys", invoiceService.getCompanys());
         } else if ("queryForList".equals(preAction) && "edit".equals(action)){
             Invoice invoice;
             if (user.getAuthority().getModifyInvoice()) {
@@ -429,7 +433,8 @@ public class InvoiceController {
                     .addObject("has_errors", false)
                     .addObject("error_messages", null)
                     .addObject("detail_num", invoice != null ? invoice.getDetails().size() : 0)
-                    .addObject("auth_message", user.getAuthority().getModifyInvoice() ? null : "您无权限编辑发票，请联系管理员！");
+                    .addObject("auth_message", user.getAuthority().getModifyInvoice() ? null : "您无权限编辑发票，请联系管理员！")
+                    .addObject("companys", invoiceService.getCompanys());
         } else if ("queryForList".equals(preAction) && "save".equals(action)) {
             List<Invoice> invoices = invoiceService.getInvoiceList(userId);
             if (user.getAuthority().getModifyInvoice()) {
@@ -448,7 +453,8 @@ public class InvoiceController {
                             .addObject("edit_invoice", false)
                             .addObject("has_errors", false)
                             .addObject("error_messages", null)
-                            .addObject("auth_message", null);
+                            .addObject("auth_message", null)
+                            .addObject("companys", invoiceService.getCompanys());
                 } else {
                     modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
                             .addObject("view_invoice", false)
@@ -458,7 +464,8 @@ public class InvoiceController {
                             .addObject("edit_invoice", true)
                             .addObject("has_errors", true)
                             .addObject("error_messages", checkResult.get("errorMessages"))
-                            .addObject("auth_message", null);
+                            .addObject("auth_message", null)
+                            .addObject("companys", invoiceService.getCompanys());
                 }
             } else {
                 modelAndView.addObject("has_authority", user.getAuthority().getQueryInvoice())
@@ -469,7 +476,8 @@ public class InvoiceController {
                         .addObject("edit_invoice", false)
                         .addObject("has_errors", false)
                         .addObject("error_messages", null)
-                        .addObject("auth_message", "您无权限编辑发票，请联系管理员！");
+                        .addObject("auth_message", "您无权限编辑发票，请联系管理员！")
+                        .addObject("companys", invoiceService.getCompanys());
             }
         } else {
             return new ModelAndView("redirect:/main");
@@ -492,7 +500,8 @@ public class InvoiceController {
         User user = (User)result.get("user");
         modelAndView.setViewName("invoice_query_chart");
         modelAndView.addObject("has_result", false)
-                .addObject("has_authority", user.getAuthority().getQueryInvoice());
+                .addObject("has_authority", user.getAuthority().getQueryInvoice())
+                .addObject("companys", invoiceService.getCompanys());
         return modelAndView;
     }
 
@@ -552,6 +561,7 @@ public class InvoiceController {
         } else {
             return new ModelAndView("redirect:/main");
         }
+        modelAndView.addObject("companys", invoiceService.getCompanys());
         return modelAndView;
     }
 
@@ -570,7 +580,8 @@ public class InvoiceController {
         User user = (User)result.get("user");
         modelAndView.setViewName("invoice_report");
         modelAndView.addObject("has_result", false)
-                .addObject("has_authority", user.getAuthority().getQueryReport());
+                .addObject("has_authority", user.getAuthority().getQueryReport())
+                .addObject("companys", invoiceService.getCompanys());
         return modelAndView;
     }
 
@@ -648,6 +659,7 @@ public class InvoiceController {
         } else {
             return new ModelAndView("redirect:/main");
         }
+        modelAndView.addObject("companys", invoiceService.getCompanys());
         return modelAndView;
     }
 }

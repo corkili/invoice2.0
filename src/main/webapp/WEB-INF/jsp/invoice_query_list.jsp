@@ -83,7 +83,7 @@
     </script>
 
     <script src="../js/func/checkInvoice.js"></script>
-
+    <script src="../js/func/validate.js"></script>
 </head>
 
 <body class="nav-md">
@@ -123,7 +123,7 @@
                                     </div>
 
                                     <div class="x_content">
-                                        <form action="queryForList" method="post" class="form-horizontal form-label-left">
+                                        <form action="queryForList" method="post" class="form-horizontal form-label-left" onsubmit="return checkQueryForm()">
                                             <input type="hidden" name="preAction" value="queryForList">
                                             <input type="hidden" name="action" value="query">
                                             <div class="row">
@@ -132,20 +132,32 @@
                                                         本方单位名称
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <div class="col-md-6">
-                                                        <input class="form-control has-feedback-left"
-                                                               id="selfName" name="selfName" placeholder="必填" required="required"/>
-                                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                                    <div class="col-md-4">
+                                                        <select class="form-control" name="selfName" id="selfName">
+                                                            <option value="0" selected="selected">---请选择---</option>
+                                                            <c:forEach var="company" items="${companys}">
+                                                                <option value="${company.key}">${company.key}(${company.value})</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                        <%--<input class="form-control has-feedback-left"
+                                                               id="selfName" name="selfName" placeholder="必填" required="required"/>--%>
+                                                        <%--<span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>--%>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-md-2" for="itName">
                                                         他方单位名称
                                                     </label>
-                                                    <div class="col-md-6">
-                                                        <input class="form-control has-feedback-left"
-                                                               id="itName" name="itName" placeholder="不填则表示全部"/>
-                                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                                    <div class="col-md-4">
+                                                        <%--<input class="form-control has-feedback-left"
+                                                               id="itName" name="itName" placeholder="不填则表示全部"/>--%>
+                                                            <select class="form-control" name="itName" id="itName">
+                                                                <option value="" selected="selected">---全部---</option>
+                                                                <c:forEach var="company" items="${companys}">
+                                                                    <option value="${company.key}">${company.key}(${company.value})</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        <%--<span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>--%>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
