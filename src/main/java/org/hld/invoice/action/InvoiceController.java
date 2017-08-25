@@ -650,6 +650,10 @@ public class InvoiceController {
                                 .addObject("income_comments", analysisResult.get("income_comments"))
                                 .addObject("outcome_comments", analysisResult.get("outcome_comments"))
                                 .addObject("compare_comments", analysisResult.get("compare_comments"))
+                                .addObject("pre_date", analysisResult.get("pre_date"))
+                                .addObject("pre_income", analysisResult.get("pre_income"))
+                                .addObject("pre_outcome", analysisResult.get("pre_outcome"))
+                                .addObject("pre_balance", analysisResult.get("pre_balance"))
                                 .addObject("has_result", true);
                     } else {
                         modelAndView.addObject("has_result", false);

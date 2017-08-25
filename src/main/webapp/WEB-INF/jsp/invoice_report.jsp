@@ -453,6 +453,9 @@
                                                                             <th class="column-title" style="text-align: center">${date}</th>
                                                                         </c:forEach>
                                                                         <th class="column-title" style="text-align: center">合计</th>
+                                                                        <c:if test="${not empty pre_date}">
+                                                                            <th class="column-title" style="text-align: center">${pre_date}</th>
+                                                                        </c:if>
                                                                     </tr>
                                                                     </thead>
 
@@ -467,6 +470,9 @@
                                                                         <td class=" " style="text-align: center">
                                                                                 ${income_product_totals.get(income_product_totals.size() - 1)}
                                                                         </td>
+                                                                        <c:if test="${not empty pre_date}">
+                                                                            <td class=" " style="text-align: center">${pre_income}</td>
+                                                                        </c:if>
                                                                     </tr>
                                                                     <tr class="odd pointer">
                                                                         <td class=" " style="text-align: center">
@@ -483,6 +489,9 @@
                                                                         <td class=" " style="text-align: center">
                                                                                 ${outcome_product_totals.get(outcome_product_totals.size() - 1)}
                                                                         </td>
+                                                                        <c:if test="${not empty pre_date}">
+                                                                            <td class=" " style="text-align: center">${pre_outcome}</td>
+                                                                        </c:if>
                                                                     </tr>
                                                                     <tr class="even pointer">
                                                                         <td class=" " style="text-align: center">
@@ -493,6 +502,9 @@
                                                                                     ${amount}
                                                                             </td>
                                                                         </c:forEach>
+                                                                        <c:if test="${not empty pre_date}">
+                                                                            <td class=" " style="text-align: center">${pre_balance}</td>
+                                                                        </c:if>
                                                                     </tr>
                                                                     <tr class="odd pointer">
                                                                         <td class=" " style="text-align: center">
@@ -517,6 +529,25 @@
                                                                                 </c:otherwise>
                                                                             </c:choose>
                                                                         </c:forEach>
+                                                                        <c:if test="${not empty pre_date}">
+                                                                            <c:choose>
+                                                                                <c:when test="${pre_balance > 0}">
+                                                                                    <td class=" " style="text-align: center; color: green">
+                                                                                        盈利
+                                                                                    </td>
+                                                                                </c:when>
+                                                                                <c:when test="${pre_balance < 0}">
+                                                                                    <td class=" " style="text-align: center; color: red">
+                                                                                        亏损
+                                                                                    </td>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <td class=" " style="text-align: center; color: yellow">
+                                                                                        平衡
+                                                                                    </td>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </c:if>
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>
@@ -851,8 +882,11 @@
         var outcomes = [];
         var max = [];
         var indicator = [];
+        var radarIncomes = [];
+        var radarOutcomes = [];
         var pieIncomes = [];
         var pieOutcomes = [];
+        var pieDates = [];
         var size = 0;
         size = ${dates.size()};
 
@@ -866,17 +900,26 @@
         var incomeSelected = {};
         var outcomeSelected = {};
 
+        // 预测相关
+        var preIncomesLine = [];
+        var preOutcomesLine = [];
+        var preIncomesBar = [];
+        var preOutcomesBar = [];
+
         var tmp;
 
         // 填充数据--进销项对比
         <c:forEach var="date" items="${dates}" varStatus="status">
         dates.push('${date}');
+        pieDates.push('${date}');
         incomes.push(${incomes.get(status.index)});
         outcomes.push(${outcomes.get(status.index)});
-        if (incomes[${status.index}] > outcomes[${status.index}])
-            max.push(incomes[${status.index}]);
+        radarIncomes.push(${incomes.get(status.index)});
+        radarOutcomes.push(${outcomes.get(status.index)});
+        if (radarIncomes[${status.index}] > radarOutcomes[${status.index}])
+            max.push(radarIncomes[${status.index}]);
         else
-            max.push(outcomes[${status.index}]);
+            max.push(radarOutcomes[${status.index}]);
         indicator.push({
             text: dates[${status.index}],
             max: max[${status.index}]
@@ -890,6 +933,33 @@
             name: ''+dates[${status.index}]
         });
         </c:forEach>
+
+        <c:if test="${not empty pre_date}">
+        dates.push('${pre_date}');
+        preIncomesLine = [<c:forEach begin="0" end="${dates.size() - 2}" step="1">,</c:forEach> ${incomes.get(incomes.size()-1)}, ${pre_income}];
+        preOutcomesLine = [<c:forEach begin="0" end="${dates.size() - 2}" step="1">,</c:forEach> ${outcomes.get(outcomes.size()-1)}, ${pre_outcome}];
+        preIncomesBar = [<c:forEach begin="0" end="${dates.size() - 1}" step="1">,</c:forEach> ${pre_income}];
+        preOutcomesBar = [<c:forEach begin="0" end="${dates.size() - 1}" step="1">,</c:forEach> ${pre_outcome}];
+        radarIncomes.push(${pre_income});
+        radarOutcomes.push(${pre_outcome});
+        if (${pre_income} > ${pre_outcome})
+            max.push(${pre_income});
+        else
+            max.push(${pre_outcome});
+        indicator.push({
+            text: '${pre_date}',
+            max: max[max.length - 1]
+        });
+        pieIncomes.push({
+            value: ${pre_income},
+            name: '${pre_date}'
+        });
+        pieOutcomes.push({
+            value: ${pre_outcome},
+            name: '${pre_date}'
+        });
+        pieDates.push('${pre_date}');
+        </c:if>
 
         // 填充数据--进项
         <c:forEach var="i" begin="0" end="${income_names.size() - 1}" step="1">
@@ -971,7 +1041,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1020,7 +1090,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1074,7 +1144,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1123,7 +1193,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1178,7 +1248,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1222,7 +1292,43 @@
                     }
                 },
                 data: outcomes
-            }]
+            }<c:if test="${not empty pre_date}">
+                , {
+                    name: '进项',
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        normal: {
+                            label:{
+                                show: false
+                            }
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            type: 'dotted'
+                        }
+                    },
+                    data: preIncomesLine
+                }, {
+                    name: '销项',
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        normal: {
+                            label:{
+                                show: false
+                            }
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            type: 'dotted'
+                        }
+                    },
+                    data: preOutcomesLine
+                }
+                </c:if> ]
         });
         // chart_line
 
@@ -1248,7 +1354,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1284,6 +1390,27 @@
                     type:'bar',
                     data:outcomes
                 }
+                <c:if test="${not empty pre_date}">
+                , {
+                    name: '进项',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            opacity: 0.5
+                        }
+                    },
+                    data: preIncomesBar
+                }, {
+                    name: '销项',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            opacity: 0.5
+                        }
+                    },
+                    data: preOutcomesBar
+                }
+                </c:if>
             ]
         });
 
@@ -1305,7 +1432,7 @@
             },
             toolbox: {
                 feature: {
-                    dataView: {show: true, readOnly: true},
+                    dataView: {show: false, readOnly: true},
                     saveAsImage: {show: true}
                 }
             },
@@ -1322,10 +1449,10 @@
             series: [{
                 type: 'radar',
                 data: [{
-                    value: incomes,
+                    value: radarIncomes,
                     name: '进项'
                 }, {
-                    value: outcomes,
+                    value: radarOutcomes,
                     name: '销项'
                 }]
             }]
@@ -1350,7 +1477,7 @@
             legend: {
                 x : 'center',
                 y : 'bottom',
-                data: dates
+                data: pieDates
             },
             toolbox: {
                 show : true,

@@ -5,8 +5,10 @@ import org.hld.invoice.entity.Invoice;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Analyzer {
@@ -58,6 +60,10 @@ public class Analyzer {
         String incomeComment = "";
         String outcomeComment = "";
         StringBuilder compareComment = new StringBuilder();
+        // 预测数据
+        String preDate = "";
+        double preIncome = 0, preOutcome = 0;
+
         if (incomeInvoices.size() + outcomeInvoices.size() <= 0) {
             message = "没有发票数据，无法分析！";
         } else {
@@ -124,16 +130,39 @@ public class Analyzer {
                     .setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 
             // 日期
+            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+            Calendar calendar = Calendar.getInstance();
+            try {
+                startDate = new Date(dateFormat.parse(dates.get(0)).getTime());
+                endDate = new Date(dateFormat.parse(dates.get(dates.size() - 1)).getTime());
+            } catch (ParseException ignored) {
+
+            }
+            calendar.setTime(endDate);
             String dateString = "";
             if (pattern.contains("dd")) {   // 日度
                 dateString = dayFormat.format(startDate) + "至" +
                         dayFormat.format(endDate);
+                calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
+                preDate = dateFormat.format(calendar.getTime());
             } else if (pattern.contains("MM")) {    // 月度
                 dateString = monthFormat.format(startDate) + "至" +
                         monthFormat.format(endDate);
+                calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + 1);
+                preDate = dateFormat.format(calendar.getTime());
             } else {    // 年度
                 dateString = yearFormat.format(startDate) + "至" +
                         yearFormat.format(endDate);
+                calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) + 1);
+                preDate = dateFormat.format(calendar.getTime());
+            }
+
+            if (dates.size() <= 4) {
+                preDate = "";
+            } else {
+                preDate += "（预测）";
+                preIncome = new Predictor().predict(incomes);
+                preOutcome = new Predictor().predict(outcomes);
             }
 
             // 进、销项数据分析
@@ -173,7 +202,12 @@ public class Analyzer {
                 .add("outcomes", outcomes)
                 .add("income_comments", incomeComment)
                 .add("outcome_comments", outcomeComment)
-                .add("compare_comments", compareComment.toString());
+                .add("compare_comments", compareComment.toString())
+                .add("pre_date", preDate)
+                .add("pre_income", preIncome)
+                .add("pre_outcome", preOutcome)
+                .add("pre_balance", new BigDecimal(preOutcome - preIncome)
+                        .setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
         return result;
     }
 

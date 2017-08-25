@@ -7,18 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0961e5f-e726-4583-9b89-32f329d25aaa" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/BPNet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Predictor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hld/invoice/common/analysis/Analyzer.class" afterPath="$PROJECT_DIR$/target/classes/org/hld/invoice/common/analysis/Analyzer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/common/analysis/Analyzer.class" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/org/hld/invoice/common/analysis/Analyzer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/classes/META-INF/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/META-INF/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/invoice/WEB-INF/classes/META-INF/spring-mvc.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/400.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/400.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/401.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/401.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/403.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/403.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/404.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/404.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/405.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/405.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/406.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/406.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/407.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/407.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/500.html" afterPath="$PROJECT_DIR$/src/main/webapp/error/500.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java" afterPath="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,102 +38,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <file leaf-file-name="Predictor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Predictor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+            <state relative-caret-position="920">
+              <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Analyzer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="208" column="38" lean-forward="false" selection-start-line="208" selection-start-column="38" selection-end-line="208" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
+      <file leaf-file-name="InvoiceController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+            <state relative-caret-position="372">
+              <caret line="655" column="72" lean-forward="false" selection-start-line="655" selection-start-column="72" selection-end-line="655" selection-end-column="72" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="400.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/400.html">
+      <file leaf-file-name="invoice_report.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="401.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/401.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="403.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/403.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="404.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/404.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="405.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/405.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="406.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/406.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="407.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/407.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="500.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error/500.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-69">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="518">
+              <caret line="1479" column="30" lean-forward="false" selection-start-line="1479" selection-start-column="30" selection-end-line="1479" selection-end-column="30" />
+              <folding>
+                <element signature="e#54366#60635#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -171,6 +111,8 @@
       <find>single_cal4</find>
       <find>daterangepicker</find>
       <find>buyer</find>
+      <find>test</find>
+      <find>dataView: {show: true, readOnly: true},</find>
     </findStrings>
     <replaceStrings>
       <replace>successful</replace>
@@ -179,6 +121,7 @@
       <replace>pattern</replace>
       <replace>金额（元）</replace>
       <replace>seller</replace>
+      <replace>dataView: {show: false, readOnly: true},</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -192,10 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/no_authority.jspf" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/footer.jspf" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/checkInvoice.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_element.jspf" />
@@ -204,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_edit_form.jspf" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_query_form.jspf" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/manage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_save_result.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/update.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/tip.jsp" />
@@ -226,9 +164,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/InvoiceService.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/service/impl/InvoiceServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/validate.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_query_chart.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_input_hand.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_input_image.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_query_list.jsp" />
@@ -243,6 +179,13 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/error/500.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/BP.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/BpNet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/BPNet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Predictor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp" />
       </list>
     </option>
   </component>
@@ -274,7 +217,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-81" />
+    <option name="x" value="432" />
+    <option name="y" value="218" />
     <option name="width" value="1932" />
     <option name="height" value="1046" />
   </component>
@@ -313,10 +257,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -357,17 +301,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="invoice" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="xss" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
@@ -453,6 +387,15 @@
             </path>
             <path>
               <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="invoice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="invoice" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -465,23 +408,26 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../emailRemind" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp" />
-      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\js\func" />
-      <recent name="F:\Coding\invoice2.0\invoice\src\main\webapp\WEB-INF" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF" />
       <recent name="F:\Coding\invoice2.1\invoice\src\main\java\org\hld\invoice\common\xss" />
       <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\jsp" />
       <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\lib" />
       <recent name="F:\Coding\invoice2.1\invoice\src\main\java\org\hld\invoice\common" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.hld.invoice.common.analysis" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp" />
+      <recent name="F:\Coding\invoice2.1\invoice\src\main\webapp\WEB-INF\js\func" />
+      <recent name="F:\Coding\invoice2.0\invoice\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1134,7 +1080,12 @@
       <workItem from="1503379839631" duration="7439000" />
       <workItem from="1503404031856" duration="6856000" />
       <workItem from="1503466053130" duration="14572000" />
-      <workItem from="1503553883322" duration="9247000" />
+      <workItem from="1503553883322" duration="9283000" />
+      <workItem from="1503572882682" duration="199000" />
+      <workItem from="1503574648943" duration="603000" />
+      <workItem from="1503578261281" duration="8000" />
+      <workItem from="1503580382788" duration="57000" />
+      <workItem from="1503644011702" duration="10456000" />
     </task>
     <task id="LOCAL-00001" summary="Complete BaseDao and UserDao, version 2.0.2">
       <created>1502285584344</created>
@@ -1297,7 +1248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503562813895</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="add error pages, version 2.1.4">
+      <created>1503563192133</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1503563192133</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1333,10 +1291,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235472000" />
+    <option name="totallyTimeSpent" value="246831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1350,16 +1309,16 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39954337" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28995433" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2894144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25675675" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35135135" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24517168" sideWeight="0.49384886" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26287553" sideWeight="0.49384886" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2459634" sideWeight="0.50615114" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -1440,11 +1399,13 @@
     <MESSAGE value="complete record and fixed add invoices by excel, version 2.1.1" />
     <MESSAGE value="modify echart and query form, version 2.1.2" />
     <MESSAGE value="add Xss Filter, version 2.1.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Xss Filter, version 2.1.3" />
+    <MESSAGE value="add error pages, version 2.1.4" />
+    <MESSAGE value="add predict function, version 2.1.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="add predict function, version 2.1.5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1453,59 +1414,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_save_result.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="88" column="50" lean-forward="true" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/no_login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/js/func/update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/tip.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/OCR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1978">
-          <caret line="101" column="41" lean-forward="false" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/ocr/Recognition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/entity/Invoice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1551,7 +1459,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="142" column="57" lean-forward="true" selection-start-line="142" selection-start-column="57" selection-end-line="142" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1567,7 +1474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1583,7 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1591,11 +1496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2126">
           <caret line="1631" column="98" lean-forward="false" selection-start-line="1631" selection-start-column="98" selection-end-line="1631" selection-end-column="98" />
-          <folding>
-            <marker date="1503475764377" expanded="true" signature="28745:28777" ph="..." />
-            <marker date="1503475764377" expanded="true" signature="30327:30334" ph="×" />
-            <marker date="1503475764377" expanded="true" signature="51168:51180" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1610,7 +1510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10005">
           <caret line="461" column="31" lean-forward="false" selection-start-line="461" selection-start-column="31" selection-end-line="461" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1618,7 +1517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2461">
           <caret line="107" column="54" lean-forward="false" selection-start-line="107" selection-start-column="54" selection-end-line="107" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1626,9 +1524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1449">
           <caret line="89" column="45" lean-forward="false" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1636,7 +1531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2139">
           <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1644,9 +1538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="897">
           <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding>
-            <element signature="e#4306#4307#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1654,7 +1545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1662,9 +1552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8027">
           <caret line="403" column="0" lean-forward="false" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
-          <folding>
-            <element signature="e#14912#14913#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1672,7 +1559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="263" column="13" lean-forward="true" selection-start-line="263" selection-start-column="13" selection-end-line="263" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1680,7 +1566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="82" column="40" lean-forward="true" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1707,10 +1592,10 @@
         <state relative-caret-position="549">
           <caret line="54" column="36" lean-forward="false" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
           <folding>
-            <element signature="e#1490#1491#0" expanded="true" />
-            <element signature="e#1545#1546#0" expanded="true" />
-            <element signature="e#19390#19391#0" expanded="true" />
-            <element signature="e#19444#19445#0" expanded="true" />
+            <element signature="e#1490#1491#0" expanded="false" />
+            <element signature="e#1545#1546#0" expanded="false" />
+            <element signature="e#19390#19391#0" expanded="false" />
+            <element signature="e#19444#19445#0" expanded="false" />
             <element signature="method#getInvoiceList#0;class#InvoiceContext#0;class#InvoiceServiceImpl#0" expanded="false" />
             <marker date="1503555284311" expanded="false" signature="19202:19209" ph="{...}" />
           </folding>
@@ -1721,7 +1606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1729,46 +1613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-758">
-          <caret line="1136" column="14" lean-forward="true" selection-start-line="1136" selection-start-column="14" selection-end-line="1136" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#27169#27789#0#JSP" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#35131#35757#0#JSP" expanded="false" />
-            <element signature="e#45647#46919#0#JSP" expanded="false" />
-            <marker date="1503559798490" expanded="false" signature="13640:13665" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="13896:13921" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="14234:14259" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="14492:14517" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="15711:15753" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="16066:16091" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="16326:16368" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="17305:17331" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="17564:17606" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="17919:17945" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="18180:18222" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="18535:18561" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="18798:18840" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="19153:19179" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="19412:19454" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="27365:27378" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="27701:27714" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="35330:35343" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="35669:35682" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="45838:45851" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="46169:46182" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="46503:46516" ph="..." />
-            <marker date="1503559798490" expanded="false" signature="46831:46844" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1776,21 +1620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="275" column="15" lean-forward="true" selection-start-line="275" selection-start-column="15" selection-end-line="275" selection-end-column="15" />
-          <folding>
-            <element signature="n#c:if#0;n#jsp:root#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2447">
-          <caret line="220" column="76" lean-forward="false" selection-start-line="220" selection-start-column="76" selection-end-line="220" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#addInvoiceByExcelPage#0;class#InvoiceController#0" expanded="false" />
-            <element signature="method#download#0;class#InvoiceController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1798,7 +1627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="536" column="9" lean-forward="false" selection-start-line="536" selection-start-column="9" selection-end-line="536" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1806,7 +1634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="205" column="77" lean-forward="false" selection-start-line="205" selection-start-column="77" selection-end-line="205" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1814,7 +1641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="308" column="71" lean-forward="true" selection-start-line="308" selection-start-column="71" selection-end-line="308" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1892,7 +1718,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/error/500.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-69">
+        <state relative-caret-position="207">
           <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
@@ -1900,7 +1726,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
+        <state relative-caret-position="1771">
           <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
           <folding />
         </state>
@@ -1909,8 +1735,90 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/spring-mvc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/BPNet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="143" column="23" lean-forward="false" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/AnalysisHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1955">
+          <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/ProductAnalysisModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding>
+            <element signature="e#703#704#0" expanded="false" />
+            <element signature="e#733#734#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Predictor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="52" column="25" lean-forward="false" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/IncomeAndOutcomeAnalysisModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding>
+            <element signature="e#612#613#0" expanded="false" />
+            <element signature="e#642#643#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/Java/jdk1.8.0_131/src.zip!/java/sql/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/action/InvoiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="655" column="72" lean-forward="false" selection-start-line="655" selection-start-column="72" selection-end-line="655" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/hld/invoice/common/analysis/Analyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="208" column="38" lean-forward="false" selection-start-line="208" selection-start-column="38" selection-end-line="208" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/invoice_report.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="1479" column="30" lean-forward="false" selection-start-line="1479" selection-start-column="30" selection-end-line="1479" selection-end-column="30" />
+          <folding>
+            <element signature="e#54366#60635#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
