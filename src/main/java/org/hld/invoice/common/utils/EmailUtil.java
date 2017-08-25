@@ -1,5 +1,6 @@
 package org.hld.invoice.common.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -8,6 +9,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 /**
  * 邮件工具类
@@ -68,7 +70,13 @@ public class EmailUtil {
 		// 指明邮件的收件人
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 		// 邮件的标题
-		message.setSubject(("active".equalsIgnoreCase(action) ? "账户激活" : "密码重置") + "【企业增值税发票数据分析系统】");
+		try {
+			message.setSubject(MimeUtility.encodeText(
+                    ("active".equalsIgnoreCase(action) ? "账户激活" : "密码重置") + "【企业增值税发票数据分析系统】",
+                    MimeUtility.mimeCharset("gb2312"), null));
+		} catch (UnsupportedEncodingException e) {
+			message.setSubject(("active".equalsIgnoreCase(action) ? "账户激活" : "密码重置") + "【企业增值税发票数据分析系统】");
+		}
 		// 邮件的文本内容
 		String link = address + "?action=" + action + "&email=" + email + "&code=" + code;
         String sb = "<p>欢迎使用企业增值税发票数据分析系统！<br></p>" +

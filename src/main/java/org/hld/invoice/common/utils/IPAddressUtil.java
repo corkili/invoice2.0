@@ -67,7 +67,7 @@ public class IPAddressUtil {
             //System.out.println(returnStr);
             String[] temp = returnStr.split(",");
             if(temp.length<3){
-                return "0";//无效IP，局域网测试
+                return "*";//无效IP，局域网测试
             }
             String country = "";
             String area = "";
@@ -228,7 +228,7 @@ public class IPAddressUtil {
     }
     // 测试
     public static void main(String[] args) {
-        String ip = "1.204.6.176";
+        String ip = "1.204.13.47";
         String address = "";
         try {
             address = IPAddressUtil.getAddresses("ip=" + ip, "utf-8");

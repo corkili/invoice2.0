@@ -27,8 +27,8 @@ public class RecordServiceImpl implements RecordService {
         record.setTime(new Date());
         record.setIp(IPAddressUtil.getIpAddress(request));
         try {
-            String address = IPAddressUtil.getAddresses(record.getIp(), "utf-8");
-            record.setAddress(address == null ? "未知地理位置" : address);
+            String address = IPAddressUtil.getAddresses("ip=" + record.getIp(), "utf-8");
+            record.setAddress("*".equals(address) ? "未知地理位置" : address);
         } catch (UnsupportedEncodingException e) {
             record.setAddress("未知地理位置");
         }

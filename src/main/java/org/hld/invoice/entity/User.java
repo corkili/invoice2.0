@@ -57,7 +57,7 @@ public class User {
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "image", columnDefinition = "BLOB")
+    @Column(name = "image")
     private Blob image;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
