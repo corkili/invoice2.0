@@ -33,6 +33,7 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
 
     <script src="../js/func/update.js"></script>
+    <script src="../js/func/validate.js"></script>
 </head>
 
 <body class="login">
@@ -40,13 +41,14 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="pwd" method="post" id="pwd_form" name="pwd_form" onsubmit="return checkResetPasswordForm();">
+                <form action="resetPassword" method="post" id="pwd_form" name="pwd_form" onsubmit="return checkResetPasswordForm();">
                     <h1>
                         重置密码<br/><br/>
                         <strong>企业增值税发票数据分析系统</strong>
                     </h1>
 
                     <input type="hidden" id="action" name="action" value="pwd">
+                    <input type="hidden" name="email" value="${email}">
 
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <div class="col-md-3 col-sm-3 col-xs-3" style="text-align: right">
@@ -55,8 +57,8 @@
                             </label>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="email" name="email" onchange="checkEmail();" class="form-control"
-                                   value="${email}" required disabled/>
+                            <input type="email" id="email" onchange="checkEmail();"
+                                   class="form-control" value="${email}" required disabled/>
                         </div>
                     </div>
 
@@ -67,7 +69,7 @@
                             </label>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="password" name="password" onchange="checkPassword();"
+                            <input id="password" name="password" onchange="checkPassword();" value="${password}"
                                    type="password" class="form-control" placeholder="密码：8-12位，包含数字和字母" required/>
                         </div>
                     </div>
@@ -79,8 +81,8 @@
                             </label>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="confirmPassword" name="confirmPassword" type="password" onchange="checkConfirmPassword();"
-                                   class="form-control" placeholder="再次输入密码" required/>
+                            <input id="confirmPassword" type="password" onchange="checkConfirmPassword();"
+                                   class="form-control" placeholder="再次输入密码" value="${confirmPassword}" required/>
                         </div>
                     </div>
 

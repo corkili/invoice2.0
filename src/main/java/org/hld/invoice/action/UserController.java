@@ -194,12 +194,10 @@ public class UserController {
                     "---" + (activeResult.isSuccessful() ? "激活成功！" : "激活失败！"))
                     .addObject("url", "login");
         } else if ("pwd".equals(action) && verifyResult.isSuccessful()) {
-            modelAndView.setViewName("pwd");
-            modelAndView.addObject("email", email)
-                    .addObject("has_error", false)
-                    .addObject("error_message", "");
+            modelAndView.setViewName("redirect:/resetPassword");
+            session.setAttribute("email", email);
             session.setAttribute("validate", HashUtil.generate(email));
-
+            return modelAndView;
         } else {
             modelAndView.setViewName("tip");
             modelAndView.addObject("message", verifyResult.getMessage())
@@ -256,17 +254,38 @@ public class UserController {
                 .addObject("error_message", errorMessage);
     }
 
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+    public ModelAndView modifyPasswordPage(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        String email = (String)session.getAttribute("email");
+        String validate = (String)session.getAttribute("validate");
+        if (email == null || validate == null || !HashUtil.verify(email, validate)) {
+            modelAndView.setViewName("tip");
+            modelAndView.addObject("message", "非法操作，未经授权！")
+                    .addObject("url", "login");
+            return modelAndView;
+        } else {
+            modelAndView.setViewName("pwd");
+            modelAndView.addObject("email", email)
+                    .addObject("has_error", false)
+                    .addObject("error_message", "")
+                    .addObject("password", "")
+                    .addObject("confirmPassword", "");
+            session.removeAttribute("email");
+            return modelAndView;
+        }
+    }
 
-    @RequestMapping(value = "/pwd", method = RequestMethod.POST)
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     public ModelAndView modifyPassword(@RequestParam("email") String email,
                                        @RequestParam("password") String password,
                                        @RequestParam("captcha") String captcha,
                                        @SessionAttribute("randomString") String random,
                                        HttpSession session, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
+        String validate = (String)session.getAttribute("validate");
         String errorMessage;
-        if (session.getAttribute("validate") == null
-                || HashUtil.verify(email, session.getAttribute("validate").toString())) {
+        if (validate == null || !HashUtil.verify(email, validate)) {
             modelAndView.setViewName("tip");
             modelAndView.addObject("message", "非法操作，未经授权！")
                     .addObject("url", "login");
@@ -274,6 +293,9 @@ public class UserController {
         } else if (!captcha.toLowerCase().equals(random.toLowerCase())) {
             errorMessage = "验证码错误";
             modelAndView.setViewName("pwd");
+            modelAndView.addObject("email", email)
+                    .addObject("password", password)
+                    .addObject("confirmPassword", password);
         } else {
             Result result = userService.modifyPassword(email, password);
             if (result.isSuccessful()) {
@@ -287,6 +309,9 @@ public class UserController {
                 return modelAndView;
             } else {
                 modelAndView.setViewName("pwd");
+                modelAndView.addObject("email", email)
+                        .addObject("password", password)
+                        .addObject("confirmPassword", password);
                 errorMessage = result.getMessage();
             }
         }

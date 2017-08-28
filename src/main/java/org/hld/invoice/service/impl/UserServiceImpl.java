@@ -295,8 +295,8 @@ public class UserServiceImpl implements UserService {
         User user = userDao.findUserByEmail(email);
         if (user == null) {
             message = "邮箱不存在！";
-        } else if (StringUtils.isEmpty(user.getPassword())
-                || !Pattern.compile(CHECK_PASSWORD).matcher(user.getPassword()).matches()) {
+        } else if (StringUtils.isEmpty(password)
+                || !Pattern.compile(CHECK_PASSWORD).matcher(password).matches()) {
             message = "密码必须为包含字母和数字，且长度为8到24";
         } else {
                 user.setPassword(HashUtil.generate(password));
