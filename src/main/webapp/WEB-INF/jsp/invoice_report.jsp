@@ -90,13 +90,13 @@
                                         <form action="report" method="post" class="form-horizontal form-label-left">
                                             <input type="hidden" name="preAction" value="report">
                                             <input type="hidden" name="action" value="query">
-                                            <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-2" for="selfName">
+                                                    <label class="control-label col-md-2 col-md-offset-1" for="selfName">
                                                         本方单位名称
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-9">
                                                         <select class="form-control" name="selfName" id="selfName">
                                                             <option value="0" selected="selected">---请选择---</option>
                                                             <c:forEach var="company" items="${companys}">
@@ -109,10 +109,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-2" for="itName">
+                                                    <label class="control-label col-md-2 col-md-offset-1" for="itName">
                                                         他方单位名称
                                                     </label>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-9">
                                                             <%--<input class="form-control has-feedback-left"
                                                                    id="itName" name="itName" placeholder="不填则表示全部"/>--%>
                                                         <select class="form-control" name="itName" id="itName">
@@ -125,11 +125,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-2" for="itName">
+                                                    <label class="control-label col-md-2 col-md-offset-1" for="itName">
                                                         日期范围
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-9">
                                                         <div id="reportrange_right" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                                             <span>请选择日期范围</span> <b class="caret"></b>
@@ -155,26 +155,32 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-2" for="pattern">
+                                                    <label class="control-label col-md-2 col-md-offset-1" for="pattern">
                                                         统计方式<span class="required">*</span>
                                                     </label>
-                                                    <br/>
-                                                    <div class="col-md-6">
-                                                        <div id="pattern" class="btn-group" data-toggle="buttons">
+                                                    <div class="col-md-9">
+                                                        <div id="pattern" class="btn-group" data-toggle="buttons" style="padding-top: 8px;">
                                                             年度：<input type="radio" class="flat" name="pattern" id="patternrY" value="yyyy" checked="" required />
                                                             月度：<input type="radio" class="flat" name="pattern" id="patternM" value="yyyy-MM" />
                                                             日度：<input type="radio" class="flat" name="pattern" id="patternD" value="yyyy-MM-dd" />
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="ln_solid"></div>
+                                                <br/>
+                                                <%--<div class="ln_solid"></div>--%>
                                                 <div class="form-group">
                                                     <div class="col-md-5 col-md-offset-3">
                                                         <input type="reset" class="btn btn-primary" value="重置">
                                                         <input type="submit" class="btn btn-success" value="查询">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6" style="font-size: 15px;">
+                                                <h3>报表查询-温馨提示</h3>
+                                                <p>* 1 若需对2010年至2016年进行年度统计，请选择2010-01-01至2016-12-31</p>
+                                                <p>* 2 若需对2016年1月至2016年6月进行月度统计，请选择2016-01-01至2016-06-31</p>
+                                                <p>* 3 若需拥有预测功能，请选择至少4期及以上的时间，即4年（年度）或4月（月度）或4日（日度）</p>
+                                                <p>* 4 查询结果中，进项数据和销项数据中的统计图中默认不显示柱条或折线，请在图的下方点击图例进行显示</p>
                                             </div>
                                         </form>
                                     </div>
@@ -202,7 +208,7 @@
                                                         <li role="presentation" class="active" style="background-color: #F4F4F4">
                                                             <a href="#income_data_view" id="income_data_tab" role="tab" data-toggle="tab"
                                                                aria-expanded="true" style="background-color: #F4F4F4;">
-                                                                <strong>进项数据表</strong>
+                                                                <strong>进项数据</strong>
                                                             </a>
                                                         </li>
                                                         <%--<li role="presentation" class="" style="background-color: #F4F4F4">
@@ -220,7 +226,7 @@
                                                         <li role="presentation" class="" style="background-color: #B7B7B7">
                                                             <a href="#outcome_data_view" id="outcome_data_tab" role="tab" data-toggle="tab"
                                                                aria-expanded="false" style="background-color: #B7B7B7; color: #4A708B;">
-                                                                <strong>销项数据表</strong>
+                                                                <strong>销项数据</strong>
                                                             </a>
                                                         </li>
                                                         <%--<li role="presentation" class="" style="background-color: #B7B7B7">
@@ -238,7 +244,7 @@
                                                         <li role="presentation" class="" style="background-color: #8E8E8E ">
                                                             <a href="#compare_data_view" id="compare_data_tab" role="tab" data-toggle="tab"
                                                                aria-expanded="false" style="background-color: #8E8E8E; color: #F5F5F5;">
-                                                                <strong>对比数据表</strong>
+                                                                <strong>进销项对比数据</strong>
                                                             </a>
                                                         </li>
                                                         <%--<li role="presentation" class="" style="background-color: #8E8E8E ">

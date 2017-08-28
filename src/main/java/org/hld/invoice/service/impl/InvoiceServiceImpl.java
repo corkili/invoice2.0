@@ -273,16 +273,14 @@ public class InvoiceServiceImpl implements InvoiceService {
                         for (Invoice invoice : invoices) {
                             if (!checkInvoice(invoice, true).isSuccessful()) {
                                 errorInvoices.add(invoice);
-                            } else {
-                                Long id = invoiceDao.save(invoice);
-                                if (id == null) {
-                                    errorInvoices.add(invoice);
-                                } else {
-                                    detailSum += invoice.getDetails().size();
-                                }
                             }
                         }
                         invoices.removeAll(errorInvoices);
+                        // 保存至数据库
+                        errorInvoices.addAll(invoiceDao.batchSave(invoices));
+                        for (Invoice invoice : invoices) {
+                            detailSum += invoice.getDetails().size();
+                        }
                         invoiceContext.addAll(userId, invoices);
                     }
                     int size = invoiceContext.getInvoiceList(userId).size();
