@@ -33,6 +33,7 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
 
     <script src="../js/func/validate.js"></script>
+    <script src="../js/func/md5.js"></script>
 </head>
 <body class="login">
 <div>
@@ -75,7 +76,7 @@
                             </label>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="confirmPassword" name="confirmPassword" type="password" onchange="checkConfirmPassword();"
+                            <input id="confirmPassword" type="password" onchange="checkConfirmPassword();"
                                    class="form-control" placeholder="再次输入密码" required/>
                         </div>
                     </div>

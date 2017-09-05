@@ -19,9 +19,21 @@ function checkQueryForm() {
     }
 }
 
+function checkLoginForm() {
+    if (checkEmail() && checkVerificationCode()) {
+        var pass = $$('password').value;
+        $$('password').value = md5(pass);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function checkRegisterForm() {
     if (checkEmail() && checkPassword() && checkConfirmPassword()
             && checkName() && checkPhone() && checkVerificationCode()) {
+        var pass = $$('password').value;
+        $$('password').value = md5(pass);
         return true;
     } else {
         alert("某些信息输入不正确，请检查红字部分！");
@@ -40,6 +52,8 @@ function checkSendEmailForm() {
 
 function checkResetPasswordForm() {
     if (checkEmail()  && checkPassword() && checkConfirmPassword() && checkVerificationCode()) {
+        var pass = $$('password').value;
+        $$('password').value = md5(pass);
         return true;
     } else {
         alert("某些信息输入不正确，请检查红字部分！");

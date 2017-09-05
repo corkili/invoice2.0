@@ -110,10 +110,10 @@ public class UserServiceImpl implements UserService {
             message = "邮箱不能为空或邮箱格式不正确！";
         } else if (userDao.findUserByEmail(user.getEmail()) != null) {
             message = "邮箱已存在！";
-        } else if (StringUtils.isEmpty(user.getPassword())
+        }/* else if (StringUtils.isEmpty(user.getPassword())
                 || !Pattern.compile(CHECK_PASSWORD).matcher(user.getPassword()).matches()){
             message = "密码必须为包含字母和数字，且长度为8到24";
-        } else if (StringUtils.isEmpty(user.getName())) {
+        }*/ else if (StringUtils.isEmpty(user.getName())) {
             message = "姓名不能为空";
         } else if (StringUtils.isEmpty(user.getJobId())) {
             message = "职工号不能为空";
@@ -295,10 +295,10 @@ public class UserServiceImpl implements UserService {
         User user = userDao.findUserByEmail(email);
         if (user == null) {
             message = "邮箱不存在！";
-        } else if (StringUtils.isEmpty(password)
+        }/* else if (StringUtils.isEmpty(password)
                 || !Pattern.compile(CHECK_PASSWORD).matcher(password).matches()) {
             message = "密码必须为包含字母和数字，且长度为8到24";
-        } else {
+        }*/ else {
                 user.setPassword(HashUtil.generate(password));
                 userDao.saveOrUpdate(user);
                 successful = true;

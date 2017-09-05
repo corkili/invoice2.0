@@ -34,6 +34,7 @@
 
     <script src="../js/func/update.js"></script>
     <script src="../js/func/validate.js"></script>
+    <script src="../js/func/md5.js"></script>
 </head>
 
 <body class="login">

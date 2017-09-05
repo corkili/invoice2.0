@@ -38,11 +38,11 @@ public class UserController {
 
     private RecordService  recordService;
 
-    @RequestMapping(value = "/init")
+/*    @RequestMapping(value = "/init")
     public String initAdmin(HttpServletRequest request) {
         userService.initAdmin(request);
         return "redirect:/login";
-    }
+    }*/
 
     @RequestMapping(value = "/no_login")
     public ModelAndView noLogin() {
@@ -165,6 +165,7 @@ public class UserController {
             Result registerResult = userService.register(user, request);
             if (!registerResult.isSuccessful()) {
                 errorMessage = registerResult.getMessage();
+                user.setPassword("");
                 modelAndView.setViewName("register");
             } else {
                 modelAndView.setViewName("tip");
@@ -440,9 +441,8 @@ public class UserController {
         List<User> users = (List<User>)userService.getUsers(false, false).get("users");
         if (user.getIsSuperManager()) {
             users.addAll((List<User>)userService.getUsers(false, true).get("users"));
-        } else {
-            users.add(user);
         }
+        users.add(user);
         modelAndView.addObject("has_authority", true)
                 .addObject("user", user)
                 .addObject("user_list", users)
@@ -507,9 +507,8 @@ public class UserController {
         List<User> users = (List<User>)userService.getUsers(false, false).get("users");
         if (user.getIsSuperManager()) {
             users.addAll((List<User>)userService.getUsers(false, true).get("users"));
-        } else {
-            users.add(user);
         }
+        users.add(user);
         modelAndView.addObject("has_authority", true)
                 .addObject("user", user)
                 .addObject("user_list", users)

@@ -31,6 +31,8 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <script src="../js/func/md5.js"></script>
+    <script src="../js/func/validate.js"></script>
 </head>
 
 <body class="login">
@@ -38,7 +40,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="login" method="post" id="login_form" name="login_form">
+                <form action="login" method="post" id="login_form" name="login_form" onsubmit="return checkLoginForm();">
                     <h1>
                         登录<br/><br/>
                         <strong>企业增值税发票数据分析系统</strong>
@@ -50,7 +52,7 @@
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <input type="password" id="password" name="password" class="form-control"
-                               placeholder="密码" required/>
+                               placeholder="密码" value="" required/>
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-8">
                         <input id="captcha" name="captcha" class="form-control"

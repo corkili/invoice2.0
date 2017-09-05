@@ -162,6 +162,9 @@
                                                         <td class=" ">${user.jobId}</td>
                                                         <td class=" ">
                                                             <c:choose>
+                                                                <c:when test="${user.isSuperManager}">
+                                                                    <span style="color: #a5d24a;">超级管理员</span>
+                                                                </c:when>
                                                                 <c:when test="${user.isManager}">
                                                                     <span style="color: #e9322d">管理员</span>
                                                                 </c:when>
