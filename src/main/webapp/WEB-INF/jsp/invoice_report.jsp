@@ -87,7 +87,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <form action="report" method="post" class="form-horizontal form-label-left">
+                                        <form action="report" method="post" class="form-horizontal form-label-left"  onsubmit="return checkQueryForm()">
                                             <input type="hidden" name="preAction" value="report">
                                             <input type="hidden" name="action" value="query">
                                             <div class="col-md-6 col-sm-6 col-xs-6">

@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table(name = "record")
+@Table(name = "records")
 public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

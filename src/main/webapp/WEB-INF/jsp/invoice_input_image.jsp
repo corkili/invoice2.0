@@ -302,8 +302,8 @@
                                                         </label>
                                                         <div class="col-md-6">
                                                             <form:input path="buyerId" id="buyerId" name="buyerId"
-                                                                        cssClass="form-control col-md-6"
-                                                                        value="${invoice.buyerId}" placeholder="请输入购贷方纳税人识别号（可空）"/>
+                                                                        cssClass="form-control col-md-6" 
+                                                                        value="${invoice.buyerId}" placeholder="请输入购贷方纳税人识别号"/>
                                                         </div>
                                                     </div>
                                                     <div class="ln_solid"></div>
@@ -408,7 +408,7 @@
                                                         <div class="col-md-6">
                                                             <form:input path="sellerId" id="sellerId" name="sellerId"
                                                                         cssClass="form-control col-md-6"
-                                                                        value="${invoice.sellerId}" placeholder="请输入销贷方纳税人识别号（可空）"/>
+                                                                        value="${invoice.sellerId}" placeholder="请输入销贷方纳税人识别号"/>
                                                         </div>
                                                     </div>
                                                     <div class="ln_solid"></div>

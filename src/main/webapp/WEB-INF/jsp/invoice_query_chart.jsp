@@ -84,7 +84,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <form action="queryForChart" method="post" class="form-horizontal form-label-left">
+                                        <form action="queryForChart" method="post" class="form-horizontal form-label-left"  onsubmit="return checkQueryForm()">
                                             <input type="hidden" name="preAction" value="queryForChart">
                                             <input type="hidden" name="action" value="query">
                                             <input type="hidden" name="pattern" value="yyyy-MM">
@@ -204,7 +204,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
                                         <h2>雷达图</h2>
@@ -226,7 +226,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm6 col-xs-12">
+                        </div>
+                        <div class="row">
+                        	<div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
                                         <h2>饼状图</h2>
@@ -531,7 +533,7 @@
 
         // 填充数据
         <c:forEach var="date" items="${dates}" varStatus="status">
-        dates.push(''+${date});
+        dates.push('${date}');
         incomes.push(${incomes.get(status.index)});
         outcomes.push(${outcomes.get(status.index)});
         if (incomes[${status.index}] > outcomes[${status.index}])
